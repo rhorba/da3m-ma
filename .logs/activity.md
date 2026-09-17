@@ -29,3 +29,8 @@
 - Summary: 1.1 Next.js 15.5 + TS strict + pnpm scaffold, ESLint (raw-db ban + module boundaries), Prettier, Vitest projects, Playwright, CI (quality, test, security, e2e). 1.2 full schema + migration + reverse + round-trip test. 1.3 Clerk org/membership webhook sync (idempotent, out-of-order safe, signature-verified). 1.4 Actor model + scoped repositories (cabinet, profiles, auth) + isolation suite. 1.5 next-intl FR/AR/EN, RTL, message-parity tests, tokens from UI doc, security headers.
 - Status: complete
 - Impact: high
+
+### [2026-09-17 14:45] [CI] — Sprint 1 push afcf459: GREEN
+- Specialist: DevOps
+- Summary: Run 35207767753 — Lint/types/format success; Unit + integration (coverage gate) success; Security scans (Semgrep, Trivy, Gitleaks) success; Build + E2E success. Sprint 1 SHIP complete.
+- Status: complete
