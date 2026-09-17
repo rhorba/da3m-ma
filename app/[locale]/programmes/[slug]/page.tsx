@@ -6,7 +6,7 @@ import { DocumentChecklist } from "@/components/programme/document-checklist";
 import { StatusDot } from "@/components/results/status-dot";
 import { getCatalogueReadRepository, type PublishedProgram } from "@/lib/catalog";
 import { amountLabel, formatDate, formatMad } from "@/lib/reports";
-import { absoluteUrl, alternatesFor } from "@/lib/seo";
+import { absoluteUrl, alternatesFor, jsonLdHtml } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -88,8 +88,11 @@ export default async function ProgrammePage({ params }: Props) {
     <main className="mx-auto flex min-h-dvh max-w-2xl flex-col gap-8 px-4 py-8 sm:px-6">
       <script
         type="application/ld+json"
-        // Values are curated, validated strings; JSON.stringify escapes them for the tag.
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        // React would HTML-escape a text child, which a browser does not decode inside a
+        // script element, so the JSON has to be raw. jsonLdHtml escapes every character
+        // that could end the tag or break a parser (lib/seo/json-ld.ts, proven in its tests).
+        // nosemgrep: typescript.react.security.audit.react-dangerouslysetinnerhtml.react-dangerouslysetinnerhtml
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
 
       <header className="flex flex-col gap-3">

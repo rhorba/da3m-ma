@@ -77,3 +77,11 @@
 - Workaround in use: `rm -rf .next` before each build. CI is unaffected (clean checkout).
 - Proper fix (user decision): move the repo out of the OneDrive folder, or exclude .next from OneDrive sync.
 - Severity: low (local friction only)
+
+### [2026-09-17 23:15] [RESOLVED] — CI red on 28115ee: Semgrep blocked the JSON-LD injection
+- Symptom: Security scans failed. `typescript.react.security.audit.react-dangerouslysetinnerhtml` on app/[locale]/programmes/[slug]/page.tsx:92.
+- Root cause of the escape: I reviewed the new surface by hand and called it a security pass, but never ran the scanners locally before pushing. The manual review missed a rule the tool enforces.
+- Fix: lib/seo/json-ld.ts escapes `<`, `>`, `&`, U+2028 and U+2029 as JSON unicode escapes, so no input can close the script tag; the rule is suppressed on that one line with the reason written next to it. React cannot render the JSON as a text child because it HTML-escapes children, which a browser does not decode inside a script element.
+- Second bug found while fixing: the first version of the escape map was written with single backslashes, so `"\u003c"` evaluated to `<` and every replacement was a no-op. The "cannot emit a closing script tag" test caught it. Now built with String.raw.
+- Prevention: run the CI Semgrep image locally before any push that adds rendering or I/O code.
+- Status: resolved, verified locally (Semgrep 0 findings on 151 targets)
