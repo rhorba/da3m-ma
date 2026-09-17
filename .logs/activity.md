@@ -79,3 +79,14 @@
 - Summary: /[locale]/resultats/[id] renders only from the stored report (ADR-4), force-dynamic and noindex, 404 for anyone but the owner. ResultGroup (ineligible collapsed in a native <details>), ProgramResultCard (StatusDot, kind, amount via pure amountLabel/formatMad, freshness stamp, official source), InlineQuestion answering one missing field. answerQuestion action writes a new report and the page swaps to it in place. Zero-match state shows the 3 closest with what would change. E2E fixtures published through the real loader + sync path (pnpm e2e:seed); CI e2e job now runs a Postgres service, migrate and seed.
 - Status: complete
 - Impact: high
+
+### [2026-09-17 22:00] [VIDEO_RECORDED] — Sprint 3 user-facing flows
+- Specialist: Tester
+- File: .recordings/v0.3-sprint3-2026-09-17.webm (mobile viewport, 412x915)
+- Scenarios: landing → wizard CTA; five steps (forme juridique, secteur + région, âge + MRE, ancienneté + effectif + CA, montant + objet); submit → ranked results; inline "milieu rural" question moving Prêt rural into the eligible group; collapsed "Non éligible" group expanded; the same report re-opened in Arabic (RTL).
+- Status: complete
+
+### [2026-09-17 22:05] [CI] — Sprint 3 push 333d13a: GREEN
+- Specialist: DevOps, DevSecOps, Deployment
+- Summary: Run 35274036321 — Lint/types/format, Unit + integration (coverage gate incl. lib/engine 100%), Security scans (Semgrep, Trivy, Gitleaks), Build + E2E (new Postgres service, migrate, seed, 12 tests desktop + mobile) all success. Sprint 3 SHIP complete.
+- Status: complete
