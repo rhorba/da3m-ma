@@ -83,6 +83,13 @@ describe("buildReport", () => {
     expect(ruralOnly?.missing).toEqual(["is_rural"]);
   });
 
+  it("snapshots the document checklist, so it cannot change under the visitor", () => {
+    const documents = [{ id: "rc", label: { fr: "RC", ar: "السجل", en: "Register" } }];
+    const report = buildReport({}, [program({ slug: "with-docs", documents })]);
+
+    expect(report.results[0]?.documents).toEqual(documents);
+  });
+
   it("snapshots the version facts the results page renders", () => {
     const report = buildReport({}, [
       program({

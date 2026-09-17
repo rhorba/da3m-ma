@@ -90,3 +90,20 @@
 - Specialist: DevOps, DevSecOps, Deployment
 - Summary: Run 35274036321 — Lint/types/format, Unit + integration (coverage gate incl. lib/engine 100%), Security scans (Semgrep, Trivy, Gitleaks), Build + E2E (new Postgres service, migrate, seed, 12 tests desktop + mobile) all success. Sprint 3 SHIP complete.
 - Status: complete
+
+### [2026-09-17 22:40] [COMPLETED] — Sprint 4 Batch 1: stories 4.1 and 4.5
+- Specialist: Backend Dev, Frontend Dev, Copywriter, Tester
+- Summary: catalogue read gains findPublishedBySlug (shared column set, row type derived from the tables). /[locale]/programmes/[slug] renders on demand with revalidate 3600, so the build needs no database; canonical + hreflang FR/AR/EN + x-default from the pure lib/seo helpers; GovernmentService JSON-LD. CriteriaList builds "Qui peut en bénéficier" from the rule tree's verified reason strings via collectReasons, so the page cannot promise what the engine would refuse. DocumentChecklist (4.5) on the programme page and on eligible result cards; reports now snapshot documents too (ADR-4). Result card titles link to the programme page. Trilingual copy for both new surfaces.
+- Status: complete
+- Impact: high
+
+### [2026-09-17 22:55] [COMPLETED] — Sprint 4 Batch 2: story 4.2 and the crawl surface
+- Specialist: Frontend Dev, DevOps, Tester
+- Summary: /[locale]/programmes prerendered per locale with 1h ISR; CatalogueList filters by type, status and operator in the browser over a list the server already rendered, with a count, a reset and two distinct empty states (nothing published vs nothing matching). Only view-model fields cross to the client; rule trees stay on the server. app/sitemap.ts lists the static paths and every published programme in all three locales with hreflang alternates; app/robots.ts keeps crawlers out of /[locale]/resultats/ and /api/. Home page links to the catalogue.
+- Status: complete
+- Impact: medium
+
+### [2026-09-17 22:55] [DECISION] — The production build now needs DATABASE_URL
+- Specialist: DevOps
+- Summary: /[locale]/programmes and /sitemap.xml are prerendered at build with hourly revalidation, so `next build` reads the published catalogue. CI's Build + E2E job already provides DATABASE_URL, and Vercel has it. Programme detail pages stay render-on-demand and need nothing at build.
+- Status: complete

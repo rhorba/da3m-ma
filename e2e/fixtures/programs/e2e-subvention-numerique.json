@@ -52,7 +52,32 @@
         }
       ]
     },
-    "documents": [],
+    "documents": [
+      {
+        "id": "rc",
+        "label": {
+          "fr": "Registre de commerce",
+          "ar": "السجل التجاري",
+          "en": "Commercial register"
+        }
+      },
+      {
+        "id": "statuts",
+        "label": {
+          "fr": "Statuts de la société",
+          "ar": "النظام الأساسي للشركة",
+          "en": "Company articles"
+        }
+      },
+      {
+        "id": "business-plan",
+        "label": {
+          "fr": "Business plan sur 3 ans",
+          "ar": "مخطط أعمال على 3 سنوات",
+          "en": "Three-year business plan"
+        }
+      }
+    ],
     "content": {
       "fr": {
         "title": "Subvention numérique (test)",

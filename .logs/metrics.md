@@ -31,3 +31,11 @@
 - Lint / typecheck / format: clean
 - Build: /fr /ar /en and /eligibilite prerendered static; /resultats/[id] dynamic (ADR-7 holds)
 - Security review: reports scoped to profile owner (404 otherwise), results noindex + force-dynamic, rate limit charged before any write, anon cookie HttpOnly/SameSite=Lax/hashed at rest, catalogue URLs https-validated at publish (publish-validation.ts:93,99) before reaching an href
+
+### [2026-09-17 22:55] [METRICS] — Sprint 4 partial (4.1, 4.2, 4.5) verify
+- Tests: 353 passed / 353 (24 files)
+- Coverage (combined): statements 97.16%, branches 95.80%, functions 94.35%, lines 98.14% — gate 80% PASS
+- lib/engine: 100% (CI-enforced)
+- E2E: 50 / 50 (desktop + mobile Chromium) — wizard, results, programme pages, catalogue filters, sitemap, robots
+- Lint / typecheck / format: clean
+- Build: /programmes prerendered per locale (1h ISR), /programmes/[slug] on demand (1h), sitemap + robots static

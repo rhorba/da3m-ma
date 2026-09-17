@@ -11,6 +11,7 @@ export default async function HomePage({ params }: Props) {
   const tNav = await getTranslations("nav");
   const tLang = await getTranslations("languages");
   const tCommon = await getTranslations("common");
+  const tCatalogue = await getTranslations("catalogue");
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-3xl flex-col px-4 py-6 sm:px-6">
@@ -44,12 +45,20 @@ export default async function HomePage({ params }: Props) {
       <main className="flex flex-1 flex-col justify-center gap-6 py-16">
         <h1 className="text-3xl leading-tight font-semibold sm:text-5xl">{t("title")}</h1>
         <p className="text-lg text-text-muted">{t("tagline")}</p>
-        <Link
-          href="/eligibilite"
-          className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-white hover:opacity-90"
-        >
-          {t("cta")}
-        </Link>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Link
+            href="/eligibilite"
+            className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-white hover:opacity-90"
+          >
+            {t("cta")}
+          </Link>
+          <Link
+            href="/programmes"
+            className="text-base font-medium text-primary underline underline-offset-4"
+          >
+            {tCatalogue("title")}
+          </Link>
+        </div>
       </main>
 
       <footer className="border-t border-border pt-4 text-sm text-text-muted">

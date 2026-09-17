@@ -1,4 +1,6 @@
 import { getTranslations } from "next-intl/server";
+import { DocumentChecklist } from "../programme/document-checklist";
+import { Link } from "@/i18n/navigation";
 import { amountLabel, formatDate, formatMad, type ReportResult } from "@/lib/reports";
 import type { AppLocale } from "@/i18n/routing";
 import { InlineQuestion } from "./inline-question";
@@ -26,6 +28,7 @@ function contentFor(result: ReportResult, locale: AppLocale) {
 export async function ProgramResultCard({ result, locale, reportId, showReasons }: Props) {
   const t = await getTranslations("results");
   const tWizard = await getTranslations("wizard");
+  const tProgramme = await getTranslations("programme");
   const content = contentFor(result, locale);
   const amount = amountLabel(result.amountMinMad, result.amountMaxMad);
   const question = result.outcome === "needs_info" ? result.missing[0] : undefined;
@@ -33,7 +36,14 @@ export async function ProgramResultCard({ result, locale, reportId, showReasons 
   return (
     <article className="rounded-lg border border-border bg-surface p-4 shadow-sm sm:p-5">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <h3 className="text-lg font-semibold text-text">{content?.title ?? result.slug}</h3>
+        <h3 className="text-lg font-semibold text-text">
+          <Link
+            href={`/programmes/${result.slug}`}
+            className="underline decoration-border underline-offset-4 hover:decoration-primary"
+          >
+            {content?.title ?? result.slug}
+          </Link>
+        </h3>
         <p className="text-sm text-text-muted">{result.operator}</p>
       </div>
 
@@ -75,6 +85,18 @@ export async function ProgramResultCard({ result, locale, reportId, showReasons 
       ) : null}
 
       {question ? <InlineQuestion reportId={reportId} field={question} /> : null}
+
+      {/* The moment a visitor learns they qualify is when the checklist is worth reading. */}
+      {result.outcome === "eligible" ? (
+        <div className="mt-4 border-t border-border pt-4">
+          <DocumentChecklist
+            documents={result.documents ?? []}
+            locale={locale}
+            heading={tProgramme("documents")}
+            hint={tProgramme("documentsHint")}
+          />
+        </div>
+      ) : null}
 
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
         <a

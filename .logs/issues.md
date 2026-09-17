@@ -70,3 +70,10 @@
 - Summary: tamwilcom.ma/fr/votre-projet/* pages (Damane Intelak, Programme Intelaka) no longer exist after a site restructuring; the current pages give summaries without thresholds. Intelaka thresholds were taken from official Ministry of Finance documents (2020) and Bank Al-Maghrib's Charte TPE (Dec 2025), and flagged as dated in each draft's notes.
 - Status: resolved (documented in drafts)
 - Impact: medium
+
+### [2026-09-17 22:40] [ISSUE] — Incremental `next build` fails under OneDrive
+- Symptom: `EINVAL: invalid argument, readlink '.next/...'` on a second build in the same working copy.
+- Cause: the project lives in a OneDrive-synced folder; OneDrive's placeholder files break readlink on .next artefacts.
+- Workaround in use: `rm -rf .next` before each build. CI is unaffected (clean checkout).
+- Proper fix (user decision): move the repo out of the OneDrive folder, or exclude .next from OneDrive sync.
+- Severity: low (local friction only)

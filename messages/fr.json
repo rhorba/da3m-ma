@@ -19,7 +19,8 @@
   "common": {
     "yes": "Oui",
     "no": "Non",
-    "nonAffiliation": "Da3m.ma est un outil indépendant. Ce n'est pas une plateforme gouvernementale et il n'est affilié à aucun organisme."
+    "nonAffiliation": "Da3m.ma est un outil indépendant. Ce n'est pas une plateforme gouvernementale et il n'est affilié à aucun organisme.",
+    "checkEligibility": "Vérifier mon éligibilité"
   },
   "wizard": {
     "title": "Vérifiez votre éligibilité",
@@ -259,5 +260,36 @@
       "title": "Ces résultats sont introuvables",
       "body": "Le lien est peut-être expiré, ou ces résultats appartiennent à un autre visiteur."
     }
+  },
+  "programme": {
+    "backToCatalogue": "Tous les programmes",
+    "operator": "Organisme",
+    "kindLabel": "Type d'aide",
+    "amountLabel": "Montant",
+    "amountUnknown": "Non publié",
+    "opensAt": "Ouvre le {date}",
+    "closesAt": "Clôture le {date}",
+    "eligibility": "Qui peut en bénéficier",
+    "eligibilityHint": "Les critères relevés sur la page officielle de l'organisme. Le questionnaire vous dit lesquels vous concernent.",
+    "documents": "Pièces à préparer",
+    "documentsHint": "Liste indicative. L'organisme reste seul juge des pièces exigées.",
+    "noDocuments": "L'organisme ne publie pas de liste de pièces pour ce programme.",
+    "howToApply": "Voir la démarche",
+    "officialSource": "Source officielle",
+    "verifiedOn": "Vérifié le {date}",
+    "metaDescription": "{summary} Critères, pièces à préparer et source officielle."
+  },
+  "catalogue": {
+    "title": "Les programmes d'aide",
+    "intro": "Tous les programmes que nous suivons, avec leurs critères et leur source officielle.",
+    "count": "{count, plural, =0 {Aucun programme} one {# programme} other {# programmes}}",
+    "filterKind": "Type d'aide",
+    "filterStatus": "Statut",
+    "filterOperator": "Organisme",
+    "filterAll": "Tous",
+    "reset": "Effacer les filtres",
+    "empty": "Aucun programme ne correspond à ces filtres.",
+    "none": "Aucun programme n'est encore publié. Le catalogue est en cours de vérification.",
+    "cta": "Vous ne savez pas lesquels vous concernent ?"
   }
 }

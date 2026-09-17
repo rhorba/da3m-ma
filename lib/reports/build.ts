@@ -11,6 +11,7 @@ import {
   type RankedCatalog,
 } from "@/lib/engine";
 import type { ProgramContent, PublishedProgram } from "@/lib/catalog";
+import type { I18nText } from "@/lib/db/schema";
 
 /**
  * Turning a profile plus the published catalogue into a report (Story 3.3). Pure:
@@ -36,6 +37,8 @@ export type ReportResult = {
   amountMinMad: number | null;
   amountMaxMad: number | null;
   content: ProgramContent;
+  /** Snapshotted like everything else: the checklist a visitor saw must not change under them. */
+  documents: { id: string; label: I18nText }[];
   sourceUrl: string;
   applicationUrl: string | null;
   verifiedAt: string;
@@ -84,6 +87,7 @@ export function buildReport(
       amountMinMad: program.amountMinMad,
       amountMaxMad: program.amountMaxMad,
       content: program.content,
+      documents: program.documents,
       sourceUrl: program.sourceUrl,
       applicationUrl: program.applicationUrl,
       verifiedAt: program.verifiedAt,

@@ -19,7 +19,8 @@
   "common": {
     "yes": "Yes",
     "no": "No",
-    "nonAffiliation": "Da3m.ma is an independent tool. It is not a government platform and is not affiliated with any agency."
+    "nonAffiliation": "Da3m.ma is an independent tool. It is not a government platform and is not affiliated with any agency.",
+    "checkEligibility": "Check my eligibility"
   },
   "wizard": {
     "title": "Check your eligibility",
@@ -259,5 +260,36 @@
       "title": "These results cannot be found",
       "body": "The link may have expired, or these results belong to another visitor."
     }
+  },
+  "programme": {
+    "backToCatalogue": "All programmes",
+    "operator": "Operator",
+    "kindLabel": "Type of support",
+    "amountLabel": "Amount",
+    "amountUnknown": "Not published",
+    "opensAt": "Opens on {date}",
+    "closesAt": "Closes on {date}",
+    "eligibility": "Who can benefit",
+    "eligibilityHint": "The criteria taken from the operator's official page. The questionnaire tells you which ones apply to you.",
+    "documents": "Documents to prepare",
+    "documentsHint": "An indicative list. The operator alone decides what is required.",
+    "noDocuments": "The operator publishes no document list for this programme.",
+    "howToApply": "See how to apply",
+    "officialSource": "Official source",
+    "verifiedOn": "Verified on {date}",
+    "metaDescription": "{summary} Criteria, documents to prepare and the official source."
+  },
+  "catalogue": {
+    "title": "Support programmes",
+    "intro": "Every programme we track, with its criteria and its official source.",
+    "count": "{count, plural, =0 {No programmes} one {# programme} other {# programmes}}",
+    "filterKind": "Type of support",
+    "filterStatus": "Status",
+    "filterOperator": "Operator",
+    "filterAll": "All",
+    "reset": "Clear filters",
+    "empty": "No programme matches these filters.",
+    "none": "No programme is published yet. The catalogue is being verified.",
+    "cta": "Not sure which ones apply to you?"
   }
 }
