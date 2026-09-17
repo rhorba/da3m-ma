@@ -10,6 +10,7 @@ export default async function HomePage({ params }: Props) {
   const t = await getTranslations("home");
   const tNav = await getTranslations("nav");
   const tLang = await getTranslations("languages");
+  const tCommon = await getTranslations("common");
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-3xl flex-col px-4 py-6 sm:px-6">
@@ -43,13 +44,16 @@ export default async function HomePage({ params }: Props) {
       <main className="flex flex-1 flex-col justify-center gap-6 py-16">
         <h1 className="text-3xl leading-tight font-semibold sm:text-5xl">{t("title")}</h1>
         <p className="text-lg text-text-muted">{t("tagline")}</p>
-        <p className="w-fit rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-fg">
-          {t("comingSoon")}
-        </p>
+        <Link
+          href="/eligibilite"
+          className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-white hover:opacity-90"
+        >
+          {t("cta")}
+        </Link>
       </main>
 
       <footer className="border-t border-border pt-4 text-sm text-text-muted">
-        <p data-testid="non-affiliation">{t("nonAffiliation")}</p>
+        <p data-testid="non-affiliation">{tCommon("nonAffiliation")}</p>
       </footer>
     </div>
   );

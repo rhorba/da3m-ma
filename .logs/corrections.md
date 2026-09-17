@@ -29,3 +29,13 @@
 - Specialist: PM
 - Summary: Innov Idea / Innov Start no longer exist (current: Tech Start, Tech Boost, Innov Risk, Innov Dev). Innov Risk dropped (criteria too vague to encode honestly). Maroc PME and Forsa programmes moved to Story 4.6 (not machine-readable, see issues). Final 10 drafts are all Tamwilcom.
 - Status: resolved
+
+### [2026-09-17 21:40] [SCOPE] — Wizard asks 10 fields, not all 20
+- Change: Sprint 2's closing note said the wizard must also ask innovation_stage, has_partner_support, exports_to_africa, has_intelaka_loan and the other narrow fields. The wizard asks only the 10 fields in the UX five-step flow.
+- Reason: those fields are referenced by one or two programmes each. Asking everyone about them lengthens the wizard for the many to serve the few, and the engine already returns needs_info for them — Story 3.5 asks them inline, on the results page, only when a programme actually depends on the answer ("unknown is a question, not a no", UX §principles).
+- Impact: none on coverage of the catalogue; the same answers are collected, later and only when they matter.
+
+### [2026-09-17 21:40] [DECISION] — shadcn pattern without the Radix dependency
+- Change: "shadcn/ui, scoped" was approved at the BRAINSTORM gate. Implemented as shadcn's structure (components/ui, cn(), token-mapped primitives) with native radio/checkbox inputs and no Radix packages.
+- Reason: the approved UI foundation (§6) requires RadioCards to be real radio inputs; Radix RadioGroup renders buttons with ARIA roles instead. clsx + tailwind-merge could not be installed either — `pnpm add` re-resolves and trips the .npmrc minimum-release-age guard on a transitive nan@2.29.0.
+- Impact: no new dependencies. Swapping in real shadcn later is mechanical.

@@ -60,3 +60,22 @@
 - Specialist: DevOps
 - Summary: Run 35212210013 — lint/types/format, unit+integration (coverage gate incl. lib/engine 100%, catalogue files test), security scans, build+E2E all success. Sprint 2 SHIP complete.
 - Status: complete
+
+### [2026-09-17 21:05] [COMPLETED] — Sprint 3 Batch 1: stories 3.2, 3.6, 3.3
+- Specialist: Backend Dev, Security Engineer, Tech Lead, Tester
+- Summary: 3.2 lib/engine/rank.ts — pure, generic ranking (eligible by openness then amount desc; needs_info by fewest missing; ineligible by fewest failing; deterministic id tie-break) plus the 3 closest misses when nothing is actionable. 3.6 lib/rate-limit — RateLimiter interface + in-process sliding-window log, multi-key (IP + anon token), injectable clock, idle-key sweep, clientIpFrom; ADR-9 records the Upstash swap. 3.3 lib/reports — pure buildReport snapshotting every version fact the results page renders (ADR-4), write-once repository scoped by profile ownership, lib/catalog read repository for the published catalogue, lib/auth/anon-session cookie helpers (HttpOnly, SameSite=Lax, 24 months).
+- Status: complete
+- Impact: high
+
+### [2026-09-17 21:40] [COMPLETED] — Sprint 3 Batch 2: story 3.4 wizard UI
+- Specialist: UX Designer, UI Designer, Frontend Dev, Copywriter, Tester
+- Summary: lib/wizard/steps.ts — five steps derived from FIELD_SPECS with compile-time field parity, adaptive skip of the company step for "idée", pruneSkipped so dropped steps do not leak stale answers. components/ui (cn, Button) + components/wizard (RadioCards on native radio/checkbox inputs in a fieldset, WizardStepper, Wizard client component). Step id in the query string; answers in localStorage (guarded) and written to the anon profile after every step. Server actions saveStep + submitWizard with rate limiting charged before any write. Trilingual copy: 5 steps, 10 questions, 66 options in FR/AR/EN; home page now links to the wizard.
+- Status: complete
+- Impact: high
+- Verified: build prerenders /fr /ar /en/eligibilite statically (ADR-7 holds); Playwright screenshots confirm step transition, ?etape= in the URL, and correct RTL mirroring in Arabic.
+
+### [2026-09-17 21:58] [COMPLETED] — Sprint 3 Batch 3: stories 3.5 and 3.2 empty state
+- Specialist: Frontend Dev, Backend Dev, Test Architect, DevOps
+- Summary: /[locale]/resultats/[id] renders only from the stored report (ADR-4), force-dynamic and noindex, 404 for anyone but the owner. ResultGroup (ineligible collapsed in a native <details>), ProgramResultCard (StatusDot, kind, amount via pure amountLabel/formatMad, freshness stamp, official source), InlineQuestion answering one missing field. answerQuestion action writes a new report and the page swaps to it in place. Zero-match state shows the 3 closest with what would change. E2E fixtures published through the real loader + sync path (pnpm e2e:seed); CI e2e job now runs a Postgres service, migrate and seed.
+- Status: complete
+- Impact: high

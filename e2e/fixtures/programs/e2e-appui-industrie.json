@@ -1,0 +1,91 @@
+{
+  "slug": "e2e-appui-industrie",
+  "operator": "Organisme de test",
+  "kind": "support",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-09-16",
+    "verifiedBy": "e2e",
+    "notes": "Synthetic programme used only by the end-to-end suite."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "consultedAt": "2026-09-16"
+    }
+  ],
+  "version": {
+    "status": "open",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/fr/e2e",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "criterion",
+      "id": "industrie",
+      "field": "sector",
+      "op": "eq",
+      "value": "industry",
+      "reason": {
+        "fr": "Réservé au secteur industriel",
+        "ar": "مخصص للقطاع الصناعي",
+        "en": "Reserved for the industrial sector"
+      }
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Appui industrie (test)",
+        "summary": "Programme de test non éligible."
+      },
+      "ar": {
+        "title": "دعم الصناعة (اختبار)",
+        "summary": "برنامج اختباري غير مؤهل."
+      },
+      "en": {
+        "title": "Industry support (test)",
+        "summary": "Test programme that does not match."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "industriel",
+      "profile": {
+        "sector": "industry"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "persona",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "digital",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"]
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["industrie"]
+    },
+    {
+      "name": "inconnu",
+      "profile": {},
+      "expected": "needs_info",
+      "expectedMissing": ["sector"]
+    }
+  ]
+}

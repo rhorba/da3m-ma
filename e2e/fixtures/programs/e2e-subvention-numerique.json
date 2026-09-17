@@ -1,0 +1,120 @@
+{
+  "slug": "e2e-subvention-numerique",
+  "operator": "Organisme de test",
+  "kind": "grant",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-09-16",
+    "verifiedBy": "e2e",
+    "notes": "Synthetic programme used only by the end-to-end suite."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "consultedAt": "2026-09-16"
+    }
+  ],
+  "version": {
+    "status": "open",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 500000,
+    "sourceUrl": "https://www.tamwilcom.ma/fr/e2e",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "id": "root",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "forme",
+          "field": "legal_form",
+          "op": "in",
+          "value": ["sarl", "sarl_au", "sa"],
+          "reason": {
+            "fr": "Réservé aux sociétés constituées",
+            "ar": "مخصص للشركات المؤسسة",
+            "en": "Reserved for incorporated companies"
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "secteur",
+          "field": "sector",
+          "op": "in",
+          "value": ["digital", "services"],
+          "reason": {
+            "fr": "Réservé au numérique et aux services",
+            "ar": "مخصص للرقمي والخدمات",
+            "en": "Reserved for digital and services"
+          }
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Subvention numérique (test)",
+        "summary": "Programme de test pour la suite E2E."
+      },
+      "ar": {
+        "title": "منحة رقمية (اختبار)",
+        "summary": "برنامج اختباري لسلسلة الاختبارات."
+      },
+      "en": {
+        "title": "Digital grant (test)",
+        "summary": "Test programme for the E2E suite."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "persona",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "digital",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"]
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "industriel",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "industry",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"]
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["secteur"]
+    },
+    {
+      "name": "sans-forme",
+      "profile": {
+        "sector": "digital"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["legal_form"]
+    }
+  ]
+}

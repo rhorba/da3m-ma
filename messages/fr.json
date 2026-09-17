@@ -14,7 +14,250 @@
   "home": {
     "title": "Trouvez les aides publiques auxquelles votre projet a vraiment droit.",
     "tagline": "Da3m.ma compare votre situation aux programmes de financement des entreprises au Maroc, et vous explique pourquoi vous êtes éligible — ou pourquoi pas.",
-    "comingSoon": "Le questionnaire d'éligibilité arrive bientôt.",
+    "cta": "Commencer le questionnaire"
+  },
+  "common": {
+    "yes": "Oui",
+    "no": "Non",
     "nonAffiliation": "Da3m.ma est un outil indépendant. Ce n'est pas une plateforme gouvernementale et il n'est affilié à aucun organisme."
+  },
+  "wizard": {
+    "title": "Vérifiez votre éligibilité",
+    "intro": "Cinq questions, deux minutes, aucune inscription.",
+    "progress": "Étape {current} sur {total}",
+    "stepperLabel": "Progression",
+    "back": "Retour",
+    "next": "Continuer",
+    "submit": "Voir mes résultats",
+    "submitting": "Analyse en cours…",
+    "skip": "Je ne sais pas",
+    "skipHint": "Sans réponse, nous vous le redemanderons seulement si un programme en dépend.",
+    "monthsSuffix": "mois",
+    "retry": "Réessayer",
+    "errors": {
+      "invalid": "Une réponse n'est pas valide. Revenez à l'étape précédente.",
+      "rateLimited": "Trop de tentatives. Réessayez dans une heure.",
+      "unexpected": "Une erreur est survenue. Vos réponses sont conservées — réessayez."
+    },
+    "steps": {
+      "situation": "Votre situation",
+      "project": "Votre projet",
+      "you": "Vous",
+      "size": "Votre entreprise",
+      "need": "Votre besoin"
+    },
+    "fields": {
+      "legal_form": {
+        "label": "Où en êtes-vous ?",
+        "help": "Choisissez la forme juridique actuelle de votre activité."
+      },
+      "sector": {
+        "label": "Quel est votre secteur d'activité ?",
+        "help": "Le secteur principal, celui qui fera l'essentiel du chiffre d'affaires."
+      },
+      "region": {
+        "label": "Dans quelle région ?",
+        "help": "La région où l'activité est ou sera exercée."
+      },
+      "founder_age_band": {
+        "label": "Quel âge avez-vous ?",
+        "help": "Certains programmes sont réservés aux jeunes porteurs de projet."
+      },
+      "is_mre": {
+        "label": "Êtes-vous Marocain·e résidant à l'étranger ?",
+        "help": "Plusieurs dispositifs prévoient un volet MRE."
+      },
+      "company_age_months": {
+        "label": "Depuis combien de mois votre entreprise est-elle immatriculée ?",
+        "help": "Indiquez 0 si l'immatriculation date de moins d'un mois."
+      },
+      "employees_band": {
+        "label": "Combien de personnes employez-vous ?",
+        "help": "Vous compris, s'il y a lieu."
+      },
+      "revenue_band": {
+        "label": "Quel est votre chiffre d'affaires annuel ?",
+        "help": "Le dernier exercice clos."
+      },
+      "need_amount_band": {
+        "label": "De quel montant avez-vous besoin ?",
+        "help": "Une estimation suffit."
+      },
+      "need_purposes": {
+        "label": "À quoi servira ce financement ?",
+        "help": "Plusieurs réponses possibles."
+      },
+      "is_rural": {
+        "label": "Votre projet est-il situé en milieu rural ?",
+        "help": "Commune rurale au sens du découpage administratif."
+      },
+      "is_innovative": {
+        "label": "Votre projet est-il innovant ?",
+        "help": "Nouveau produit, procédé ou modèle économique, pas seulement nouveau pour vous."
+      },
+      "innovation_stage": {
+        "label": "Où en est votre innovation ?",
+        "help": "Les programmes d'innovation visent des stades précis."
+      },
+      "has_partner_support": {
+        "label": "Êtes-vous accompagné par une structure partenaire ?",
+        "help": "Incubateur, accélérateur ou structure d'accompagnement conventionnée."
+      },
+      "partner_invested": {
+        "label": "Cette structure a-t-elle investi dans votre société ?",
+        "help": "Une prise de participation, pas seulement de l'accompagnement."
+      },
+      "raised_external_funding": {
+        "label": "Avez-vous déjà levé des fonds externes ?",
+        "help": "Business angels, capital-risque ou fonds d'amorçage."
+      },
+      "revenue_growing": {
+        "label": "Votre chiffre d'affaires est-il en croissance ?",
+        "help": "Sur les deux derniers exercices."
+      },
+      "exports_to_africa": {
+        "label": "Exportez-vous vers l'Afrique subsaharienne ?",
+        "help": "Ou préparez-vous une implantation sur ces marchés."
+      },
+      "has_intelaka_loan": {
+        "label": "Avez-vous un crédit garanti par Intelaka ?",
+        "help": "Un crédit d'investissement déjà accordé dans le cadre du programme."
+      }
+    },
+    "options": {
+      "legal_form": {
+        "none": "Je n'ai pas encore créé mon entreprise",
+        "auto_entrepreneur": "Auto-entrepreneur",
+        "sarl": "SARL",
+        "sarl_au": "SARL à associé unique",
+        "sa": "SA",
+        "snc": "SNC",
+        "cooperative": "Coopérative",
+        "association": "Association",
+        "other": "Autre"
+      },
+      "sector": {
+        "agriculture": "Agriculture",
+        "agrifood": "Agroalimentaire",
+        "fishing": "Pêche",
+        "high_sea_fishing": "Pêche hauturière",
+        "industry": "Industrie",
+        "crafts": "Artisanat",
+        "construction": "BTP et construction",
+        "real_estate_development": "Promotion immobilière",
+        "commerce": "Commerce",
+        "services": "Services",
+        "digital": "Numérique",
+        "tourism": "Tourisme",
+        "transport_logistics": "Transport et logistique",
+        "health": "Santé",
+        "education": "Éducation",
+        "energy_environment": "Énergie et environnement",
+        "culture_sport": "Culture et sport",
+        "other": "Autre secteur"
+      },
+      "region": {
+        "tanger-tetouan-al-hoceima": "Tanger-Tétouan-Al Hoceïma",
+        "oriental": "L'Oriental",
+        "fes-meknes": "Fès-Meknès",
+        "rabat-sale-kenitra": "Rabat-Salé-Kénitra",
+        "beni-mellal-khenifra": "Béni Mellal-Khénifra",
+        "casablanca-settat": "Casablanca-Settat",
+        "marrakech-safi": "Marrakech-Safi",
+        "draa-tafilalet": "Drâa-Tafilalet",
+        "souss-massa": "Souss-Massa",
+        "guelmim-oued-noun": "Guelmim-Oued Noun",
+        "laayoune-sakia-el-hamra": "Laâyoune-Sakia El Hamra",
+        "dakhla-oued-ed-dahab": "Dakhla-Oued Ed-Dahab"
+      },
+      "founder_age_band": {
+        "18_25": "18 à 25 ans",
+        "26_35": "26 à 35 ans",
+        "36_45": "36 à 45 ans",
+        "46_plus": "46 ans et plus"
+      },
+      "employees_band": {
+        "0": "Aucun salarié",
+        "1_9": "1 à 9 salariés",
+        "10_49": "10 à 49 salariés",
+        "50_199": "50 à 199 salariés",
+        "200_plus": "200 salariés et plus"
+      },
+      "revenue_band": {
+        "none": "Pas encore de chiffre d'affaires",
+        "lt_1m": "Moins de 1 million de DH",
+        "1m_10m": "1 à 10 millions de DH",
+        "10m_50m": "10 à 50 millions de DH",
+        "50m_200m": "50 à 200 millions de DH",
+        "gt_200m": "Plus de 200 millions de DH"
+      },
+      "need_amount_band": {
+        "lt_100k": "Moins de 100 000 DH",
+        "100k_500k": "100 000 à 500 000 DH",
+        "500k_1m": "500 000 DH à 1 million",
+        "1m_5m": "1 à 5 millions de DH",
+        "gt_5m": "Plus de 5 millions de DH"
+      },
+      "need_purposes": {
+        "create": "Créer mon entreprise",
+        "equip": "M'équiper (matériel, local)",
+        "expand": "Me développer",
+        "innovate": "Innover, développer un produit",
+        "digitalise": "Me digitaliser",
+        "export": "Exporter",
+        "working_capital": "Financer ma trésorerie"
+      },
+      "innovation_stage": {
+        "idea": "Une idée",
+        "poc_validated": "Preuve de concept validée",
+        "mvp_ready": "Prototype ou MVP prêt",
+        "growth": "En croissance sur le marché"
+      }
+    }
+  },
+  "results": {
+    "title": "Vos résultats",
+    "subtitle": "Établis le {date} à partir de vos réponses.",
+    "restart": "Refaire le questionnaire",
+    "amountUpTo": "Jusqu'à {amount}",
+    "amountFrom": "À partir de {amount}",
+    "amountRange": "De {min} à {max}",
+    "verifiedOn": "Vérifié le {date}",
+    "officialSource": "Source officielle",
+    "howToApply": "Voir la démarche",
+    "whyNot": "Pourquoi vous n'êtes pas éligible",
+    "whatIsMissing": "Ce qu'il reste à préciser",
+    "answerToKnow": "Répondez pour savoir si ce programme vous concerne.",
+    "answering": "Mise à jour…",
+    "answerFailed": "La réponse n'a pas pu être enregistrée. Réessayez.",
+    "groups": {
+      "eligible": "Vous êtes éligible",
+      "needsInfo": "À préciser",
+      "ineligible": "Non éligible",
+      "count": "{count, plural, =0 {Aucun programme} one {# programme} other {# programmes}}"
+    },
+    "empty": {
+      "title": "Aucun programme ne correspond encore",
+      "closest": "Voici ce qui vous en rapprocherait",
+      "none": "Nous n'avons encore aucun programme publié à comparer à votre profil."
+    },
+    "status": {
+      "open": "Ouvert",
+      "closed": "Clôturé",
+      "upcoming": "À venir",
+      "rolling": "Au fil de l'eau"
+    },
+    "kind": {
+      "grant": "Subvention",
+      "loan": "Prêt",
+      "guarantee": "Garantie",
+      "equity": "Prise de participation",
+      "advance": "Avance remboursable",
+      "support": "Accompagnement"
+    },
+    "notFound": {
+      "title": "Ces résultats sont introuvables",
+      "body": "Le lien est peut-être expiré, ou ces résultats appartiennent à un autre visiteur."
+    }
   }
 }

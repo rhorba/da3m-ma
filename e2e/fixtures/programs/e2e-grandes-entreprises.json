@@ -1,0 +1,100 @@
+{
+  "slug": "e2e-grandes-entreprises",
+  "operator": "Organisme de test",
+  "kind": "guarantee",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-09-16",
+    "verifiedBy": "e2e",
+    "notes": "Synthetic programme used only by the end-to-end suite."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "consultedAt": "2026-09-16"
+    }
+  ],
+  "version": {
+    "status": "closed",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": 1000000,
+    "amountMaxMad": 5000000,
+    "sourceUrl": "https://www.tamwilcom.ma/fr/e2e",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "criterion",
+      "id": "taille",
+      "field": "revenue_band",
+      "op": "in",
+      "value": ["10m_50m", "50m_200m", "gt_200m"],
+      "reason": {
+        "fr": "Réservé aux entreprises de plus de 10 MDH de chiffre d'affaires",
+        "ar": "مخصص للمقاولات التي يفوق رقم معاملاتها 10 ملايين درهم",
+        "en": "Reserved for companies above MAD 10m revenue"
+      }
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Garantie grandes entreprises (test)",
+        "summary": "Programme de test clôturé."
+      },
+      "ar": {
+        "title": "ضمان المقاولات الكبرى (اختبار)",
+        "summary": "برنامج اختباري مغلق."
+      },
+      "en": {
+        "title": "Large company guarantee (test)",
+        "summary": "Closed test programme."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "grande",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "digital",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "10m_50m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"]
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "persona",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "digital",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"]
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["taille"]
+    },
+    {
+      "name": "inconnu",
+      "profile": {},
+      "expected": "needs_info",
+      "expectedMissing": ["revenue_band"]
+    }
+  ]
+}

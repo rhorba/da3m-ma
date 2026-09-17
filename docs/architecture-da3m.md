@@ -70,6 +70,13 @@ One Next.js 15 App Router application on Vercel with Neon Postgres. The eligibil
 - **Alternatives**: the approved console (~8h, blocked on Clerk); a console with a raw JSON editor (~5h, same blocker).
 - **Consequences**: git history and PR review are the curation audit trail. A non-developer cannot curate until a console exists; when one is needed it reuses the same validation (`validateForPublish`, `checkGoldenProfiles`, `previewRuleChange`). ADR-4 still holds: sync never modifies a published version. Curation procedure: `docs/curation-guide.md`.
 
+### ADR-9: In-process rate limiting until public beta
+*Added 2026-09-17 during Sprint 3 — user decision.*
+- **Context**: Story 3.6 specified Upstash Redis for the wizard rate limit. Upstash needs an account and two secrets, and the wizard is not public until Sprint 4.
+- **Decision**: `lib/rate-limit` defines a `RateLimiter` interface and ships a sliding-window log held in process memory. `submitWizard` charges one hit against both the client IP and the anonymous token; either being exhausted rejects the request before any row is written.
+- **Alternatives**: Upstash now (needs credentials the project does not have); a database-backed counter (a write per request on the hottest path, for a limit that is advisory pre-beta).
+- **Consequences**: counts are per serverless instance, so the real ceiling is `limit × instances` — a throttle, not a guarantee. Acceptable while traffic is invited only. Before public beta the store is swapped for Upstash behind the same interface; `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` stay in `.env.example` for that swap. Abuse beyond what a limiter handles is answered with Turnstile (security §2).
+
 ## 3. System Design
 ```
 [Wizard submit] --server action--> profiles.upsert(actor, input)

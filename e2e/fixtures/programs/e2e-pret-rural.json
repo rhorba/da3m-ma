@@ -1,0 +1,112 @@
+{
+  "slug": "e2e-pret-rural",
+  "operator": "Organisme de test",
+  "kind": "loan",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-09-16",
+    "verifiedBy": "e2e",
+    "notes": "Synthetic programme used only by the end-to-end suite."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "consultedAt": "2026-09-16"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 1000000,
+    "sourceUrl": "https://www.tamwilcom.ma/fr/e2e",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "criterion",
+      "id": "rural",
+      "field": "is_rural",
+      "op": "is_true",
+      "reason": {
+        "fr": "Réservé aux projets en milieu rural",
+        "ar": "مخصص للمشاريع في الوسط القروي",
+        "en": "Reserved for rural projects"
+      }
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Prêt rural (test)",
+        "summary": "Programme de test pour la question inline."
+      },
+      "ar": {
+        "title": "قرض قروي (اختبار)",
+        "summary": "برنامج اختباري للسؤال المدمج."
+      },
+      "en": {
+        "title": "Rural loan (test)",
+        "summary": "Test programme for the inline question."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/fr/e2e",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "rural",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "digital",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"],
+        "is_rural": true
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "urbain",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "digital",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"],
+        "is_rural": false
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["rural"]
+    },
+    {
+      "name": "persona",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "digital",
+        "region": "casablanca-settat",
+        "founder_age_band": "26_35",
+        "is_mre": false,
+        "company_age_months": 12,
+        "employees_band": "1_9",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "need_purposes": ["innovate"]
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["is_rural"]
+    }
+  ]
+}

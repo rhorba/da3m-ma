@@ -18,3 +18,7 @@
 - Blocked on user: verify the 10 drafts in data/programs/ (docs/curation-guide.md); Clerk keys still empty (needed from Sprint 4 /mon-espace onward, not Sprint 3); decide on Bourse de vie (3 extra personal fields).
 - Next: Sprint 3 — 3.2 ranking, 3.3 immutable reports + anon token, 3.4 wizard UI (shadcn init), 3.5 results + inline questions, 3.6 rate limiting. Wizard must ask the new profile fields (innovation_stage, has_partner_support, exports_to_africa, has_intelaka_loan...).
 - Open issues: marocpme.gov.ma TLS chain (NODE_EXTRA_CA_CERTS), forsa.ma 403, hourly cron needs Vercel Pro.
+
+### [2026-09-17 20:05] SESSION_START
+- Focus: resumption after Sprint 2 SHIP (ebdd50d, CI green). Candidate: Sprint 3 — 3.2 ranking, 3.3 immutable reports + anon token, 3.4 wizard UI, 3.5 results + inline questions, 3.6 rate limiting.
+- Carried blockers (user-owned): verify 10 catalogue drafts; Bourse de vie decision; Clerk keys (not needed until Sprint 4).

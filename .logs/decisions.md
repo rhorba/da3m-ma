@@ -52,3 +52,8 @@
 - Specialist: Backend Dev + Security Engineer
 - Summary: Added innovation_stage, has_partner_support, partner_invested, raised_external_funding, revenue_growing, exports_to_africa, has_intelaka_loan, and sectors real_estate_development + high_sea_fishing. All business attributes, none personal; additive and backwards compatible (ADR-6). Bourse de vie deliberately not drafted because it would add nationality, employment status and years of experience.
 - Status: resolved
+
+### [2026-09-17 20:10] [DECISION] — Sprint 3 scope and two open questions
+- Decision: Run full Sprint 3 (3.2–3.6) this session. Bourse de vie extra personal fields: SKIPPED (YAGNI — profile stays at 12 fields, programme deferred). Rate limiting: in-memory limiter behind a swappable interface now, Upstash before public beta.
+- Rationale: keeps the wizard short and avoids a profile migration for one unverified programme; no Upstash account needed pre-beta, single-instance is sufficient.
+- Owner: User (approved at BRAINSTORM gate)

@@ -12,3 +12,10 @@ export {
   type CatalogueSyncRepository,
   type SyncSummary,
 } from "./sync.repository";
+export {
+  createCatalogueReadRepository,
+  getCatalogueReadRepository,
+  type CatalogueReadRepository,
+  type ProgramContent,
+  type PublishedProgram,
+} from "./read.repository";

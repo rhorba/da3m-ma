@@ -70,6 +70,25 @@ jobs:
   e2e:
     name: Build + E2E
     runs-on: ubuntu-latest
+    # The wizard writes a profile and a report, so the suite needs a real database and a
+    # published catalogue. It runs against synthetic fixtures, never data/programs, whose
+    # programmes stay drafts until a human verifies them (ADR-8).
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: da3m
+          POSTGRES_PASSWORD: da3m
+          POSTGRES_DB: da3m
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U da3m -d da3m"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://da3m:da3m@localhost:5432/da3m
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
@@ -79,6 +98,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm db:migrate
+      - run: pnpm e2e:seed
       - run: pnpm build
       - run: pnpm e2e
       - if: failure()

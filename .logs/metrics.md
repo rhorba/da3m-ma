@@ -22,3 +22,12 @@
 - E2E: 14 / 14
 - Security: Semgrep 0, Trivy 0 HIGH/CRITICAL
 - Catalogue: 10 drafts, 10 valid, 0 verified
+
+### [2026-09-17 21:58] [METRICS] — Sprint 3 verify
+- Tests: 343 passed / 343 (23 files)
+- Coverage (combined): statements 97.37%, branches 96.14%, functions 94.68%, lines 98.40% — gate 80% PASS
+- lib/engine: 100% statements / branches / functions / lines (CI-enforced, rank.ts included)
+- E2E: 12 / 12 (desktop + mobile Chromium) — wizard, adaptive skip, resumption, results grouping, inline question, report isolation
+- Lint / typecheck / format: clean
+- Build: /fr /ar /en and /eligibilite prerendered static; /resultats/[id] dynamic (ADR-7 holds)
+- Security review: reports scoped to profile owner (404 otherwise), results noindex + force-dynamic, rate limit charged before any write, anon cookie HttpOnly/SameSite=Lax/hashed at rest, catalogue URLs https-validated at publish (publish-validation.ts:93,99) before reaching an href

@@ -44,3 +44,13 @@ export {
   type RuleResult,
   type TriState,
 } from "./evaluate";
+export {
+  CLOSEST_LIMIT,
+  flattenRanked,
+  PROGRAM_STATUSES,
+  rankResults,
+  type ClosestProgram,
+  type ProgramStatus,
+  type RankableResult,
+  type RankedCatalog,
+} from "./rank";
