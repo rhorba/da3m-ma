@@ -50,3 +50,23 @@
 - Summary: Normalised text has no trailing newline, so jsdiff treated the previous last line as changed when a line was appended. Caught by unit test; fixed by diffing with a trailing newline on both sides.
 - Status: resolved
 - Impact: low
+
+### [2026-09-17 18:40] [ISSUE] — marocpme.gov.ma serves an incomplete TLS certificate chain
+- Specialist: DevSecOps
+- Summary: Node fetch fails with UNABLE_TO_VERIFY_LEAF_SIGNATURE (curl on Windows succeeds because schannel fetches intermediates). Any watch on marocpme.gov.ma will raise fetch_failing.
+- Status: open
+- Impact: medium
+- Fix path: supply the missing intermediate CA via NODE_EXTRA_CA_CERTS in the deployment. Do NOT disable TLS verification.
+
+### [2026-09-17 18:40] [ISSUE] — forsa.ma returns 403 to the Da3m bot user agent
+- Specialist: DevOps
+- Summary: The site blocks our honestly identified crawler. We will not disguise the user agent.
+- Status: open (accepted)
+- Impact: low
+- Consequence: Forsa must be curated manually; it cannot be watched automatically.
+
+### [2026-09-17 18:50] [ISSUE] — Tamwilcom product detail URLs indexed by search engines return 404
+- Specialist: PM
+- Summary: tamwilcom.ma/fr/votre-projet/* pages (Damane Intelak, Programme Intelaka) no longer exist after a site restructuring; the current pages give summaries without thresholds. Intelaka thresholds were taken from official Ministry of Finance documents (2020) and Bank Al-Maghrib's Charte TPE (Dec 2025), and flagged as dated in each draft's notes.
+- Status: resolved (documented in drafts)
+- Impact: medium

@@ -1,0 +1,108 @@
+{
+  "slug": "tech-boost",
+  "operator": "Tamwilcom",
+  "kind": "loan",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL: startups past MVP, application validated by a Tamwilcom partner, going to market towards product-market fit; honour loan (no interest, no collateral) up to 80% of eligible spend, capped at 500,000 DH (750,000 DH for deep tech); 20% contribution; repayment over max 5 years with up to 2 years' deferral. amountMaxMad uses the deep-tech cap. INTERPRETATION: 'past MVP, aiming for product-market fit' = innovation_stage mvp_ready (not growth). All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilstartups.ma/techBoost.php",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom Startups: Tech Boost detail"
+    },
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom: Fonds Innov Invest overview"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 750000,
+    "sourceUrl": "https://www.tamwilstartups.ma/techBoost.php",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "partner-support",
+          "field": "has_partner_support",
+          "op": "is_true",
+          "reason": {
+            "fr": "Votre candidature doit être validée par une structure d'accompagnement partenaire de Tamwilcom (incubateur, accélérateur).",
+            "ar": "يجب أن يُصادَق على ترشيحكم من طرف بنية مواكبة شريكة لتمويلكم (حاضنة أو مسرِّعة).",
+            "en": "Your application must be validated by a Tamwilcom partner support organisation (incubator or accelerator)."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "stage",
+          "field": "innovation_stage",
+          "op": "eq",
+          "reason": {
+            "fr": "Réservé aux startups ayant dépassé le stade du MVP et qui préparent la mise sur le marché.",
+            "ar": "مخصص للشركات الناشئة التي تجاوزت مرحلة المنتج الأدنى القابل للتطبيق (MVP) وتستعد لطرح منتجها في السوق.",
+            "en": "Only for startups past the MVP stage that are preparing to go to market."
+          },
+          "value": "mvp_ready"
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Tech Boost (Fonds Innov Invest)",
+        "summary": "Prêt d'honneur sans intérêts ni sûretés couvrant jusqu'à 80 % des dépenses de mise sur le marché d'un produit ayant dépassé le stade du MVP. Plafond : 500 000 DH, porté à 750 000 DH pour l'innovation de rupture (deep tech). Remboursement sur 5 ans maximum dont jusqu'à 2 ans de différé."
+      },
+      "ar": {
+        "title": "تيك بوست (صندوق إينوف إنفست)",
+        "summary": "قرض شرف دون فوائد ولا ضمانات يغطي حتى 80% من نفقات طرح منتج تجاوز مرحلة المنتج الأدنى القابل للتطبيق في السوق. السقف: 500.000 درهم، ويُرفع إلى 750.000 درهم للابتكار الجذري. السداد على 5 سنوات كحد أقصى مع فترة إمهال تصل إلى سنتين."
+      },
+      "en": {
+        "title": "Tech Boost (Innov Invest Fund)",
+        "summary": "Interest-free, collateral-free honour loan covering up to 80% of go-to-market costs for a product past the MVP stage. Cap: MAD 500,000, raised to MAD 750,000 for deep tech. Repaid over up to 5 years with up to 2 years' deferral."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilstartups.ma/techBoost.php",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "incubated startup past MVP",
+      "profile": {
+        "has_partner_support": true,
+        "innovation_stage": "mvp_ready"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "still building the MVP",
+      "profile": {
+        "has_partner_support": true,
+        "innovation_stage": "poc_validated"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["stage"]
+    },
+    {
+      "name": "stage unknown",
+      "profile": {
+        "has_partner_support": true
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["innovation_stage"]
+    }
+  ]
+}

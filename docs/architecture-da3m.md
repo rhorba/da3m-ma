@@ -63,6 +63,13 @@ One Next.js 15 App Router application on Vercel with Neon Postgres. The eligibil
 - **Alternatives**: Clerk on every route — rejected: every public page becomes dynamic, CI builds and E2E need real Clerk keys, and first load gets heavier for anonymous users who are the majority.
 - **Consequences**: A signed-in user doesn't see personalised state on public pages. Accepted: nothing on those pages is personal. Verified in Sprint 1 — `next build` prerenders `/fr`, `/ar`, `/en` as static HTML with no Clerk keys present.
 
+### ADR-8: Catalogue as code; no admin console in v1
+*Added 2026-09-17 during Sprint 2 — user decision.*
+- **Context**: Story 2.3 specified a database-backed curation console with a form-based rule editor. The only curator is a developer, and the console needs Clerk keys before it can even be run.
+- **Decision**: Each programme is a JSON file in `data/programs/<slug>.json` holding its rules, trilingual content, documents, official sources, verification status and golden profiles. CI validates every file (publish rules + golden profiles) on every push. `pnpm catalogue:sync` writes **verified** files into `program_versions` as new immutable versions only when their content changed. Review tasks from the watcher are handled with `pnpm catalogue:tasks` / `catalogue:resolve`.
+- **Alternatives**: the approved console (~8h, blocked on Clerk); a console with a raw JSON editor (~5h, same blocker).
+- **Consequences**: git history and PR review are the curation audit trail. A non-developer cannot curate until a console exists; when one is needed it reuses the same validation (`validateForPublish`, `checkGoldenProfiles`, `previewRuleChange`). ADR-4 still holds: sync never modifies a published version. Curation procedure: `docs/curation-guide.md`.
+
 ## 3. System Design
 ```
 [Wizard submit] --server action--> profiles.upsert(actor, input)

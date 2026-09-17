@@ -35,3 +35,20 @@
 - Specialist: Software Architect + DevOps
 - Summary: not() nodes carry id + reason; enum_set fields use in/not_in as overlap tests; operators restricted per field kind; depth checked before parsing. Source watcher moved from nightly to hourly with one request per host per run (NFR-6 without in-function sleeps).
 - Status: resolved
+
+### [2026-09-17 17:20] [DECISION] — ADR-8 catalogue as code (user choice)
+- Specialist: Software Architect + PM
+- Options presented: catalogue as code (~3h, recommended) / admin console with form editor as approved (~8h) / console with raw JSON editor (~5h)
+- Selected: catalogue as code
+- Rationale: curator is a developer; removes Clerk-key blocker; git history + CI golden tests on real rules; console can be added later on the same validation code.
+- Status: resolved
+
+### [2026-09-17 17:20] [DECISION] — Story 2.5 drafting mode (user choice)
+- Specialist: PM
+- Summary: Claude drafts programmes from official pages; nothing is marked verified or published until the user checks each file.
+- Status: resolved
+
+### [2026-09-17 18:30] [DECISION] — Profile contract extended for real criteria
+- Specialist: Backend Dev + Security Engineer
+- Summary: Added innovation_stage, has_partner_support, partner_invested, raised_external_funding, revenue_growing, exports_to_africa, has_intelaka_loan, and sectors real_estate_development + high_sea_fishing. All business attributes, none personal; additive and backwards compatible (ADR-6). Bourse de vie deliberately not drafted because it would add nationality, employment status and years of experience.
+- Status: resolved

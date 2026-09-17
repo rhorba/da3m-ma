@@ -1,0 +1,137 @@
+{
+  "slug": "pret-honneur-startup",
+  "operator": "Tamwilcom",
+  "kind": "loan",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL: startup under Moroccan law with an innovative project past MVP, to finalise and deploy the product towards product-market fit; application validated by a Tamwilcom (SNGFE) partner; interest-free, collateral-free loan up to 90% of the investment programme, capped at 500,000 DH; min 10% contribution; repayment over max 5 years with up to 2 years' deferral; decision within 30 days of a complete file. INTERPRETATION: same as bourse-incubation for 'startup de droit marocain'. All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilstartups.ma/pret_honneur.php",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom Startups: Prêt d'honneur detail"
+    },
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/startups",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom: Startups overview (VB offer)"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 500000,
+    "sourceUrl": "https://www.tamwilstartups.ma/pret_honneur.php",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "company",
+          "field": "legal_form",
+          "op": "not_in",
+          "reason": {
+            "fr": "Réservé aux entreprises constituées en société de droit marocain.",
+            "ar": "مخصص للمقاولات المؤسَّسة في شكل شركة خاضعة للقانون المغربي.",
+            "en": "Only for businesses incorporated as a company under Moroccan law."
+          },
+          "value": ["none", "auto_entrepreneur"]
+        },
+        {
+          "kind": "criterion",
+          "id": "innovative",
+          "field": "is_innovative",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux projets innovants.",
+            "ar": "مخصص للمشاريع المبتكِرة.",
+            "en": "Only for innovative projects."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "partner-support",
+          "field": "has_partner_support",
+          "op": "is_true",
+          "reason": {
+            "fr": "Votre candidature doit être validée par une structure d'accompagnement partenaire de Tamwilcom (incubateur, accélérateur).",
+            "ar": "يجب أن يُصادَق على ترشيحكم من طرف بنية مواكبة شريكة لتمويلكم (حاضنة أو مسرِّعة).",
+            "en": "Your application must be validated by a Tamwilcom partner support organisation (incubator or accelerator)."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "stage",
+          "field": "innovation_stage",
+          "op": "eq",
+          "reason": {
+            "fr": "Réservé aux startups ayant dépassé le stade du MVP et qui préparent la mise sur le marché.",
+            "ar": "مخصص للشركات الناشئة التي تجاوزت مرحلة المنتج الأدنى القابل للتطبيق (MVP) وتستعد لطرح منتجها في السوق.",
+            "en": "Only for startups past the MVP stage that are preparing to go to market."
+          },
+          "value": "mvp_ready"
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Prêt d'honneur startup (offre Startup VB)",
+        "summary": "Prêt sans intérêts ni sûretés couvrant jusqu'à 90 % du programme d'investissement pour finaliser et déployer un produit innovant ayant dépassé le stade du MVP, plafonné à 500 000 DH. Remboursement sur 5 ans maximum, dont jusqu'à 2 ans de différé."
+      },
+      "ar": {
+        "title": "قرض الشرف للشركات الناشئة (عرض Startup VB)",
+        "summary": "قرض دون فوائد ولا ضمانات يغطي حتى 90% من برنامج الاستثمار لاستكمال ونشر منتج مبتكر تجاوز مرحلة المنتج الأدنى القابل للتطبيق، في حدود 500.000 درهم. السداد على 5 سنوات كحد أقصى مع فترة إمهال تصل إلى سنتين."
+      },
+      "en": {
+        "title": "Startup honour loan (Startup VB offer)",
+        "summary": "Interest-free, collateral-free loan covering up to 90% of the investment programme to finalise and roll out an innovative product past the MVP stage, capped at MAD 500,000. Repaid over up to 5 years with up to 2 years' deferral."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilstartups.ma/pret_honneur.php",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "innovative startup past MVP",
+      "profile": {
+        "legal_form": "sarl",
+        "is_innovative": true,
+        "has_partner_support": true,
+        "innovation_stage": "mvp_ready"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "not innovative",
+      "profile": {
+        "legal_form": "sarl",
+        "is_innovative": false,
+        "has_partner_support": true,
+        "innovation_stage": "mvp_ready"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["innovative"]
+    },
+    {
+      "name": "innovation unknown",
+      "profile": {
+        "legal_form": "sarl",
+        "has_partner_support": true,
+        "innovation_stage": "mvp_ready"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["is_innovative"]
+    }
+  ]
+}

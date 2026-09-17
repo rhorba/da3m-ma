@@ -15,3 +15,10 @@
 - Tests: 206 passed / 206 (11 files)
 - Coverage (combined): statements 96.67%, branches 95.49%, functions 92.85%, lines 98.09%
 - lib/engine: 100% statements / branches / functions / lines (CI-enforced)
+
+### [2026-09-17 19:20] [METRICS] — Sprint 2 verify
+- Tests: 249 passed / 249 (15 files)
+- Coverage (combined): statements 97.23%, branches 96.26%, functions 93.98%, lines 98.24%; lib/engine 100%
+- E2E: 14 / 14
+- Security: Semgrep 0, Trivy 0 HIGH/CRITICAL
+- Catalogue: 10 drafts, 10 valid, 0 verified

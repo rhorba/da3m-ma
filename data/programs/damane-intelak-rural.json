@@ -1,0 +1,176 @@
+{
+  "slug": "damane-intelak-rural",
+  "operator": "Tamwilcom",
+  "kind": "guarantee",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "Thresholds (≤ 5 years, turnover ≤ 10 MDH, credit ≤ 1.2 MDH, 80% guarantee, export exception) come from the Ministry of Finance / CCG 2020 documents. Tamwilcom's current page (2026) confirms the product, 80% cover and no fee, but no longer restates the thresholds, and the older Tamwilcom product URLs now return 404 — confirm the thresholds still apply. The 10 MDH TPE threshold is also Bank Al-Maghrib's official TPE definition (Charte TPE, art. 2, in force 2026-01-01). INTERPRETATION: 'petites exploitations agricoles' (exempt from the 5-year limit) is approximated as sector = agriculture, with size bounded by the 10 MDH turnover rule."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "consultedAt": "2026-09-17",
+      "note": "Current product page"
+    },
+    {
+      "url": "https://www.finances.gov.ma/SiteAssets/Lists/Actualits/AllItems/intelak-moustatmir-al-qarawi.pdf",
+      "consultedAt": "2026-09-17",
+      "note": "CCG product sheet published by the Ministry of Finance: full eligibility criteria"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 1200000,
+    "sourceUrl": "https://www.finances.gov.ma/SiteAssets/Lists/Actualits/AllItems/intelak-moustatmir-al-qarawi.pdf",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "rural",
+          "field": "is_rural",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux activités exercées en milieu rural.",
+            "ar": "مخصص للأنشطة الممارَسة في الوسط القروي.",
+            "en": "Only for activities carried out in rural areas."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "revenue",
+          "field": "revenue_band",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises dont le chiffre d'affaires annuel hors taxes ne dépasse pas 10 millions de dirhams.",
+            "ar": "مخصص للمقاولات التي لا يتجاوز رقم معاملاتها السنوي دون احتساب الرسوم 10 ملايين درهم.",
+            "en": "Only for businesses with annual turnover (excluding tax) of up to MAD 10 million."
+          },
+          "value": ["none", "lt_1m", "1m_10m"]
+        },
+        {
+          "kind": "criterion",
+          "id": "sector",
+          "field": "sector",
+          "op": "not_in",
+          "reason": {
+            "fr": "La promotion immobilière et la pêche hauturière ne sont pas éligibles.",
+            "ar": "الإنعاش العقاري والصيد في أعالي البحار غير مؤهلين.",
+            "en": "Real-estate development and high-sea fishing are not eligible."
+          },
+          "value": ["real_estate_development", "high_sea_fishing"]
+        },
+        {
+          "kind": "any",
+          "rules": [
+            {
+              "kind": "criterion",
+              "id": "age-5-years",
+              "field": "company_age_months",
+              "op": "lte",
+              "reason": {
+                "fr": "Réservé aux entreprises créées depuis 5 ans au maximum.",
+                "ar": "مخصص للمقاولات التي لم يمض على إنشائها أكثر من 5 سنوات.",
+                "en": "Only for businesses created no more than 5 years ago."
+              },
+              "value": 60
+            },
+            {
+              "kind": "criterion",
+              "id": "exports-africa",
+              "field": "exports_to_africa",
+              "op": "is_true",
+              "reason": {
+                "fr": "La limite de 5 ans ne s'applique pas aux entreprises exportatrices vers l'Afrique.",
+                "ar": "لا يُطبَّق حد الخمس سنوات على المقاولات المصدِّرة نحو إفريقيا.",
+                "en": "The 5-year limit does not apply to businesses exporting to Africa."
+              }
+            },
+            {
+              "kind": "criterion",
+              "id": "small-farm",
+              "field": "sector",
+              "op": "eq",
+              "reason": {
+                "fr": "La limite de 5 ans ne s'applique pas non plus aux petites exploitations agricoles.",
+                "ar": "لا يُطبَّق حد الخمس سنوات كذلك على الاستغلاليات الفلاحية الصغيرة.",
+                "en": "The 5-year limit also does not apply to small farms."
+              },
+              "value": "agriculture"
+            }
+          ]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Damane Intelak Al Moustatmir Al Qarawi",
+        "summary": "Déclinaison rurale du programme Intelaka : garantie de 80 % des crédits d'investissement et d'exploitation jusqu'à 1,2 million de dirhams pour les TPE, jeunes porteurs de projets, auto-entrepreneurs et petites exploitations agricoles en milieu rural, sans commission."
+      },
+      "ar": {
+        "title": "ضمان انطلاق المستثمر القروي",
+        "summary": "الصيغة القروية لبرنامج انطلاقة: ضمان 80% من قروض الاستثمار والاستغلال حتى 1,2 مليون درهم للمقاولات الصغيرة جداً وحاملي المشاريع الشباب والمقاولين الذاتيين والاستغلاليات الفلاحية الصغيرة في الوسط القروي، دون عمولة."
+      },
+      "en": {
+        "title": "Damane Intelak Al Moustatmir Al Qarawi",
+        "summary": "Rural strand of the Intelaka programme: 80% guarantee on investment and operating loans up to MAD 1.2 million for very small businesses, young project holders, auto-entrepreneurs and small farms in rural areas, with no fee."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "young rural business",
+      "profile": {
+        "is_rural": true,
+        "revenue_band": "lt_1m",
+        "sector": "crafts",
+        "company_age_months": 18
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "established small farm",
+      "profile": {
+        "is_rural": true,
+        "revenue_band": "lt_1m",
+        "sector": "agriculture",
+        "company_age_months": 240
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "urban business",
+      "profile": {
+        "is_rural": false,
+        "revenue_band": "lt_1m",
+        "sector": "commerce",
+        "company_age_months": 12
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["rural"]
+    },
+    {
+      "name": "location unknown",
+      "profile": {
+        "revenue_band": "lt_1m",
+        "sector": "commerce",
+        "company_age_months": 12
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["is_rural"]
+    }
+  ]
+}

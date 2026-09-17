@@ -1,0 +1,123 @@
+{
+  "slug": "bourse-incubation",
+  "operator": "Tamwilcom",
+  "kind": "grant",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL: startup under Moroccan law, past POC, building prototype or MVP; application validated by a Tamwilcom (SNGFE) partner; grant up to 90% of the investment programme, capped at 200,000 DH; min 10% contribution; conditional on a support agreement. Part of the Startup Venture Building offer (Ministry of Digital Transition, Digital Morocco 2030). INTERPRETATION: 'startup de droit marocain' = an incorporated company (excludes project holders and auto-entrepreneurs) — confirm whether a not-yet-incorporated team can apply. All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilstartups.ma/bourse_incubation.php",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom Startups: Bourse d'incubation detail"
+    },
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/startups",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom: Startups overview (VB offer)"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 200000,
+    "sourceUrl": "https://www.tamwilstartups.ma/bourse_incubation.php",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "company",
+          "field": "legal_form",
+          "op": "not_in",
+          "reason": {
+            "fr": "Réservé aux entreprises constituées en société de droit marocain.",
+            "ar": "مخصص للمقاولات المؤسَّسة في شكل شركة خاضعة للقانون المغربي.",
+            "en": "Only for businesses incorporated as a company under Moroccan law."
+          },
+          "value": ["none", "auto_entrepreneur"]
+        },
+        {
+          "kind": "criterion",
+          "id": "partner-support",
+          "field": "has_partner_support",
+          "op": "is_true",
+          "reason": {
+            "fr": "Votre candidature doit être validée par une structure d'accompagnement partenaire de Tamwilcom (incubateur, accélérateur).",
+            "ar": "يجب أن يُصادَق على ترشيحكم من طرف بنية مواكبة شريكة لتمويلكم (حاضنة أو مسرِّعة).",
+            "en": "Your application must be validated by a Tamwilcom partner support organisation (incubator or accelerator)."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "stage",
+          "field": "innovation_stage",
+          "op": "eq",
+          "reason": {
+            "fr": "Réservé aux startups ayant validé leur preuve de concept (POC) et qui développent leur prototype ou MVP.",
+            "ar": "مخصص للشركات الناشئة التي تجاوزت مرحلة إثبات المفهوم (POC) وتعمل على تطوير النموذج الأولي أو المنتج الأدنى القابل للتطبيق (MVP).",
+            "en": "Only for startups that have validated their proof of concept and are building their prototype or MVP."
+          },
+          "value": "poc_validated"
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Bourse d'incubation (offre Startup VB)",
+        "summary": "Aide financière couvrant jusqu'à 90 % du programme d'investissement pour développer un prototype ou un MVP après la preuve de concept, plafonnée à 200 000 DH, avec un apport minimum de 10 %. Candidature validée par une structure d'accompagnement partenaire."
+      },
+      "ar": {
+        "title": "منحة الاحتضان (عرض Startup VB)",
+        "summary": "دعم مالي يغطي حتى 90% من برنامج الاستثمار لتطوير نموذج أولي أو منتج أدنى قابل للتطبيق بعد إثبات المفهوم، في حدود 200.000 درهم، مع مساهمة لا تقل عن 10%. يُصادَق على الترشيح من طرف بنية مواكبة شريكة."
+      },
+      "en": {
+        "title": "Incubation grant (Startup VB offer)",
+        "summary": "Financial aid covering up to 90% of the investment programme to build a prototype or MVP after proof of concept, capped at MAD 200,000, with a minimum 10% contribution. Application validated by a partner support organisation."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilstartups.ma/bourse_incubation.php",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "incorporated startup past POC",
+      "profile": {
+        "legal_form": "sarl_au",
+        "has_partner_support": true,
+        "innovation_stage": "poc_validated"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "auto-entrepreneur",
+      "profile": {
+        "legal_form": "auto_entrepreneur",
+        "has_partner_support": true,
+        "innovation_stage": "poc_validated"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["company"]
+    },
+    {
+      "name": "legal form unknown",
+      "profile": {
+        "has_partner_support": true,
+        "innovation_stage": "poc_validated"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["legal_form"]
+    }
+  ]
+}

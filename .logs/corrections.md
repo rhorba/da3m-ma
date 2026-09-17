@@ -19,3 +19,13 @@
 - Specialist: Scrum Master
 - Summary: Story 2.3 (RuleDiffPreview) and 2.5 (golden profiles in CI) both depend on the evaluator. Dependency order in the stories doc was wrong; the pure engine ships in Sprint 2. Sprint 3 keeps 3.2-3.6.
 - Status: resolved
+
+### [2026-09-17 17:20] [CORRECTION] — Story 2.3 scope replaced by ADR-8
+- Specialist: Scrum Master
+- Summary: Curation console (form editor, preview UI, publish UI) replaced by catalogue-as-code tooling. Page revalidation and alert flagging on publish move to Stories 4.1 / 4.4.
+- Status: resolved
+
+### [2026-09-17 19:10] [CORRECTION] — Story 2.5 candidate list was stale
+- Specialist: PM
+- Summary: Innov Idea / Innov Start no longer exist (current: Tech Start, Tech Boost, Innov Risk, Innov Dev). Innov Risk dropped (criteria too vague to encode honestly). Maroc PME and Forsa programmes moved to Story 4.6 (not machine-readable, see issues). Final 10 drafts are all Tamwilcom.
+- Status: resolved

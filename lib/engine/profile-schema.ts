@@ -43,9 +43,11 @@ export const SECTORS = [
   "agriculture",
   "agrifood",
   "fishing",
+  "high_sea_fishing",
   "industry",
   "crafts",
   "construction",
+  "real_estate_development",
   "commerce",
   "services",
   "digital",
@@ -76,6 +78,9 @@ export const PURPOSES = [
   "working_capital",
 ] as const;
 
+/** Where an innovative project stands (Tamwilcom Innov Invest / Startup VB stages). */
+export const INNOVATION_STAGES = ["idea", "poc_validated", "mvp_ready", "growth"] as const;
+
 export type FieldSpec =
   | { kind: "enum"; values: readonly string[] }
   | { kind: "integer"; min: number; max: number }
@@ -95,6 +100,16 @@ export const FIELD_SPECS = {
   need_amount_band: { kind: "enum", values: AMOUNT_BANDS },
   need_purposes: { kind: "enum_set", values: PURPOSES },
   is_innovative: { kind: "boolean" },
+  innovation_stage: { kind: "enum", values: INNOVATION_STAGES },
+  /** Accompanied by, or application validated by, a support organisation (incubator, accelerator). */
+  has_partner_support: { kind: "boolean" },
+  /** A partner support organisation has invested in the company. */
+  partner_invested: { kind: "boolean" },
+  raised_external_funding: { kind: "boolean" },
+  revenue_growing: { kind: "boolean" },
+  exports_to_africa: { kind: "boolean" },
+  /** Holds an investment loan guaranteed under the Intelaka programme. */
+  has_intelaka_loan: { kind: "boolean" },
 } as const satisfies Record<string, FieldSpec>;
 
 export type ProfileField = keyof typeof FIELD_SPECS;
@@ -122,6 +137,13 @@ export const profileDataSchema = z.object({
     .refine((values) => new Set(values).size === values.length, "Duplicate purposes")
     .optional(),
   is_innovative: z.boolean().optional(),
+  innovation_stage: z.enum(INNOVATION_STAGES).optional(),
+  has_partner_support: z.boolean().optional(),
+  partner_invested: z.boolean().optional(),
+  raised_external_funding: z.boolean().optional(),
+  revenue_growing: z.boolean().optional(),
+  exports_to_africa: z.boolean().optional(),
+  has_intelaka_loan: z.boolean().optional(),
 });
 
 export type ProfileData = z.infer<typeof profileDataSchema>;

@@ -1,0 +1,176 @@
+{
+  "slug": "damane-intelak",
+  "operator": "Tamwilcom",
+  "kind": "guarantee",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "Thresholds (≤ 5 years, turnover ≤ 10 MDH, credit ≤ 1.2 MDH, 80% guarantee, export exception) come from the Ministry of Finance / CCG 2020 documents. Tamwilcom's current page (2026) confirms the product, 80% cover and no fee, but no longer restates the thresholds, and the older Tamwilcom product URLs now return 404 — confirm the thresholds still apply. The 10 MDH TPE threshold is also Bank Al-Maghrib's official TPE definition (Charte TPE, art. 2, in force 2026-01-01). INTERPRETATION: 'jeunes porteurs de projets' means a business not yet created is eligible, so no legal-form criterion. The 2% interest rate is from 2020 and is shown nowhere as a rule."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "consultedAt": "2026-09-17",
+      "note": "Current product page: target, 80% cover, no fee"
+    },
+    {
+      "url": "https://www.finances.gov.ma/Publication/daag/2020/PresentationMLM%20du%20FAFE%20VF.pdf",
+      "consultedAt": "2026-09-17",
+      "note": "Ministry of Finance, Programme INTELAKA offre produits (2020), p.8 and p.10"
+    },
+    {
+      "url": "https://www.bkam.ma/content/download/835688/9083030/Charte%20TPE.pdf",
+      "consultedAt": "2026-09-17",
+      "note": "Bank Al-Maghrib Charte TPE (Dec 2025), art. 2: TPE turnover ≤ 10 MDH"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 1200000,
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "revenue",
+          "field": "revenue_band",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises dont le chiffre d'affaires annuel hors taxes ne dépasse pas 10 millions de dirhams.",
+            "ar": "مخصص للمقاولات التي لا يتجاوز رقم معاملاتها السنوي دون احتساب الرسوم 10 ملايين درهم.",
+            "en": "Only for businesses with annual turnover (excluding tax) of up to MAD 10 million."
+          },
+          "value": ["none", "lt_1m", "1m_10m"]
+        },
+        {
+          "kind": "criterion",
+          "id": "sector",
+          "field": "sector",
+          "op": "not_in",
+          "reason": {
+            "fr": "La promotion immobilière et la pêche hauturière ne sont pas éligibles.",
+            "ar": "الإنعاش العقاري والصيد في أعالي البحار غير مؤهلين.",
+            "en": "Real-estate development and high-sea fishing are not eligible."
+          },
+          "value": ["real_estate_development", "high_sea_fishing"]
+        },
+        {
+          "kind": "any",
+          "rules": [
+            {
+              "kind": "criterion",
+              "id": "age-5-years",
+              "field": "company_age_months",
+              "op": "lte",
+              "reason": {
+                "fr": "Réservé aux entreprises créées depuis 5 ans au maximum.",
+                "ar": "مخصص للمقاولات التي لم يمض على إنشائها أكثر من 5 سنوات.",
+                "en": "Only for businesses created no more than 5 years ago."
+              },
+              "value": 60
+            },
+            {
+              "kind": "criterion",
+              "id": "exports-africa",
+              "field": "exports_to_africa",
+              "op": "is_true",
+              "reason": {
+                "fr": "La limite de 5 ans ne s'applique pas aux entreprises exportatrices vers l'Afrique.",
+                "ar": "لا يُطبَّق حد الخمس سنوات على المقاولات المصدِّرة نحو إفريقيا.",
+                "en": "The 5-year limit does not apply to businesses exporting to Africa."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Damane Intelak (programme Intelaka)",
+        "summary": "Garantie de Tamwilcom couvrant jusqu'à 80 % des crédits bancaires (jusqu'à 1,2 million de dirhams) accordés aux jeunes entreprises, auto-entrepreneurs et porteurs de projets, sans commission. La demande se fait auprès d'une banque partenaire."
+      },
+      "ar": {
+        "title": "ضمان انطلاق (برنامج انطلاقة)",
+        "summary": "ضمان من تمويلكم يغطي حتى 80% من القروض البنكية (حتى 1,2 مليون درهم) الممنوحة للمقاولات الناشئة والمقاولين الذاتيين وحاملي المشاريع، دون عمولة. يُقدَّم الطلب لدى بنك شريك."
+      },
+      "en": {
+        "title": "Damane Intelak (Intelaka programme)",
+        "summary": "Tamwilcom guarantee covering up to 80% of bank loans (up to MAD 1.2 million) to young businesses, auto-entrepreneurs and project holders, with no fee. Apply through a partner bank."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "young small business",
+      "profile": {
+        "revenue_band": "lt_1m",
+        "sector": "commerce",
+        "company_age_months": 12
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "older exporter to Africa",
+      "profile": {
+        "revenue_band": "1m_10m",
+        "sector": "industry",
+        "company_age_months": 120,
+        "exports_to_africa": true
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "turnover above 10 MDH",
+      "profile": {
+        "revenue_band": "10m_50m",
+        "sector": "commerce",
+        "company_age_months": 12
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["revenue"]
+    },
+    {
+      "name": "older, not exporting",
+      "profile": {
+        "revenue_band": "lt_1m",
+        "sector": "services",
+        "company_age_months": 84,
+        "exports_to_africa": false
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["age-5-years", "exports-africa"]
+    },
+    {
+      "name": "real-estate developer",
+      "profile": {
+        "revenue_band": "lt_1m",
+        "sector": "real_estate_development",
+        "company_age_months": 6
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["sector"]
+    },
+    {
+      "name": "age and export unknown",
+      "profile": {
+        "revenue_band": "lt_1m",
+        "sector": "commerce"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["company_age_months", "exports_to_africa"]
+    }
+  ]
+}

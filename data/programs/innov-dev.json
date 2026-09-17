@@ -1,0 +1,117 @@
+{
+  "slug": "innov-dev",
+  "operator": "Tamwilcom",
+  "kind": "loan",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL: participatory loan for innovative SMEs in their growth phase, for investment and operating needs; beneficiaries are SMEs under Moroccan law that have raised funds from external investors and carry innovative projects. OPEN: no amount, rate or SME size threshold is published on the page (Bank Al-Maghrib's charter defines only TPE) — size is NOT encoded. INTERPRETATION: 'PME de droit marocain' = incorporated company (excludes project holders and auto-entrepreneurs). All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom: Fonds Innov Invest, Innov Dev section"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "company",
+          "field": "legal_form",
+          "op": "not_in",
+          "reason": {
+            "fr": "Réservé aux entreprises constituées en société de droit marocain.",
+            "ar": "مخصص للمقاولات المؤسَّسة في شكل شركة خاضعة للقانون المغربي.",
+            "en": "Only for businesses incorporated as a company under Moroccan law."
+          },
+          "value": ["none", "auto_entrepreneur"]
+        },
+        {
+          "kind": "criterion",
+          "id": "raised",
+          "field": "raised_external_funding",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux entreprises ayant réalisé une levée de fonds auprès d'investisseurs externes.",
+            "ar": "مخصص للمقاولات التي قامت بجمع تمويل من مستثمرين خارجيين.",
+            "en": "Only for companies that have raised funds from external investors."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "innovative",
+          "field": "is_innovative",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux projets innovants.",
+            "ar": "مخصص للمشاريع المبتكِرة.",
+            "en": "Only for innovative projects."
+          }
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Innov Dev (Fonds Innov Invest)",
+        "summary": "Prêt participatif pour les PME innovantes de droit marocain en phase de croissance, ayant déjà levé des fonds auprès d'investisseurs externes, afin de financer leurs besoins d'investissement et d'exploitation en complément des apports privés."
+      },
+      "ar": {
+        "title": "إينوف ديف (صندوق إينوف إنفست)",
+        "summary": "قرض تشاركي للمقاولات الصغرى والمتوسطة المبتكرة الخاضعة للقانون المغربي في مرحلة النمو، والتي سبق لها جمع تمويل من مستثمرين خارجيين، لتمويل حاجياتها الاستثمارية والتشغيلية تكملةً للمساهمات الخاصة."
+      },
+      "en": {
+        "title": "Innov Dev (Innov Invest Fund)",
+        "summary": "Participatory loan for innovative Moroccan SMEs in their growth phase that have already raised funds from external investors, to finance investment and operating needs alongside private capital."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "funded innovative SA",
+      "profile": {
+        "legal_form": "sa",
+        "raised_external_funding": true,
+        "is_innovative": true
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "no external funding",
+      "profile": {
+        "legal_form": "sarl",
+        "raised_external_funding": false,
+        "is_innovative": true
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["raised"]
+    },
+    {
+      "name": "funding unknown",
+      "profile": {
+        "legal_form": "sarl",
+        "is_innovative": true
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["raised_external_funding"]
+    }
+  ]
+}

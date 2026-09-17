@@ -1,0 +1,143 @@
+{
+  "slug": "damane-express",
+  "operator": "Tamwilcom",
+  "kind": "guarantee",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL: TPE under Moroccan law, all sectors except real-estate development and high-sea fishing; guarantees operating and investment loans. INTERPRETATION: 'TPE' uses Bank Al-Maghrib's official definition (turnover ≤ 10 MDH, Charte TPE art. 2); the Tamwilcom page doesn't restate a threshold. 'TPE' implies an existing business, so project holders (legal_form = none) are excluded. OPEN: no guarantee rate or amount cap is published on the current page."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "consultedAt": "2026-09-17",
+      "note": "Current product page: beneficiaries and sector exclusions"
+    },
+    {
+      "url": "https://www.bkam.ma/content/download/835688/9083030/Charte%20TPE.pdf",
+      "consultedAt": "2026-09-17",
+      "note": "Bank Al-Maghrib Charte TPE, art. 2: TPE definition"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "created",
+          "field": "legal_form",
+          "op": "neq",
+          "reason": {
+            "fr": "Réservé aux entreprises déjà créées (personne physique ou morale).",
+            "ar": "مخصص للمقاولات المُنشأة فعلياً (شخص ذاتي أو معنوي).",
+            "en": "Only for businesses that already exist (individual or legal entity)."
+          },
+          "value": "none"
+        },
+        {
+          "kind": "criterion",
+          "id": "revenue",
+          "field": "revenue_band",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises dont le chiffre d'affaires annuel hors taxes ne dépasse pas 10 millions de dirhams.",
+            "ar": "مخصص للمقاولات التي لا يتجاوز رقم معاملاتها السنوي دون احتساب الرسوم 10 ملايين درهم.",
+            "en": "Only for businesses with annual turnover (excluding tax) of up to MAD 10 million."
+          },
+          "value": ["none", "lt_1m", "1m_10m"]
+        },
+        {
+          "kind": "criterion",
+          "id": "sector",
+          "field": "sector",
+          "op": "not_in",
+          "reason": {
+            "fr": "La promotion immobilière et la pêche hauturière ne sont pas éligibles.",
+            "ar": "الإنعاش العقاري والصيد في أعالي البحار غير مؤهلين.",
+            "en": "Real-estate development and high-sea fishing are not eligible."
+          },
+          "value": ["real_estate_development", "high_sea_fishing"]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Damane Express",
+        "summary": "Garantie rapide et souple de Tamwilcom pour les crédits de fonctionnement et d'investissement des très petites entreprises, afin de renforcer leur trésorerie. Tous secteurs sauf la promotion immobilière et la pêche hauturière."
+      },
+      "ar": {
+        "title": "ضمان إكسبريس",
+        "summary": "ضمان سريع ومرن من تمويلكم لقروض التسيير والاستثمار الخاصة بالمقاولات الصغيرة جداً، لتعزيز خزينتها. جميع القطاعات باستثناء الإنعاش العقاري والصيد في أعالي البحار."
+      },
+      "en": {
+        "title": "Damane Express",
+        "summary": "Fast, flexible Tamwilcom guarantee on operating and investment loans for very small businesses, to strengthen cash flow. All sectors except real-estate development and high-sea fishing."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "small SARL",
+      "profile": {
+        "legal_form": "sarl",
+        "revenue_band": "lt_1m",
+        "sector": "commerce"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "auto-entrepreneur",
+      "profile": {
+        "legal_form": "auto_entrepreneur",
+        "revenue_band": "lt_1m",
+        "sector": "services"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "project not yet created",
+      "profile": {
+        "legal_form": "none",
+        "revenue_band": "none",
+        "sector": "digital"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["created"]
+    },
+    {
+      "name": "high-sea fishing company",
+      "profile": {
+        "legal_form": "sa",
+        "revenue_band": "1m_10m",
+        "sector": "high_sea_fishing"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["sector"]
+    },
+    {
+      "name": "turnover unknown",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "commerce"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["revenue_band"]
+    }
+  ]
+}

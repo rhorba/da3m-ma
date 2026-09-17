@@ -1,0 +1,122 @@
+{
+  "slug": "pret-amorcage",
+  "operator": "Tamwilcom",
+  "kind": "loan",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL: startups invested in by partner support organisations, with at least 2 years of activity and positive revenue growth, aiming for a Series A raise; mezzanine loan without collateral up to 2,000,000 DH, not exceeding 50% of the partner's equity investment; 5% (excl. tax) rate; max 5 years incl. 1 year deferral; early repayment on Series A. NOT ENCODED: the Series A intention and the 50%-of-partner-investment cap (a loan-sizing rule, not eligibility). All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilstartups.ma/pret_amorcage.php",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom Startups: Prêt d'amorçage detail"
+    },
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/startups",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom: Startups overview (VB offer)"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 2000000,
+    "sourceUrl": "https://www.tamwilstartups.ma/pret_amorcage.php",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "partner-invested",
+          "field": "partner_invested",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux startups dans lesquelles une structure partenaire de Tamwilcom a investi.",
+            "ar": "مخصص للشركات الناشئة التي استثمرت فيها بنية شريكة لتمويلكم.",
+            "en": "Only for startups that a Tamwilcom partner organisation has invested in."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "age-2-years",
+          "field": "company_age_months",
+          "op": "gte",
+          "reason": {
+            "fr": "Réservé aux startups ayant au moins 2 ans d'activité.",
+            "ar": "مخصص للشركات الناشئة التي لها سنتان على الأقل من النشاط.",
+            "en": "Only for startups with at least 2 years of activity."
+          },
+          "value": 24
+        },
+        {
+          "kind": "criterion",
+          "id": "growth",
+          "field": "revenue_growing",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux startups dont le volume d'affaires est en croissance.",
+            "ar": "مخصص للشركات الناشئة التي يعرف حجم معاملاتها نمواً.",
+            "en": "Only for startups with growing revenue."
+          }
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Prêt d'amorçage (offre Startup VB)",
+        "summary": "Dette mezzanine sans sûretés jusqu'à 2 millions de DH (au plus 50 % de l'investissement de la structure partenaire), au taux de 5 % HT sur 5 ans maximum dont 1 an de différé, pour accélérer une startup d'au moins 2 ans en croissance, en vue d'une levée de fonds de série A."
+      },
+      "ar": {
+        "title": "قرض الانطلاق (عرض Startup VB)",
+        "summary": "دين ميزانين دون ضمانات يصل إلى 2 مليون درهم (لا يتجاوز 50% من استثمار البنية الشريكة)، بسعر 5% دون احتساب الرسوم على 5 سنوات كحد أقصى منها سنة إمهال، لتسريع نمو شركة ناشئة عمرها سنتان على الأقل استعداداً لجولة تمويل من الفئة A."
+      },
+      "en": {
+        "title": "Seed loan (Startup VB offer)",
+        "summary": "Collateral-free mezzanine debt of up to MAD 2 million (at most 50% of the partner's investment), at 5% excl. tax over up to 5 years with 1 year's deferral, to accelerate a growing startup at least 2 years old ahead of a Series A raise."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilstartups.ma/pret_amorcage.php",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "backed, 3 years, growing",
+      "profile": {
+        "partner_invested": true,
+        "company_age_months": 36,
+        "revenue_growing": true
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "too young",
+      "profile": {
+        "partner_invested": true,
+        "company_age_months": 18,
+        "revenue_growing": true
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["age-2-years"]
+    },
+    {
+      "name": "growth unknown",
+      "profile": {
+        "partner_invested": true,
+        "company_age_months": 36
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["revenue_growing"]
+    }
+  ]
+}

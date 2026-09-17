@@ -17,16 +17,16 @@ track the resulting dossiers to their deadlines.
 
 **Sprint 1 complete** — foundation: schema, tenant isolation, Clerk sync, i18n skeleton, CI.
 
-| Sprint     | Scope                                                           | Status                         |
-| ---------- | --------------------------------------------------------------- | ------------------------------ |
-| Foundation | 10 expert docs                                                  | ✅ Written — awaiting approval |
-| 1          | Scaffold, schema, Clerk orgs, Actor repositories, i18n          | Not started                    |
-| 2          | Programme catalogue, rule DSL, curation console, source watcher | Not started                    |
-| 3          | Eligibility engine + wizard + results                           | Not started                    |
-| 4          | Programme pages, alerts, AR pass → **public beta**              | Not started                    |
-| ⛔         | Consultant validation gate                                      | —                              |
-| 5          | Cabinet workspace                                               | Not started                    |
-| 6          | Billing + launch                                                | Not started                    |
+| Sprint     | Scope                                                                    | Status                              |
+| ---------- | ------------------------------------------------------------------------ | ----------------------------------- |
+| Foundation | 10 expert docs                                                           | ✅ Written — awaiting approval      |
+| 1          | Scaffold, schema, Clerk orgs, Actor repositories, i18n                   | Not started                         |
+| 2          | Engine, rule DSL, catalogue as code, source watcher, 10 draft programmes | ✅ Done — drafts await verification |
+| 3          | Wizard + results (engine shipped in Sprint 2)                            | Not started                         |
+| 4          | Programme pages, alerts, AR pass → **public beta**                       | Not started                         |
+| ⛔         | Consultant validation gate                                               | —                                   |
+| 5          | Cabinet workspace                                                        | Not started                         |
+| 6          | Billing + launch                                                         | Not started                         |
 
 ## Getting started
 
@@ -40,12 +40,15 @@ pnpm db:migrate
 pnpm dev                          # http://localhost:3000
 ```
 
-| Command                                              | What it does                                                                             |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `pnpm test`                                          | Unit + integration tests (Testcontainers Postgres) with the 80% coverage gate            |
-| `pnpm build && pnpm e2e`                             | Production build, then Playwright on desktop + mobile Chromium                           |
-| `pnpm lint` / `pnpm typecheck` / `pnpm format:check` | Static checks run in CI                                                                  |
-| `pnpm db:generate`                                   | Generate a migration from `lib/db/schema.ts` — also write its reverse in `drizzle/down/` |
+| Command                                              | What it does                                                                  |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `pnpm test`                                          | Unit + integration tests (Testcontainers Postgres) with the 80% coverage gate |
+| `pnpm build && pnpm e2e`                             | Production build, then Playwright on desktop + mobile Chromium                |
+| `pnpm lint` / `pnpm typecheck` / `pnpm format:check` | Static checks run in CI                                                       |
+| `pnpm catalogue:validate`                            | Validate every programme in `data/programs/` (see `docs/curation-guide.md`)   |
+| `pnpm catalogue:sync`                                | Publish verified programmes as new immutable versions                         |
+| `pnpm catalogue:tasks` / `catalogue:resolve`         | Review source changes flagged by the watcher                                  |
+|                                                      |
 
 ## Documentation
 
@@ -60,7 +63,8 @@ pnpm dev                          # http://localhost:3000
 | [UI Foundation](docs/ui-da3m.md)            | UI Designer        |
 | [Test Strategy](docs/test-strategy-da3m.md) | Test Architect     |
 | [DevOps Foundation](docs/devops-da3m.md)    | DevOps/DevSecOps   |
-| [Epics & Stories](docs/stories-da3m.md)     | Scrum Master       |
+|                                             |
+| [Curation Guide](docs/curation-guide.md)    | Curator            |
 
 ## Planned stack
 

@@ -44,3 +44,14 @@
 - Specialist: Backend Dev, Security Engineer, Test Architect
 - Summary: 2.1 profile contract (12 fields, bands, compile-time parity with FIELD_SPECS). 2.2 rule DSL parser + semantic validator with paths (unknown field named; operator/value per field kind; depth, duplicate ids, empty groups). 3.1 three-valued evaluator: full truth tables, every operator, property tests (monotonicity, completeness, determinism, explanation invariants). 2.4 source watcher: SSRF guard (https, allowlist, public-address check on every redirect hop), robots.txt per RFC 9309, main-text extraction + normalisation, change diff, one fetch_failing task per watch, reverify tasks, cron endpoint with constant-time secret check.
 - Status: complete
+
+### [2026-09-17 17:10] [CI] — Sprint 2 checkpoint 9384240: GREEN
+- Specialist: DevOps
+- Summary: Run 35209663695 — lint/types/format, unit+integration (coverage gate incl. lib/engine 100%), security scans, build+E2E all success.
+- Status: complete
+
+### [2026-09-17 19:20] [COMPLETED] — Sprint 2 stories 2.3 (revised) and 2.5 (drafts)
+- Specialist: Backend Dev, PM, Test Architect
+- Summary: Catalogue-as-code tooling (file schema, loader, validator with golden profiles, idempotent sync to immutable versions, watch reconciliation, review-task CLI). 10 draft programmes researched from official pages only (Tamwilcom, Tamwilcom Startups, Ministry of Finance, Bank Al-Maghrib), each with sources, OFFICIAL / INTERPRETATION / OPEN notes and golden profiles; all pass validation in CI. Curation guide written. Status: drafts awaiting user verification.
+- Status: complete
+- Impact: high

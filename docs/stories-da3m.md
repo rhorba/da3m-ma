@@ -85,9 +85,10 @@ Then publishing is rejected with the unknown field named
 ```
 **Notes**: ADR-2 DSL in Zod; max depth 10; operator/value type pairs validated.
 
-### Story 2.3: Curation console — versions, editor, preview, publish
-**Priority**: Must | **Size**: L | **Specialist**: Frontend Dev + Backend Dev
-**Notes**: Draft from current version; structured rule editor (form, not raw JSON); RuleDiffPreview runs golden profiles and shows outcome deltas; publish revalidates programme page and flags affected alert subscribers. `platform_admin` only, MFA.
+### Story 2.3: Curation — ~~console~~ catalogue as code (revised, ADR-8)
+**Priority**: Must | **Size**: M | **Specialist**: Backend Dev
+**Status**: ✅ Done (Sprint 2)
+**Notes**: Replaced by user decision on 2026-09-17. Programme files in `data/programs/`, validated in CI (publish rules + golden profiles), synced to immutable versions, review tasks via CLI. Publish validation, golden-profile checks and change preview are implemented as reusable functions for a future console. Revalidation of programme pages and alert flagging on publish move to Stories 4.1 and 4.4.
 
 ### Story 2.4: Source watcher + review queue
 **Priority**: Must | **Size**: M | **Specialist**: Backend Dev + Security Engineer
@@ -101,7 +102,14 @@ And the published programme version is unchanged
 
 ### Story 2.5: Curate first 10 programmes with golden profiles
 **Priority**: Must | **Size**: L | **Specialist**: Curator (user) + Backend Dev
-**Notes**: Criteria taken **only from the operator's official page**, with `source_url`; each programme ships ≥ 3 golden profiles (test strategy §5). Candidates: Intelaka, Forsa, Istitmar, Moussanada, Imtiaz, Tatwir, Innov Idea, Innov Start, Innov Risk, Innov Invest. Final list confirmed at curation time — some may have closed or been renamed.
+**Notes**: Criteria taken **only from official sources**, listed in `sources`; each programme ships ≥ 3 golden profiles (test strategy §5).
+**Status**: 🟡 10 drafts written 2026-09-17, **awaiting curator verification** (`docs/curation-guide.md`): damane-intelak, damane-intelak-rural, damane-express, start-tpe, tech-start, tech-boost, bourse-incubation, pret-honneur-startup, pret-amorcage, innov-dev — all Tamwilcom.
+**Findings while drafting**:
+- The original candidate names were out of date: Innov Invest's current products are Tech Start, Tech Boost, Innov Risk and Innov Dev ("Innov Idea"/"Innov Start" no longer appear).
+- **Innov Risk** left out: its official criteria are too vague to encode without inventing thresholds.
+- **Bourse de vie** left out for now: needs three more personal fields (years of experience, nationality, employment status) — a data-minimisation decision for the user.
+- **Maroc PME** (Istitmar, Tatwir…) blocked for automated reading by an incomplete TLS chain on marocpme.gov.ma; **Forsa** returns 403 to our bot. Both move to Story 4.6 for manual curation.
+- Profile contract extended (ADR-6, additive): innovation_stage, has_partner_support, partner_invested, raised_external_funding, revenue_growing, exports_to_africa, has_intelaka_loan; sectors real_estate_development and high_sea_fishing.
 
 ---
 

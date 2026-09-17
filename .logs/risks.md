@@ -37,3 +37,10 @@
 - Status: open
 - Impact: medium
 - Mitigation: Confirm plan before deploy (Story 6.2). Fallbacks: Pro plan, an external scheduler (GitHub Actions schedule calling the endpoint with CRON_SECRET), or raise per-run volume on Hobby with a longer function limit.
+
+### [2026-09-17 19:00] [RISK] — Intelaka thresholds rest on 2020 documents
+- Specialist: PM
+- Summary: Damane Intelak / rural / Start-TPE criteria (≤ 5 years, ≤ 10 MDH, ≤ 1.2 MDH) come from 2020 Ministry of Finance / CCG documents; Tamwilcom's current pages confirm the products but not the thresholds.
+- Status: open
+- Impact: medium
+- Mitigation: flagged as dated in verification.notes; curator confirms before marking verified; source watcher on the current Tamwilcom page.

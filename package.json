@@ -17,7 +17,11 @@
     "db:up": "docker compose up -d db",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/migrate.ts up",
-    "db:rollback": "tsx scripts/migrate.ts down"
+    "db:rollback": "tsx scripts/migrate.ts down",
+    "catalogue:validate": "tsx scripts/catalogue.ts validate",
+    "catalogue:sync": "tsx scripts/catalogue.ts sync",
+    "catalogue:tasks": "tsx scripts/catalogue.ts tasks",
+    "catalogue:resolve": "tsx scripts/catalogue.ts resolve"
   },
   "dependencies": {
     "@clerk/backend": "3.18.1",

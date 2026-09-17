@@ -157,6 +157,37 @@ export function createCurationJobsRepository(db: Database) {
       }
       return opened;
     },
+
+    async listOpenTasks() {
+      return db
+        .select({
+          id: reviewTasks.id,
+          kind: reviewTasks.kind,
+          slug: programs.slug,
+          url: sourceWatches.url,
+          diffExcerpt: reviewTasks.diffExcerpt,
+          createdAt: reviewTasks.createdAt,
+        })
+        .from(reviewTasks)
+        .innerJoin(programs, eq(programs.id, reviewTasks.programId))
+        .leftJoin(sourceWatches, eq(sourceWatches.id, reviewTasks.watchId))
+        .where(eq(reviewTasks.status, "open"))
+        .orderBy(asc(reviewTasks.createdAt));
+    },
+
+    /** Returns false when the task doesn't exist or is already resolved. */
+    async resolveTask(
+      id: string,
+      resolution: "resolved_changed" | "resolved_no_change",
+      resolvedBy: string,
+    ): Promise<boolean> {
+      const rows = await db
+        .update(reviewTasks)
+        .set({ status: resolution, resolvedBy, resolvedAt: sql`now()` })
+        .where(and(eq(reviewTasks.id, id), eq(reviewTasks.status, "open")))
+        .returning({ id: reviewTasks.id });
+      return rows.length === 1;
+    },
   };
 }
 

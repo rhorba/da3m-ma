@@ -1,0 +1,113 @@
+{
+  "slug": "start-tpe",
+  "operator": "Tamwilcom",
+  "kind": "loan",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL (current page): working-capital financing at zero rate, no collateral, for TPE and project holders under Moroccan law holding an investment loan guaranteed under Intelaka. OPEN QUESTIONS from the 2020 Ministry of Finance deck (p.11), not restated today: investment loan capped at 300 KDH; financing = honour loan up to 20% of the guaranteed loan, max 50 KDH; repaid in fine after a 5-year grace period. These are NOT encoded — confirm before adding. INTERPRETATION: TPE turnover ≤ 10 MDH (Bank Al-Maghrib definition)."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "consultedAt": "2026-09-17",
+      "note": "Current product page"
+    },
+    {
+      "url": "https://www.finances.gov.ma/Publication/daag/2020/PresentationMLM%20du%20FAFE%20VF.pdf",
+      "consultedAt": "2026-09-17",
+      "note": "Ministry of Finance, Programme INTELAKA offre produits (2020), p.11"
+    },
+    {
+      "url": "https://www.bkam.ma/content/download/835688/9083030/Charte%20TPE.pdf",
+      "consultedAt": "2026-09-17",
+      "note": "Charte TPE, art. 2"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "intelaka-loan",
+          "field": "has_intelaka_loan",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux bénéficiaires d'un crédit d'investissement garanti dans le cadre du programme Intelaka.",
+            "ar": "مخصص للمستفيدين من قرض استثماري مضمون في إطار برنامج انطلاقة.",
+            "en": "Only for holders of an investment loan guaranteed under the Intelaka programme."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "revenue",
+          "field": "revenue_band",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises dont le chiffre d'affaires annuel hors taxes ne dépasse pas 10 millions de dirhams.",
+            "ar": "مخصص للمقاولات التي لا يتجاوز رقم معاملاتها السنوي دون احتساب الرسوم 10 ملايين درهم.",
+            "en": "Only for businesses with annual turnover (excluding tax) of up to MAD 10 million."
+          },
+          "value": ["none", "lt_1m", "1m_10m"]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Start-TPE",
+        "summary": "Financement à taux zéro et sans sûretés du besoin en fonds de roulement des très petites entreprises qui bénéficient déjà d'un crédit d'investissement garanti par Intelaka."
+      },
+      "ar": {
+        "title": "ستارت تي بي إي",
+        "summary": "تمويل بسعر فائدة صفر ودون ضمانات لحاجيات رأس المال العامل للمقاولات الصغيرة جداً المستفيدة من قرض استثماري مضمون في إطار انطلاقة."
+      },
+      "en": {
+        "title": "Start-TPE",
+        "summary": "Zero-rate, collateral-free working-capital financing for very small businesses that already hold an investment loan guaranteed under Intelaka."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "Intelaka borrower",
+      "profile": {
+        "has_intelaka_loan": true,
+        "revenue_band": "lt_1m"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "no Intelaka loan",
+      "profile": {
+        "has_intelaka_loan": false,
+        "revenue_band": "lt_1m"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["intelaka-loan"]
+    },
+    {
+      "name": "loan status unknown",
+      "profile": {
+        "revenue_band": "lt_1m"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["has_intelaka_loan"]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "slug": "tech-start",
+  "operator": "Tamwilcom",
+  "kind": "grant",
+  "verification": {
+    "status": "draft",
+    "verifiedAt": null,
+    "verifiedBy": null,
+    "notes": "OFFICIAL: startups past POC, application validated by a Tamwilcom partner, aiming to build a prototype or MVP; grant up to 80% of eligible spend, capped at 200,000 DH (400,000 DH with an invention patent); 20% own contribution; conditional on a support agreement. amountMaxMad uses the patent cap; the summary states both. INTERPRETATION: 'past POC, building MVP' = innovation_stage poc_validated. All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilstartups.ma/techStart.php",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom Startups: Tech Start detail"
+    },
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+      "consultedAt": "2026-09-17",
+      "note": "Tamwilcom: Fonds Innov Invest overview"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 400000,
+    "sourceUrl": "https://www.tamwilstartups.ma/techStart.php",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "partner-support",
+          "field": "has_partner_support",
+          "op": "is_true",
+          "reason": {
+            "fr": "Votre candidature doit être validée par une structure d'accompagnement partenaire de Tamwilcom (incubateur, accélérateur).",
+            "ar": "يجب أن يُصادَق على ترشيحكم من طرف بنية مواكبة شريكة لتمويلكم (حاضنة أو مسرِّعة).",
+            "en": "Your application must be validated by a Tamwilcom partner support organisation (incubator or accelerator)."
+          }
+        },
+        {
+          "kind": "criterion",
+          "id": "stage",
+          "field": "innovation_stage",
+          "op": "eq",
+          "reason": {
+            "fr": "Réservé aux startups ayant validé leur preuve de concept (POC) et qui développent leur prototype ou MVP.",
+            "ar": "مخصص للشركات الناشئة التي تجاوزت مرحلة إثبات المفهوم (POC) وتعمل على تطوير النموذج الأولي أو المنتج الأدنى القابل للتطبيق (MVP).",
+            "en": "Only for startups that have validated their proof of concept and are building their prototype or MVP."
+          },
+          "value": "poc_validated"
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Tech Start (Fonds Innov Invest)",
+        "summary": "Subvention couvrant jusqu'à 80 % des dépenses pour développer un prototype ou un MVP, après validation de la preuve de concept. Plafond : 200 000 DH, porté à 400 000 DH pour les projets disposant d'un brevet d'invention. Candidature via une structure d'accompagnement partenaire de Tamwilcom."
+      },
+      "ar": {
+        "title": "تيك ستارت (صندوق إينوف إنفست)",
+        "summary": "منحة تغطي حتى 80% من النفقات لتطوير نموذج أولي أو منتج أدنى قابل للتطبيق بعد إثبات المفهوم. السقف: 200.000 درهم، ويُرفع إلى 400.000 درهم للمشاريع الحاصلة على براءة اختراع. الترشيح عبر بنية مواكبة شريكة لتمويلكم."
+      },
+      "en": {
+        "title": "Tech Start (Innov Invest Fund)",
+        "summary": "Grant covering up to 80% of costs to build a prototype or MVP after proof of concept. Cap: MAD 200,000, raised to MAD 400,000 for projects with an invention patent. Apply through a Tamwilcom partner support organisation."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilstartups.ma/techStart.php",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "incubated startup past POC",
+      "profile": {
+        "has_partner_support": true,
+        "innovation_stage": "poc_validated"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "idea stage",
+      "profile": {
+        "has_partner_support": true,
+        "innovation_stage": "idea"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["stage"]
+    },
+    {
+      "name": "no partner support",
+      "profile": {
+        "has_partner_support": false,
+        "innovation_stage": "poc_validated"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["partner-support"]
+    },
+    {
+      "name": "support unknown",
+      "profile": {
+        "innovation_stage": "poc_validated"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["has_partner_support"]
+    }
+  ]
+}
