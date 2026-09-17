@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "title": "Da3m.ma — The public funding your business qualifies for",
+    "description": "Check your eligibility for Morocco's business-funding programmes, and understand why you qualify — or why not."
+  },
+  "nav": {
+    "language": "Language"
+  },
+  "languages": {
+    "fr": "Français",
+    "ar": "العربية",
+    "en": "English"
+  },
+  "home": {
+    "title": "Find the public funding your business actually qualifies for.",
+    "tagline": "Da3m.ma checks your situation against Morocco's business-funding programmes and tells you why you're eligible — or why not.",
+    "comingSoon": "The eligibility questionnaire is coming soon.",
+    "nonAffiliation": "Da3m.ma is an independent tool. It is not a government platform and is not affiliated with any agency."
+  }
+}

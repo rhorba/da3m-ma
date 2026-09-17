@@ -51,6 +51,13 @@ One Next.js 15 App Router application on Vercel with Neon Postgres. The eligibil
 - **Context**: Rules reference profile fields; renaming a field silently breaks rules.
 - **Decision**: `ProfileField` is a TypeScript union generated from one Zod schema (`lib/engine/profile-schema.ts`). Publishing a programme version validates that every referenced field exists. Adding a field is backwards compatible; removing one requires a migration of affected rules.
 
+### ADR-7: Clerk only on signed-in routes; public pages stay Clerk-free
+*Added 2026-09-17 during Sprint 1.*
+- **Context**: Clerk middleware and `ClerkProvider` need keys at runtime and turn pages dynamic. The public wizard, results and programme pages are the SEO and acquisition surface (SDR-2, SDR-4).
+- **Decision**: Public routes run only next-intl middleware and are statically generated. Clerk middleware and `ClerkProvider` wrap only `/[locale]/mon-espace`, `/[locale]/cabinet` and `/[locale]/admin`, added when those routes are built. The public wizard always stores results against the anonymous token; a signed-in visitor's anonymous data is claimed on their next visit to `/mon-espace` (Story 4.3).
+- **Alternatives**: Clerk on every route — rejected: every public page becomes dynamic, CI builds and E2E need real Clerk keys, and first load gets heavier for anonymous users who are the majority.
+- **Consequences**: A signed-in user doesn't see personalised state on public pages. Accepted: nothing on those pages is personal. Verified in Sprint 1 — `next build` prerenders `/fr`, `/ar`, `/en` as static HTML with no Clerk keys present.
+
 ## 3. System Design
 ```
 [Wizard submit] --server action--> profiles.upsert(actor, input)

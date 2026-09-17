@@ -12,3 +12,8 @@ coverage/
 playwright-report/
 test-results/
 .recordings/
+/.pnp
+.pnp.*
+.pnpm-debug.log*
+*.tsbuildinfo
+next-env.d.ts

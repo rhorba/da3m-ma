@@ -1,0 +1,75 @@
+{
+  "name": "da3m-ma",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run --coverage",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "e2e": "playwright test",
+    "db:up": "docker compose up -d db",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx scripts/migrate.ts up",
+    "db:rollback": "tsx scripts/migrate.ts down"
+  },
+  "dependencies": {
+    "@clerk/backend": "3.18.1",
+    "@clerk/nextjs": "^7.9.4",
+    "drizzle-orm": "^0.45.2",
+    "next": "15.5.25",
+    "next-intl": "^4.14.5",
+    "postgres": "^3.4.9",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/postcss": "^4",
+    "@testcontainers/postgresql": "^12.1.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^5.0.1",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.25",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.7",
+    "svix": "^2.5.0",
+    "tailwindcss": "^4",
+    "testcontainers": "^12.1.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5",
+    "vitest": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.28.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "unrs-resolver",
+      "@parcel/watcher",
+      "@swc/core"
+    ],
+    "ignoredBuiltDependencies": [
+      "cpu-features",
+      "ssh2",
+      "protobufjs"
+    ],
+    "overrides": {
+      "postcss@<8.5.18": "^8.5.18"
+    }
+  },
+  "type": "module"
+}

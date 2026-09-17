@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "title": "Da3m.ma — Les aides publiques auxquelles votre projet a droit",
+    "description": "Vérifiez votre éligibilité aux programmes de financement des entreprises au Maroc, et comprenez pourquoi vous êtes éligible — ou pourquoi pas."
+  },
+  "nav": {
+    "language": "Langue"
+  },
+  "languages": {
+    "fr": "Français",
+    "ar": "العربية",
+    "en": "English"
+  },
+  "home": {
+    "title": "Trouvez les aides publiques auxquelles votre projet a vraiment droit.",
+    "tagline": "Da3m.ma compare votre situation aux programmes de financement des entreprises au Maroc, et vous explique pourquoi vous êtes éligible — ou pourquoi pas.",
+    "comingSoon": "Le questionnaire d'éligibilité arrive bientôt.",
+    "nonAffiliation": "Da3m.ma est un outil indépendant. Ce n'est pas une plateforme gouvernementale et il n'est affilié à aucun organisme."
+  }
+}

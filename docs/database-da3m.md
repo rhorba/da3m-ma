@@ -214,6 +214,12 @@ CREATE TABLE dossier_events (
 | 0006_indexes | Section 4 | Yes |
 | 0007_seed_programs | first curated programmes (Sprint 2) | Yes |
 
+### Implementation notes (Sprint 1, 2026-09-17)
+- Drizzle Kit generates one migration from the full schema, so the plan above shipped as a single `drizzle/0000_initial.sql` rather than seven files. Future changes are generated as separate numbered migrations.
+- Drizzle Kit has no down-migrations. Each migration has a hand-written reverse in `drizzle/down/` with the same file name; an integration test runs up → down → up and asserts the exact tables, enums and indexes.
+- No `pgcrypto` extension: PostgreSQL 13+ provides `gen_random_uuid()` natively.
+- `profiles.anon_token_hash` is unique, so an anonymous visitor has exactly one profile; `saveProfile` upserts it on every wizard step.
+
 ## 6. Access Patterns
 | Use Case | Query Pattern | Index Coverage |
 |---|---|---|

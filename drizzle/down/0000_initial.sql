@@ -1,0 +1,17 @@
+-- Reverses drizzle/0000_initial.sql. Dependents first.
+DROP TABLE IF EXISTS "dossier_events";
+DROP TABLE IF EXISTS "dossiers";
+DROP TABLE IF EXISTS "eligibility_reports";
+DROP TABLE IF EXISTS "clients";
+DROP TABLE IF EXISTS "memberships";
+DROP TABLE IF EXISTS "organizations";
+DROP TABLE IF EXISTS "alert_subscriptions";
+DROP TABLE IF EXISTS "profiles";
+DROP TABLE IF EXISTS "review_tasks";
+DROP TABLE IF EXISTS "source_watches";
+DROP TABLE IF EXISTS "program_versions";
+DROP TABLE IF EXISTS "programs";
+DROP TYPE IF EXISTS "public"."dossier_stage";
+DROP TYPE IF EXISTS "public"."review_status";
+DROP TYPE IF EXISTS "public"."program_status";
+DROP TYPE IF EXISTS "public"."program_kind";

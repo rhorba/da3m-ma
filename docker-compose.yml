@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: da3m
+      POSTGRES_PASSWORD: da3m
+      POSTGRES_DB: da3m
+    ports:
+      - "5433:5432"
+    volumes:
+      - da3m-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U da3m -d da3m"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  da3m-pg:

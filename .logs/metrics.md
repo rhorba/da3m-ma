@@ -2,3 +2,11 @@
 <!-- KPI snapshots over time -->
 <!-- Format: ### [YYYY-MM-DD HH:MM] SPRINT_SNAPSHOT/DAILY_SNAPSHOT — Title -->
 
+
+### [2026-09-17 14:15] [METRICS] — Sprint 1 verify
+- Unit + integration: 46 passed / 46 (6 files)
+- Coverage (combined): statements 89.51%, branches 86.48%, functions 85.71%, lines 93.75% — gate 80% PASS
+- E2E: 14 passed / 14 (desktop + mobile Chromium)
+- Security: Semgrep 0, Trivy 0 CRITICAL/HIGH, Gitleaks 0 in repo
+- Lint / typecheck / format: clean
+- Build: /fr /ar /en statically prerendered

@@ -1,0 +1,12 @@
+node_modules
+.next
+coverage
+skills
+drizzle/meta
+.logs
+docs
+pnpm-lock.yaml
+playwright-report
+test-results
+CLAUDE.md
+QUICKSTART.md

@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Design tokens — docs/ui-da3m.md §2 */
+@theme {
+  --color-primary: #0f5e5a;
+  --color-primary-fg: #ffffff;
+  --color-accent: #e3a018;
+  --color-accent-fg: #1a1712;
+  --color-background: #fbf9f5;
+  --color-surface: #ffffff;
+  --color-border: #e6e0d6;
+  --color-text: #1a1712;
+  --color-text-muted: #6a645a;
+  --color-warning: #946100;
+  --color-error: #b03a2e;
+  --color-ineligible: #736d63;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-arabic: var(--font-plex-arabic), "Noto Sans Arabic", sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-background: #12110e;
+    --color-surface: #1b1a16;
+    --color-border: #2e2b25;
+    --color-text: #f2eee6;
+    --color-text-muted: #a59f93;
+    --color-primary: #3fa59e;
+    --color-accent: #f0b63a;
+    --color-ineligible: #7a756c;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-background: #12110e;
+  --color-surface: #1b1a16;
+  --color-border: #2e2b25;
+  --color-text: #f2eee6;
+  --color-text-muted: #a59f93;
+  --color-primary: #3fa59e;
+  --color-accent: #f0b63a;
+  --color-ineligible: #7a756c;
+}
+
+@layer base {
+  body {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
