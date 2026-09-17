@@ -55,3 +55,8 @@
 - Summary: Catalogue-as-code tooling (file schema, loader, validator with golden profiles, idempotent sync to immutable versions, watch reconciliation, review-task CLI). 10 draft programmes researched from official pages only (Tamwilcom, Tamwilcom Startups, Ministry of Finance, Bank Al-Maghrib), each with sources, OFFICIAL / INTERPRETATION / OPEN notes and golden profiles; all pass validation in CI. Curation guide written. Status: drafts awaiting user verification.
 - Status: complete
 - Impact: high
+
+### [2026-09-17 19:45] [CI] — Sprint 2 push ebdd50d: GREEN
+- Specialist: DevOps
+- Summary: Run 35212210013 — lint/types/format, unit+integration (coverage gate incl. lib/engine 100%, catalogue files test), security scans, build+E2E all success. Sprint 2 SHIP complete.
+- Status: complete
