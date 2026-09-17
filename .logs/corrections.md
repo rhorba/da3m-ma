@@ -14,3 +14,8 @@
   6. resolveAdminActor (platform_admin from Clerk private metadata) moves to Sprint 2 with the curation console; Actor type already includes admin.
   7. Vitest coverage threshold for lib/engine at 100% branches added in Story 3.1 with the engine.
 - Status: resolved
+
+### [2026-09-17 15:00] [CORRECTION] — Story 3.1 (engine) pulled into Sprint 2
+- Specialist: Scrum Master
+- Summary: Story 2.3 (RuleDiffPreview) and 2.5 (golden profiles in CI) both depend on the evaluator. Dependency order in the stories doc was wrong; the pure engine ships in Sprint 2. Sprint 3 keeps 3.2-3.6.
+- Status: resolved

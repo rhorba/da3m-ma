@@ -10,3 +10,8 @@
 - Security: Semgrep 0, Trivy 0 CRITICAL/HIGH, Gitleaks 0 in repo
 - Lint / typecheck / format: clean
 - Build: /fr /ar /en statically prerendered
+
+### [2026-09-17 16:40] [METRICS] — Sprint 2 checkpoint
+- Tests: 206 passed / 206 (11 files)
+- Coverage (combined): statements 96.67%, branches 95.49%, functions 92.85%, lines 98.09%
+- lib/engine: 100% statements / branches / functions / lines (CI-enforced)

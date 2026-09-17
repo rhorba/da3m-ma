@@ -30,3 +30,10 @@
 - Status: open
 - Impact: medium
 - Mitigation: ship the engine fast; the Cabinet workspace sits outside their model.
+
+### [2026-09-17 16:40] [RISK] — Hourly source-watch cron needs Vercel Pro
+- Specialist: DevOps
+- Summary: Vercel Hobby allows daily crons only. On Hobby, one request per host per day would take weeks to cycle through a host's pages.
+- Status: open
+- Impact: medium
+- Mitigation: Confirm plan before deploy (Story 6.2). Fallbacks: Pro plan, an external scheduler (GitHub Actions schedule calling the endpoint with CRON_SECRET), or raise per-run volume on Hobby with a longer function limit.

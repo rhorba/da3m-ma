@@ -34,3 +34,13 @@
 - Specialist: DevOps
 - Summary: Run 35207767753 — Lint/types/format success; Unit + integration (coverage gate) success; Security scans (Semgrep, Trivy, Gitleaks) success; Build + E2E success. Sprint 1 SHIP complete.
 - Status: complete
+
+### [2026-09-17 15:00] [PLAN] — Sprint 2 started
+- Specialist: Orchestrator
+- Summary: User said "start". Clerk keys still empty in .env.local, so Clerk-dependent parts (admin actor resolution against real Clerk, curation console UI run + E2E) go last; 2.1, 2.2, 2.4 and curation back end proceed first.
+- Status: in-progress
+
+### [2026-09-17 16:40] [COMPLETED] — Sprint 2 checkpoint: stories 2.1, 2.2, 3.1, 2.4
+- Specialist: Backend Dev, Security Engineer, Test Architect
+- Summary: 2.1 profile contract (12 fields, bands, compile-time parity with FIELD_SPECS). 2.2 rule DSL parser + semantic validator with paths (unknown field named; operator/value per field kind; depth, duplicate ids, empty groups). 3.1 three-valued evaluator: full truth tables, every operator, property tests (monotonicity, completeness, determinism, explanation invariants). 2.4 source watcher: SSRF guard (https, allowlist, public-address check on every redirect hop), robots.txt per RFC 9309, main-text extraction + normalisation, change diff, one fetch_failing task per watch, reverify tasks, cron endpoint with constant-time secret check.
+- Status: complete

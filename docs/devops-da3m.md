@@ -73,13 +73,12 @@ Sprint 1 can start with **local Docker Postgres** if Neon isn't provisioned yet;
 ## 6. Scheduled Jobs
 | Job | Schedule (Africa/Casablanca) | Behaviour | Monitor |
 |---|---|---|---|
-| `source-watch` | 02:00 daily | Robots-aware, allowlisted, ≤ 1 req/host/min; hash main text; open review task on change | Sentry cron: alert if no success in 48h |
-| `reverify-due` | 02:30 daily | Open `reverify_due` task for programmes with `verified_at` > 30 days | Sentry cron |
+| `source-watch` | hourly at :05 | Robots-aware, allowlisted; checks the least-recently-checked page **per host** (1 request/host/run); hash main text; open review task on change; then opens `reverify_due` tasks for programmes verified > 30 days ago | Sentry cron: alert if no success in 48h |
 | `deadlines` | 07:00 daily | J-7 / J-2 reminders; idempotent via `dossier_events` | Sentry cron |
 | `alerts` | 08:00 daily | Digest per confirmed subscriber of programme changes | Sentry cron |
 | `purge` | Sun 03:00 | Delete unclaimed anon profiles > 24 months | Sentry cron |
 
-Vercel cron schedules are UTC in `vercel.json`; Morocco is UTC+1 year-round except during Ramadan (UTC+0), so a one-hour drift is accepted — none of these jobs is time-critical.
+`source-watch` changed from one nightly run to hourly in Sprint 2: sleeping a minute between same-host requests inside one function would exceed function time limits, while one request per host per hourly run satisfies NFR-6 trivially and still checks every page daily for up to 24 pages per host. **Hourly crons require Vercel Pro** (Hobby allows daily only) — confirm the plan before deploy (Story 6.2). Vercel cron schedules are UTC in `vercel.json`; Morocco is UTC+1 year-round except during Ramadan (UTC+0), so a one-hour drift is accepted — none of these jobs is time-critical.
 
 ## 7. Monitoring Baseline
 | Signal | Tool | Alert Threshold |

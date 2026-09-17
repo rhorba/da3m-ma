@@ -35,9 +35,14 @@ export default defineConfig({
       include: ["lib/**/*.ts", "i18n/routing.ts"],
       exclude: ["lib/**/*.test.ts", "lib/db/schema.ts"],
       reporter: ["text-summary", "text", "json-summary"],
-      // Combined unit + integration gate (CTS rule 6). The lib/engine/** 100% branch
-      // threshold is added in Sprint 3 together with the engine itself (Story 3.1).
-      thresholds: { lines: 80, statements: 80, functions: 80, branches: 80 },
+      // Combined unit + integration gate (CTS rule 6); the engine is held to 100% (NFR-4).
+      thresholds: {
+        lines: 80,
+        statements: 80,
+        functions: 80,
+        branches: 80,
+        "lib/engine/**/*.ts": { lines: 100, statements: 100, functions: 100, branches: 100 },
+      },
     },
   },
 });

@@ -38,3 +38,15 @@
 - Summary: All in gitignored Next.js build output (per-build preview/server-action keys). Not committed, not a leak. CI scans git only.
 - Status: resolved (false positive for the repo)
 - Impact: low
+
+### [2026-09-17 15:20] [ISSUE] — minimumReleaseAge blocks every pnpm add
+- Specialist: DevOps
+- Summary: The 7-day release-age rule (Sprint 1 hardening) rejects re-resolution of 54 packages locked in Sprint 1 before the rule existed (zod, vitest, next-intl, vite, nan, @napi-rs/wasm-runtime...). Resolution: install new packages once with --config.minimum-release-age=0, each pinned to a version older than 7 days (fast-check 4.9.0, node-html-parser 9.0.4, robots-parser 3.0.1, diff 9.0.0), then re-scan the lockfile against the npm registry: 54 immature before, 54 after, zero newly introduced. The rule stays on; the Sprint 1 set matures by ~2026-09-24.
+- Status: resolved (workaround)
+- Impact: medium
+
+### [2026-09-17 16:30] [BUG] — Watcher diff showed unchanged last line as removed/added
+- Specialist: Backend Dev
+- Summary: Normalised text has no trailing newline, so jsdiff treated the previous last line as changed when a line was appended. Caught by unit test; fixed by diffing with a trailing newline on both sides.
+- Status: resolved
+- Impact: low

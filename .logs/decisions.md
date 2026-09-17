@@ -30,3 +30,8 @@
 - Specialist: Backend Dev
 - Summary: org:admin/org:owner -> owner; org:member/org:consultant -> consultant; org:viewer -> viewer; unknown -> viewer (least privilege). An org:viewer custom role must be created in the Clerk dashboard. Firm access is resolved from our memberships table, never from the session org claim alone.
 - Status: resolved
+
+### [2026-09-17 16:40] [ARCHITECTURE] — ADR-2 amendment and watcher cadence
+- Specialist: Software Architect + DevOps
+- Summary: not() nodes carry id + reason; enum_set fields use in/not_in as overlap tests; operators restricted per field kind; depth checked before parsing. Source watcher moved from nightly to hourly with one request per host per run (NFR-6 without in-function sleeps).
+- Status: resolved

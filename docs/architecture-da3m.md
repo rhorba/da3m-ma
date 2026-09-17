@@ -29,6 +29,11 @@ One Next.js 15 App Router application on Vercel with Neon Postgres. The eligibil
   Each `criterion` carries its own FR/AR/EN failure reason.
 - **Alternatives**: json-logic — rejected: no per-criterion reasons and no notion of "unknown". Rules in TypeScript code — rejected: every rule change would need a deploy and couldn't be versioned per programme.
 - **Consequences**: We own a ~150-line evaluator — which is exactly the code we test to 100%.
+- **Amendment (Sprint 2, 2026-09-17)**:
+  - `not` nodes carry their own `id` and `reason`. When a negation fails, its child *passed*, so the child's failure reason would describe the opposite of what happened.
+  - Multi-value fields (`need_purposes`) accept only `in` / `not_in`, meaning "shares at least one value" / "shares none".
+  - Operators allowed per field kind: boolean → `is_true`, `is_false`; enum → `eq`, `neq`, `in`, `not_in`; integer → all except `is_true`/`is_false`.
+  - Structural limits: depth ≤ 10, unique ids across the tree, no empty `all`/`any`. Depth is checked before parsing, so a hostile, deeply nested payload can't exhaust the stack.
 
 ### ADR-3: Three-valued (Kleene) logic
 - **Context**: Profiles are incomplete by design (short wizard). Guessing on missing data produces wrong answers.

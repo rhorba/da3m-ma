@@ -256,8 +256,8 @@ Then exactly one reminder is sent and one "reminder_sent" event recorded
 |---|---|---|
 | Foundation docs | 10 docs | ~2h ✅ |
 | **Sprint 1** | 1.1, 1.2, 1.3, 1.4, 1.5 | ~5h |
-| Sprint 2 | 2.1, 2.2, 2.3, 2.4, 2.5 | ~7h |
-| Sprint 3 | 3.1, 3.2, 3.3, 3.4, 3.5, 3.6 | ~7h |
+| Sprint 2 | 2.1, 2.2, 2.3, 2.4, 2.5, **3.1** (moved: 2.3 and 2.5 depend on the engine) | ~9h |
+| Sprint 3 | 3.2, 3.3, 3.4, 3.5, 3.6 | ~5h |
 | Sprint 4 | 4.1–4.7 → **public beta** | ~7h |
 | ⛔ Gate | Consultant validation (user) | — |
 | Sprint 5 | 5.1–5.6 | ~8h |
