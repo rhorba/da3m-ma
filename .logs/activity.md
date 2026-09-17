@@ -13,3 +13,8 @@
 - Summary: prd, system-design, architecture, security, database, ux, ui, test-strategy, devops, stories for Da3m.ma. UI contrast ratios computed rather than asserted; warning and ineligible tokens failed AA and were darkened. No product code.
 - Status: awaiting user approval
 - Impact: high
+
+### [2026-09-17 12:10] [PUSH] — Foundation docs pushed
+- Specialist: DevOps
+- Summary: Public repo rhorba/da3m-ma created; commit 08d6d5c pushed to main. No CI workflow exists yet (Story 1.1), so there is no CI status to monitor.
+- Status: complete
