@@ -107,3 +107,13 @@
 - Specialist: DevOps
 - Summary: /[locale]/programmes and /sitemap.xml are prerendered at build with hourly revalidation, so `next build` reads the published catalogue. CI's Build + E2E job already provides DATABASE_URL, and Vercel has it. Programme detail pages stay render-on-demand and need nothing at build.
 - Status: complete
+
+### [2026-09-17 23:25] [CI] — Sprint 4 partial, push e289a08: GREEN
+- Specialist: DevOps, DevSecOps
+- Summary: Run 35282039681 — Lint/types/format, Unit + integration (coverage gate), Security scans, Build + E2E all success. Follows the red run 35278528054 on 28115ee (Semgrep blocked the JSON-LD injection); see .logs/issues.md.
+- Status: complete
+
+### [2026-09-17 23:25] [ISSUE] — CI watch loops were silently doing nothing
+- Specialist: DevOps
+- Summary: `jq` is not installed in this environment, so the background CI watchers produced no events and exited cleanly — a green-looking no-op. Use `gh ... --jq` (gh's built-in filter) instead of piping to `jq`.
+- Status: noted; CI status now confirmed directly before any claim of green
