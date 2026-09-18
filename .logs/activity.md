@@ -175,3 +175,14 @@
 - Outstanding in the dashboard: the webhook endpoint (https://da3m.ma/api/webhooks/clerk, six organization/organizationMembership events) — the Svix panel is a cross-origin iframe and the renderer became unresponsive, so the user creates it.
 - Cost note: custom roles are a Clerk premium feature, free on development instances but requiring a paid plan in production. org:viewer therefore has a price attached before Sprint 5's Cabinet work.
 - Status: complete
+
+### [2026-09-18 08:05] [CI] — Story 4.3 wiring, push ec108c3: GREEN
+- Specialist: DevOps, DevSecOps
+- Summary: Run 35317448772 — all four jobs success. Confirms in CI what was measured locally: the Clerk middleware composition leaves the public surface working with no Clerk credentials present.
+- Status: complete
+
+### [2026-09-18 08:05] [COMPLETED] — Clerk webhook endpoint created
+- Specialist: DevOps
+- Summary: Endpoint 2Sdt0T → https://da3m.ma/api/webhooks/clerk, subscribed to exactly the six events the handler consumes (organization.created/deleted/updated, organizationMembership.created/deleted/updated). Deliveries will fail until the app is deployed at that host, which is expected — the endpoint exists so the signing secret does.
+- Remaining: CLERK_SECRET_KEY and CLERK_WEBHOOK_SIGNING_SECRET. Both are withheld from the agent by the browser tooling's sensitive-key guard, so the user pastes them into .env.local. Everything else in the Clerk dashboard is configured.
+- Status: complete
