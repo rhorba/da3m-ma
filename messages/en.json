@@ -291,5 +291,16 @@
     "empty": "No programme matches these filters.",
     "none": "No programme is published yet. The catalogue is being verified.",
     "cta": "Not sure which ones apply to you?"
+  },
+  "space": {
+    "title": "My space",
+    "intro": "Your answers and your results, kept in one place.",
+    "claimed": "{count, plural, one {The questionnaire you filled in without an account is now linked to it.} other {The # questionnaires you filled in without an account are now linked to it.}}",
+    "history": "Your results",
+    "noHistory": "You have no results yet.",
+    "runOn": "Run on {date}",
+    "eligibleCount": "{count, plural, =0 {No eligible programmes} one {# eligible programme} other {# eligible programmes}}",
+    "openReport": "Open",
+    "startWizard": "Take the questionnaire"
   }
 }

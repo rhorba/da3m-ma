@@ -291,5 +291,16 @@
     "empty": "Aucun programme ne correspond à ces filtres.",
     "none": "Aucun programme n'est encore publié. Le catalogue est en cours de vérification.",
     "cta": "Vous ne savez pas lesquels vous concernent ?"
+  },
+  "space": {
+    "title": "Mon espace",
+    "intro": "Vos réponses et vos résultats, conservés au même endroit.",
+    "claimed": "{count, plural, one {Votre questionnaire rempli sans compte a été rattaché à votre compte.} other {Vos # questionnaires remplis sans compte ont été rattachés à votre compte.}}",
+    "history": "Vos résultats",
+    "noHistory": "Vous n'avez pas encore de résultats.",
+    "runOn": "Établis le {date}",
+    "eligibleCount": "{count, plural, =0 {Aucun programme éligible} one {# programme éligible} other {# programmes éligibles}}",
+    "openReport": "Voir",
+    "startWizard": "Faire le questionnaire"
   }
 }

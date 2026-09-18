@@ -1,0 +1,1 @@
+export { getActor } from "./actor";

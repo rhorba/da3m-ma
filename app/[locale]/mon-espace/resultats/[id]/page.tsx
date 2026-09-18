@@ -2,16 +2,17 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ReportBody } from "@/components/results/report-body";
-import { readAnonActor } from "@/lib/auth";
 import { formatDate, getReportsRepository } from "@/lib/reports";
+import { getActor } from "@/lib/session";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
 
 /**
- * A report, exactly as it was run (Story 3.3 / 3.5). Dynamic: it reads the anonymous
- * cookie, so it is never prerendered or cached. Only the visitor who owns the profile
- * behind the report can open it; everyone else gets a 404 rather than a hint that the
- * report exists.
+ * A claimed report, read through the account rather than the anonymous cookie.
+ *
+ * The public `/resultats/[id]` resolves only the anonymous token, and claiming rotates
+ * that token — so once a report belongs to an account, this is the route that reaches
+ * it. Same rendering, different door.
  */
 
 export const dynamic = "force-dynamic";
@@ -21,29 +22,29 @@ type Props = { params: Promise<{ locale: AppLocale; id: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "results" });
-  // Results are personal; they must not be indexed or previewed.
   return { title: t("title"), robots: { index: false, follow: false } };
 }
 
-export default async function ResultsPage({ params }: Props) {
+export default async function OwnedResultsPage({ params }: Props) {
   const { locale, id } = await params;
   setRequestLocale(locale);
 
-  const actor = await readAnonActor();
+  const actor = await getActor();
   const report = actor ? await getReportsRepository().getReport(actor, id) : null;
   if (!report) notFound();
 
   const t = await getTranslations("results");
+  const tSpace = await getTranslations("space");
   const tCommon = await getTranslations("common");
+
   return (
     <main className="mx-auto flex min-h-dvh max-w-2xl flex-col gap-6 px-4 py-8 sm:px-6">
       <header className="flex flex-col gap-2">
         <Link
-          href="/"
-          className="inline-flex min-h-11 w-fit items-center text-lg font-semibold text-primary"
-          dir="ltr"
+          href="/mon-espace"
+          className="inline-flex min-h-11 w-fit items-center text-sm font-medium text-primary underline underline-offset-4"
         >
-          Da3m.ma
+          {tSpace("title")}
         </Link>
         <h1 className="text-2xl font-semibold text-text">{t("title")}</h1>
         <p className="text-sm text-text-muted">
@@ -57,13 +58,7 @@ export default async function ResultsPage({ params }: Props) {
 
       <ReportBody report={report} locale={locale} />
 
-      <footer className="mt-2 flex flex-col gap-4 border-t border-border pt-4">
-        <Link
-          href="/eligibilite"
-          className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4"
-        >
-          {t("restart")}
-        </Link>
+      <footer className="mt-2 border-t border-border pt-4">
         <p data-testid="non-affiliation" className="text-xs text-text-muted">
           {tCommon("nonAffiliation")}
         </p>

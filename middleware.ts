@@ -1,9 +1,34 @@
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import createMiddleware from "next-intl/middleware";
+import type { NextFetchEvent, NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
 
-// Public routes run locale negotiation only. Clerk middleware is added for the
-// signed-in areas (/mon-espace, /cabinet, /admin) when they are built (ADR-7).
-export default createMiddleware(routing);
+/**
+ * Locale negotiation for everyone; Clerk only where someone must be signed in (ADR-7).
+ *
+ * Clerk is invoked inside the branch rather than wrapped around the whole handler on
+ * purpose: the public wizard, results and catalogue are the acquisition surface, and
+ * they must keep working — and keep being statically served — whether or not Clerk is
+ * configured or reachable. Wrapping everything would make every public request depend
+ * on Clerk credentials.
+ */
+
+const intlMiddleware = createMiddleware(routing);
+
+const isPrivate = createRouteMatcher([
+  "/:locale/mon-espace(.*)",
+  "/:locale/cabinet(.*)",
+  "/:locale/admin(.*)",
+]);
+
+const privateMiddleware = clerkMiddleware(async (auth, request) => {
+  await auth.protect();
+  return intlMiddleware(request as NextRequest);
+});
+
+export default function middleware(request: NextRequest, event: NextFetchEvent) {
+  return isPrivate(request) ? privateMiddleware(request, event) : intlMiddleware(request);
+}
 
 export const config = {
   matcher: "/((?!api|_next|_vercel|.*\\..*).*)",

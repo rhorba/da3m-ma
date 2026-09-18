@@ -159,3 +159,19 @@
 - Summary: Wiring the claim into a visit needs Clerk middleware composed with next-intl middleware, a ClerkProvider layout and the /mon-espace page. Held deliberately: the middleware matcher covers every route, so a wrong composition turns the public wizard, results and catalogue into 500s, and without Clerk keys a working composition is indistinguishable from a broken one. The claim logic itself is finished and tested.
 - Blocked on: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY, CLERK_WEBHOOK_SIGNING_SECRET. User is signing in to dashboard.clerk.com; not signed in as of 06:44.
 - Status: blocked
+
+### [2026-09-18 07:55] [COMPLETED] — Sprint 4, story 4.3 part 2: /mon-espace and the Clerk wiring
+- Specialist: Backend Dev, Frontend Dev, DevOps, Security Engineer
+- Summary: middleware composes Clerk with next-intl by branching rather than wrapping — clerkMiddleware is invoked only for /:locale/(mon-espace|cabinet|admin), so public routes never touch Clerk and keep working without credentials (ADR-7). lib/session holds the only Clerk import outside the webhook, kept out of lib/auth so importing the actor model on a public page cannot pull Clerk into the bundle. /mon-espace claims anonymous data on visit, shows the claim notice and the report history. ClerkProvider wraps the signed-in area only.
+- Gap found and closed while wiring: claiming rotates the anonymous token, so a claimed report was no longer reachable through the public /resultats/[id]. Extracted ReportBody and added /mon-espace/resultats/[id], which reads the same report through the account. Same rendering, different door.
+- Verified without Clerk keys: build passes; all 94 E2E pass with the middleware installed; /fr, /fr/eligibilite and /fr/programmes return 200 while /fr/mon-espace returns 500 purely because CLERK_SECRET_KEY is absent — the private route fails and the public surface does not, which is the property that mattered.
+- Not verified: everything behind the sign-in — the claim firing on a real session, auth.protect() redirecting, and whether /[locale]/mon-espace is genuinely dynamic at runtime (the build marks it as prerendered despite force-dynamic, likely because the locale layout supplies params).
+- Status: complete pending runtime verification
+- Blocked on: CLERK_SECRET_KEY and CLERK_WEBHOOK_SIGNING_SECRET (both blocked from the agent's context by tooling; user must paste them).
+
+### [2026-09-18 07:55] [COMPLETED] — Clerk dashboard set up
+- Specialist: DevOps
+- Summary: Created the da3m application (Organizations enabled) because the account held only "wassalha" — reusing it would have piped another product's users and orgs into Da3m's database through the sync webhook. Created the org:viewer role, so all three keys now match mapClerkRole. Publishable key written to .env.local.
+- Outstanding in the dashboard: the webhook endpoint (https://da3m.ma/api/webhooks/clerk, six organization/organizationMembership events) — the Svix panel is a cross-origin iframe and the renderer became unresponsive, so the user creates it.
+- Cost note: custom roles are a Clerk premium feature, free on development instances but requiring a paid plan in production. org:viewer therefore has a price attached before Sprint 5's Cabinet work.
+- Status: complete
