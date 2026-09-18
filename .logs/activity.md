@@ -135,3 +135,9 @@
 - Specialist: DevOps, DevSecOps
 - Summary: Run 35302357411 — Lint/types/format, Unit + integration (coverage gate), Security scans, Build + E2E (94 tests incl. 44 accessibility assertions) all success.
 - Status: complete
+
+### [2026-09-18 00:55] [COMPLETED] — Verification worksheet for the 10 drafts
+- Specialist: PM, Project Monitor
+- Summary: docs/verification-worksheet.md, generated from data/programs/*.json. Per programme: identity and amounts, the official sources to check against, the eligibility rules rendered as the engine will apply them (rule tree walked into a readable outline with each criterion's French reason), the documents listed, the OFFICIAL claims as a tick list, the INTERPRETATION/OPEN items as explicit decisions, and the golden profiles that pin behaviour in CI. Plus the sign-off snippet and the commands to run. 18 decisions across 10 programmes; pret-amorcage has none. Checked all 11 source URLs: every one returns 200 as of today, so nothing has moved since they were consulted. Pointer added from docs/curation-guide.md.
+- Status: complete
+- Impact: high — this is the last gate before public beta, and it is now a list of answers rather than a research task.

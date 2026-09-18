@@ -3,6 +3,10 @@
 
 Programmes live in `data/programs/<slug>.json`. A file is either a **draft** (never published) or **verified** (published to the database as an immutable version by `pnpm catalogue:sync`). CI validates every file on every push.
 
+> **Verifying the current drafts?** `docs/verification-worksheet.md` lists every
+> claim to confirm and every open decision, per programme, generated from the files
+> themselves. Start there.
+
 ## Verifying a draft
 1. Open every URL in `sources`. Criteria must come **only** from these official pages.
 2. Read `verification.notes`. Each draft separates:
