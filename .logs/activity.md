@@ -130,3 +130,8 @@
 - Status: complete
 - Impact: high
 - Still open on 4.7: a full axe sweep (@axe-core/playwright is blocked by the .npmrc minimum-release-age guard until ~21 Sept) and the native Arabic reader pass (user-owned).
+
+### [2026-09-18 00:35] [CI] — Story 4.7 accessibility half, push 009e39f: GREEN
+- Specialist: DevOps, DevSecOps
+- Summary: Run 35302357411 — Lint/types/format, Unit + integration (coverage gate), Security scans, Build + E2E (94 tests incl. 44 accessibility assertions) all success.
+- Status: complete

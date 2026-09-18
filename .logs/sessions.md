@@ -32,5 +32,6 @@
   3. Resend key + SPF/DKIM/DMARC on da3m.ma — needed for 4.4 (alerts).
   4. Curate the remaining ~15 programmes (4.6) and a native Arabic reader pass (4.7).
   5. Upstash before public beta — swap the in-process limiter (ADR-9).
-- Next session: 4.3/4.4 once keys exist, or 4.7's a11y half (needs @axe-core/playwright, blocked by .npmrc minimum-release-age until ~21 Sept).
+- Addendum [2026-09-18 00:35]: 4.7's accessibility half is done without axe (CI green 009e39f). Found and fixed three dark-mode AA failures the docs had wrongly claimed were fine: --color-warning (3.6:1) and --color-error (3.1:1) were never overridden for dark, and every primary button used a hardcoded text-white (3.0:1 on the dark teal). Contrast is now asserted from the shipped tokens for both themes.
+- Next session: 4.3/4.4 once keys exist; the axe sweep once .npmrc minimum-release-age clears nan@2.29.0 (~21 Sept); the native Arabic reader pass is user-owned.
 - Local environment notes: throwaway postgres container `da3m-dev-db` on port 5435 (compose still says 5433, taken by restoledger); .env.local points at 5435. `rm -rf .next` before each build under OneDrive. `jq` is absent — use `gh --jq`.
