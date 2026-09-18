@@ -46,3 +46,8 @@
 - E2E: 94 / 94 (desktop + mobile Chromium), of which 44 accessibility assertions
 - Contrast: every documented ratio asserted for both themes; 3 dark-mode AA failures found and fixed
 - Semgrep (run locally before push): 0 findings on 152 targets
+
+### [2026-09-18 06:45] [METRICS] — Story 4.3 part 1
+- Tests: 407 passed / 407 (28 files), up from 381
+- Coverage (combined): statements 97.03%, branches 95.91%, functions 93.62%, lines 98.07% — gate 80% PASS
+- Semgrep (run locally before push): 0 findings on 155 targets

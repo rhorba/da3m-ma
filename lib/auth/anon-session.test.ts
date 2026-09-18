@@ -16,8 +16,13 @@ const jar = {
 
 vi.mock("next/headers", () => ({ cookies: async () => jar }));
 
-const { ANON_COOKIE_MAX_AGE, ANON_COOKIE_OPTIONS, ensureAnonActor, readAnonActor } =
-  await import("./anon-session");
+const {
+  ANON_COOKIE_MAX_AGE,
+  ANON_COOKIE_OPTIONS,
+  ensureAnonActor,
+  readAnonActor,
+  rotateAnonToken,
+} = await import("./anon-session");
 const { ANON_COOKIE_NAME, hashAnonToken } = await import("./actor");
 
 beforeEach(() => {
@@ -79,6 +84,38 @@ describe("ensureAnonActor", () => {
     const second = await ensureAnonActor();
 
     expect(first.tokenHash).not.toBe(second.tokenHash);
+  });
+});
+
+describe("rotateAnonToken", () => {
+  it("replaces an existing token with a different one", async () => {
+    jar.store.set(ANON_COOKIE_NAME, "token-abc");
+
+    const rotated = await rotateAnonToken();
+
+    expect(jar.set).toHaveBeenCalledOnce();
+    const [name, token, options] = jar.set.mock.calls[0]!;
+    expect(name).toBe(ANON_COOKIE_NAME);
+    expect(token).not.toBe("token-abc");
+    expect(rotated.tokenHash).toBe(hashAnonToken(token));
+    expect(options).toBe(ANON_COOKIE_OPTIONS);
+  });
+
+  it("no longer matches the claimed profile, which is the point", async () => {
+    jar.store.set(ANON_COOKIE_NAME, "token-abc");
+
+    const rotated = await rotateAnonToken();
+
+    // The old hash is what the claim matched on; the new identity must not match it,
+    // or a shared machine would hand the next visitor's data to this account.
+    expect(rotated.tokenHash).not.toBe(hashAnonToken("token-abc"));
+  });
+
+  it("issues a token even for a visitor who had none", async () => {
+    const rotated = await rotateAnonToken();
+
+    expect(jar.set).toHaveBeenCalledOnce();
+    expect(rotated.kind).toBe("anonymous");
   });
 });
 

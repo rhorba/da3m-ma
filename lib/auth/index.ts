@@ -14,5 +14,6 @@ export {
   ANON_COOKIE_OPTIONS,
   ensureAnonActor,
   readAnonActor,
+  rotateAnonToken,
   type AnonActor,
 } from "./anon-session";

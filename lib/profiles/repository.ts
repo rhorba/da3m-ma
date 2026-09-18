@@ -1,4 +1,4 @@
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq, isNull, sql } from "drizzle-orm";
 import { z } from "zod";
 import { AccessDeniedError, type Actor } from "@/lib/auth";
 import { getDatabase, type Database } from "@/lib/db/client";
@@ -52,6 +52,32 @@ export function createProfilesRepository(db: Database) {
       ).returning();
       if (!row) throw new Error("Insert returned no row");
       return row;
+    },
+
+    /**
+     * Transfers the profile behind an anonymous token to the signed-in user who was
+     * using it (Story 4.3). Reports reference the profile, not the token, so a
+     * visitor's history follows them into their account without being copied.
+     *
+     * `ownerUserId IS NULL` in the predicate is what makes this safe to call on every
+     * visit: a second call claims nothing, and an already-owned profile can never be
+     * taken over by whoever happens to hold the cookie.
+     *
+     * The caller must rotate the cookie afterwards (security §3). Without that, the
+     * next anonymous visitor on a shared machine would create a profile under the same
+     * token and this user would claim it on their next visit.
+     */
+    async claimProfiles(actor: Actor, tokenHash: string): Promise<Profile[]> {
+      if (actor.kind !== "user") {
+        throw new AccessDeniedError("Only a signed-in user can claim anonymous data");
+      }
+      if (tokenHash.length === 0) return [];
+
+      return db
+        .update(profiles)
+        .set({ ownerUserId: actor.userId, anonTokenHash: null, updatedAt: sql`now()` })
+        .where(and(eq(profiles.anonTokenHash, tokenHash), isNull(profiles.ownerUserId)))
+        .returning();
     },
 
     async getProfile(actor: Actor, id: string): Promise<Profile | null> {

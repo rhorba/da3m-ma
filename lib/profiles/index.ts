@@ -1,3 +1,4 @@
+export { claimAnonymousData, type ClaimDeps, type ClaimResult } from "./claim";
 export {
   createProfilesRepository,
   getProfilesRepository,

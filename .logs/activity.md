@@ -146,3 +146,16 @@
 - Specialist: DevOps
 - Summary: Run 35310644575 — all four jobs success.
 - Status: complete
+
+### [2026-09-18 06:45] [COMPLETED] — Sprint 4, story 4.3 part 1: claiming anonymous data
+- Specialist: Backend Dev, Security Engineer, Tester
+- Summary: profiles.claimProfiles(actor, tokenHash) transfers the anonymous profile to the signed-in user in one UPDATE guarded by `owner_user_id IS NULL` — idempotent, and an already-owned profile can never be taken over by whoever holds the cookie. Reports reference the profile, not the token, so history follows without being copied. rotateAnonToken() issues a fresh token after a successful claim (security §3); rotation happens only on success, because a failed claim leaves the token as the only route back to the visitor's data. claimAnonymousData orchestrates the three steps with injected dependencies, in the resolve-actor style. reports.listReports restored (removed as YAGNI in Sprint 3, now has a real caller in /mon-espace).
+- Tests: 9 unit (ordering, actor kinds, failure paths) + 3 rotation + 14 integration (ownership transfer, data and schema preserved, reports and history following, idempotency, cross-visitor isolation, already-owned refusal, actor-kind refusals).
+- Status: complete
+- Impact: high
+
+### [2026-09-18 06:45] [BLOCKED] — Story 4.3 part 2: the /mon-espace route
+- Specialist: Backend Dev, DevOps
+- Summary: Wiring the claim into a visit needs Clerk middleware composed with next-intl middleware, a ClerkProvider layout and the /mon-espace page. Held deliberately: the middleware matcher covers every route, so a wrong composition turns the public wizard, results and catalogue into 500s, and without Clerk keys a working composition is indistinguishable from a broken one. The claim logic itself is finished and tested.
+- Blocked on: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY, CLERK_WEBHOOK_SIGNING_SECRET. User is signing in to dashboard.clerk.com; not signed in as of 06:44.
+- Status: blocked

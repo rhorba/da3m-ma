@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { AccessDeniedError, type Actor } from "@/lib/auth";
 import { getDatabase, type Database } from "@/lib/db/client";
@@ -80,6 +80,25 @@ export function createReportsRepository(db: Database) {
         .where(and(eq(eligibilityReports.id, id), owner))
         .limit(1);
       return (row?.report as EligibilityReport | undefined) ?? null;
+    },
+
+    /**
+     * The visitor's own history, newest first (Story 4.3, shown on /mon-espace). Scoped
+     * by the same ownership predicate as a single read, so a claimed report appears here
+     * the moment the profile becomes theirs.
+     */
+    async listReports(actor: Actor, limit = 20): Promise<EligibilityReport[]> {
+      const owner = profileOwnerPredicate(actor);
+      if (!owner) return [];
+
+      const rows = await db
+        .select({ report: eligibilityReports })
+        .from(eligibilityReports)
+        .innerJoin(profiles, eq(profiles.id, eligibilityReports.profileId))
+        .where(owner)
+        .orderBy(desc(eligibilityReports.createdAt))
+        .limit(limit);
+      return rows.map((row) => row.report as EligibilityReport);
     },
   };
 }

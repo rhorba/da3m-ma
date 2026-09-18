@@ -39,3 +39,18 @@ export async function ensureAnonActor(): Promise<AnonActor> {
   jar.set(ANON_COOKIE_NAME, token, ANON_COOKIE_OPTIONS);
   return { kind: "anonymous", tokenHash: hashAnonToken(token) };
 }
+
+/**
+ * Replaces the anonymous token after its data has been claimed into an account
+ * (security §3). The old token is what the claim matched on, so leaving it in the
+ * browser would mean the next anonymous visitor on a shared machine creates a profile
+ * under it, which this account would then claim as its own on the next visit.
+ *
+ * A fresh token rather than a deleted cookie, so a signed-in visitor who later browses
+ * anonymously still has a working identity.
+ */
+export async function rotateAnonToken(): Promise<AnonActor> {
+  const token = generateAnonToken();
+  (await cookies()).set(ANON_COOKIE_NAME, token, ANON_COOKIE_OPTIONS);
+  return { kind: "anonymous", tokenHash: hashAnonToken(token) };
+}
