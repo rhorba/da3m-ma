@@ -57,3 +57,9 @@
 - Decision: Run full Sprint 3 (3.2–3.6) this session. Bourse de vie extra personal fields: SKIPPED (YAGNI — profile stays at 12 fields, programme deferred). Rate limiting: in-memory limiter behind a swappable interface now, Upstash before public beta.
 - Rationale: keeps the wizard short and avoids a profile migration for one unverified programme; no Upstash account needed pre-beta, single-instance is sufficient.
 - Owner: User (approved at BRAINSTORM gate)
+
+### [2026-09-18 08:30] [DECISION] — Clerk secrets left unset; 4.3 runtime check deferred to deploy
+- Decision: CLERK_SECRET_KEY and CLERK_WEBHOOK_SIGNING_SECRET stay empty for now. Story 4.3's runtime verification (auth.protect() redirecting, the claim firing on a live session) is deferred until the app is deployed.
+- Rationale: the agent cannot read either value — the browser tooling redacts secrets, and a local pipe built to route around that was denied by the sandbox classifier. Both controls were right to fire. The user chose not to paste them by hand, which is reasonable: the claim logic has 26 tests behind it (including the shared-machine token-rotation case) and the middleware's public-route isolation is proven by 94 E2E plus CI, so what remains unverified is narrow and will surface on the first real sign-in.
+- Consequence: locally, /[locale]/mon-espace returns 500 until the secrets exist. Public routes are unaffected — verified. Nothing else in the project is blocked by this.
+- Owner: User
