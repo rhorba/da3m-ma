@@ -201,3 +201,8 @@
 - Guard: e2e/private-routes.spec.ts pins the redirect for all three locales and re-asserts the public surface. It skips when CLERK_SECRET_KEY is absent, so CI stays honest rather than asserting something it cannot mean; playwright.config.ts now loads .env.local so the gate is meaningful locally.
 - Note: this is exactly the class of defect that only appears at runtime. It sat behind a green build, a green CI and 94 passing E2E for the whole of the previous session.
 - Status: complete — 102 E2E passing, Semgrep 0 findings on 162 targets
+
+### [2026-09-18 09:05] [CI] — Redirect fix, push 047c29f: GREEN
+- Specialist: DevOps
+- Summary: Run 35324860125 — all four jobs success. The private-route spec skips in CI as designed (no CLERK_SECRET_KEY there); the public suite is unaffected.
+- Status: complete
