@@ -186,3 +186,10 @@
 - Summary: Endpoint 2Sdt0T → https://da3m.ma/api/webhooks/clerk, subscribed to exactly the six events the handler consumes (organization.created/deleted/updated, organizationMembership.created/deleted/updated). Deliveries will fail until the app is deployed at that host, which is expected — the endpoint exists so the signing secret does.
 - Remaining: CLERK_SECRET_KEY and CLERK_WEBHOOK_SIGNING_SECRET. Both are withheld from the agent by the browser tooling's sensitive-key guard, so the user pastes them into .env.local. Everything else in the Clerk dashboard is configured.
 - Status: complete
+
+### [2026-09-18 08:20] [RESOLVED] — /mon-espace prerender concern was unfounded
+- Specialist: DevOps
+- Concern raised at commit ec108c3: the build table marks /[locale]/mon-espace as prerendered (●) despite force-dynamic, which would have served every visitor a stale 404.
+- Evidence: the build emits HTML only for the genuinely static routes — {fr,ar,en}.html, {fr,ar,en}/eligibilite.html, {fr,ar,en}/programmes.html and _not-found.html. No mon-espace.html exists for any locale, and none for mon-espace/resultats/[id]. force-dynamic held; the ● marker groups the route under the locale because the parent layout supplies params, not because anything was prerendered.
+- Status: resolved, no code change needed
+- Still unverified (needs Clerk secrets): auth.protect() redirecting an anonymous visitor to sign-in, and the end-to-end claim on a real session.
