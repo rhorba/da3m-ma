@@ -57,3 +57,6 @@
 - Project progress: ~60% by story count (20.5 of 34). Epics 1-3 complete, Epic 4 at 4.5 of 7, Epics 5-6 not started. By effort nearer 50%, since Cabinet and billing are entirely ahead.
 - The one lever that matters next remains the catalogue: docs/verification-worksheet.md, 18 items reducing to 5 judgement calls. Highest leverage is whether the six Innov Invest / Startup VB products run on call deadlines rather than `rolling` — as modelled, the results page can tell a visitor "Ouvert" when no call is open.
 - Environment: da3m-dev-db container on port 5435 (compose still says 5433); rm -rf .next before each build under OneDrive; kill the server on 3100 after rebuilding; jq absent, use gh --jq; run the CI Semgrep image locally before pushing rendering or I/O code.
+
+### [2026-09-18 10:30] SESSION_START
+- Focus: resumption check. Nothing has changed since 964f1bb: catalogue still 10 drafts, CLERK_WEBHOOK_SIGNING_SECRET and Resend still absent, nan@2.29.0 (published 2026-09-14 09:58Z) clears the 7-day minimum-release-age on 2026-09-21 ~10:00. No agent-unblocked work remains; waiting on the user to pick a blocker.
