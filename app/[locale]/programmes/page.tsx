@@ -60,7 +60,11 @@ export default async function CataloguePage({ params }: Props) {
   return (
     <main className="mx-auto flex min-h-dvh max-w-2xl flex-col gap-8 px-4 py-8 sm:px-6">
       <header className="flex flex-col gap-2">
-        <Link href="/" className="text-lg font-semibold text-primary" dir="ltr">
+        <Link
+          href="/"
+          className="inline-flex min-h-11 w-fit items-center text-lg font-semibold text-primary"
+          dir="ltr"
+        >
           Da3m.ma
         </Link>
         <h1 className="text-2xl font-semibold text-text">{t("title")}</h1>
@@ -79,7 +83,7 @@ export default async function CataloguePage({ params }: Props) {
         <p className="text-base text-text">{t("cta")}</p>
         <Link
           href="/eligibilite"
-          className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-white hover:opacity-90"
+          className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-primary-fg hover:opacity-90"
         >
           {tCommon("checkEligibility")}
         </Link>

@@ -103,7 +103,7 @@ export async function ProgramResultCard({ result, locale, reportId, showReasons 
           href={result.applicationUrl ?? result.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-primary underline underline-offset-4"
+          className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4"
         >
           {result.applicationUrl ? t("howToApply") : t("officialSource")}
         </a>

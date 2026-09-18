@@ -39,3 +39,10 @@
 - E2E: 50 / 50 (desktop + mobile Chromium) — wizard, results, programme pages, catalogue filters, sitemap, robots
 - Lint / typecheck / format: clean
 - Build: /programmes prerendered per locale (1h ISR), /programmes/[slug] on demand (1h), sitemap + robots static
+
+### [2026-09-18 00:20] [METRICS] — Story 4.7 accessibility half
+- Tests: 381 passed / 381 (26 files)
+- Coverage (combined): statements 97.18%, branches 95.80%, functions 94.41%, lines 98.16%
+- E2E: 94 / 94 (desktop + mobile Chromium), of which 44 accessibility assertions
+- Contrast: every documented ratio asserted for both themes; 3 dark-mode AA failures found and fixed
+- Semgrep (run locally before push): 0 findings on 152 targets

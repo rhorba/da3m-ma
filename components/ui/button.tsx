@@ -3,7 +3,7 @@ import { cn } from "./cn";
 
 /** Button variants from the UI foundation (docs/ui-da3m.md §2). */
 const VARIANTS = {
-  primary: "bg-primary text-white hover:opacity-90 disabled:opacity-50",
+  primary: "bg-primary text-primary-fg hover:opacity-90 disabled:opacity-50",
   secondary:
     "border border-border bg-surface text-text hover:border-primary disabled:opacity-50 disabled:hover:border-border",
   ghost: "text-text-muted hover:text-text underline underline-offset-4",

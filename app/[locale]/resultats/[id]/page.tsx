@@ -42,7 +42,11 @@ export default async function ResultsPage({ params }: Props) {
   return (
     <main className="mx-auto flex min-h-dvh max-w-2xl flex-col gap-6 px-4 py-8 sm:px-6">
       <header className="flex flex-col gap-2">
-        <Link href="/" className="text-lg font-semibold text-primary" dir="ltr">
+        <Link
+          href="/"
+          className="inline-flex min-h-11 w-fit items-center text-lg font-semibold text-primary"
+          dir="ltr"
+        >
           Da3m.ma
         </Link>
         <h1 className="text-2xl font-semibold text-text">{t("title")}</h1>
@@ -106,7 +110,7 @@ export default async function ResultsPage({ params }: Props) {
       <footer className="mt-2 flex flex-col gap-4 border-t border-border pt-4">
         <Link
           href="/eligibilite"
-          className="text-sm font-medium text-primary underline underline-offset-4"
+          className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4"
         >
           {t("restart")}
         </Link>

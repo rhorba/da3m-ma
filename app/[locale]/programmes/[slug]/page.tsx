@@ -98,7 +98,7 @@ export default async function ProgrammePage({ params }: Props) {
       <header className="flex flex-col gap-3">
         <Link
           href="/programmes"
-          className="text-sm font-medium text-primary underline underline-offset-4"
+          className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4"
         >
           {t("backToCatalogue")}
         </Link>
@@ -159,7 +159,7 @@ export default async function ProgrammePage({ params }: Props) {
       <div className="flex flex-col gap-3 border-t border-border pt-6">
         <Link
           href="/eligibilite"
-          className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-white hover:opacity-90"
+          className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-primary-fg hover:opacity-90"
         >
           {tCommon("checkEligibility")}
         </Link>
@@ -168,7 +168,7 @@ export default async function ProgrammePage({ params }: Props) {
             href={program.applicationUrl ?? program.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-primary underline underline-offset-4"
+            className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4"
           >
             {program.applicationUrl ? t("howToApply") : t("officialSource")}
           </a>

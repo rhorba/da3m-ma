@@ -47,6 +47,10 @@
     --color-background: #12110E; --color-surface: #1B1A16; --color-border: #2E2B25;
     --color-text: #F2EEE6; --color-text-muted: #A59F93;
     --color-primary: #3FA59E; --color-accent: #F0B63A; --color-ineligible: #7A756C;
+    /* Added 2026-09-18: the three below were missing and failed AA in dark mode. */
+    --color-primary-fg: #12110E;   /* white on #3FA59E is only 3.0:1 */
+    --color-warning: #E8B04B;      /* #946100 was 3.6:1 on paper black */
+    --color-error: #F08A7E;        /* #B03A2E was 3.1:1 on paper black */
   }
 }
 :root[data-theme="dark"] { /* same overrides as above */ }
@@ -87,7 +91,10 @@ Fraunces is used for page titles and the hero only; everything functional is Int
 - DoD for any AR screen: native-reader pass on real copy — never mirrored French (Bina lesson).
 
 ## 6. Accessibility Baseline
-- Contrast (computed, WCAG 2.1 formula): teal `#0F5E5A` on paper `#FBF9F5` = 7.2:1; white on teal = 7.6:1; muted text `#6A645A` = 5.6:1; ineligible `#736D63` = 4.9:1; warning text `#946100` = 5.0:1; error `#B03A2E` = 5.7:1. Saffron `#E3A018` is 2.2:1 on paper, so it is **never** used for text — only as a fill behind dark `#1A1712` text (7.9:1). Dark mode: teal `#3FA59E` = 6.4:1, ineligible `#7A756C` = 4.1:1 (large text / icons only in dark mode).
+- Contrast (computed, WCAG 2.1 formula): teal `#0F5E5A` on paper `#FBF9F5` = 7.2:1; white on teal = 7.6:1; muted text `#6A645A` = 5.6:1; ineligible `#736D63` = 4.9:1; warning text `#946100` = 5.0:1; error `#B03A2E` = 5.7:1. Saffron `#E3A018` is 2.2:1 on paper, so it is **never** used for text — only as a fill behind dark `#1A1712` text (7.9:1). Dark mode: teal `#3FA59E` = 6.4:1, ineligible `#7A756C` = 4.1:1 (large text / icons only in dark mode), warning `#E8B04B` = 9.7:1, error `#F08A7E` = 7.8:1, ink `#12110E` on teal = 6.4:1.
+- **Every ratio above is asserted in `tests/unit/contrast.test.ts`**, read from the tokens actually shipped in `app/globals.css`, for both themes. Changing a hex value fails the build rather than someone's eyesight.
+- Buttons use `text-primary-fg`, never a hardcoded `text-white`: the token flips to ink in dark mode because the lighter teal cannot carry white text.
+- Target size: navigation and standalone links are at least 44px tall (`min-h-11`); links inside a sentence are exempt under WCAG 2.5.8. Asserted in `e2e/a11y.spec.ts` across every public page and both viewports.
 - Outcome is never conveyed by colour alone: icon + group heading + text.
 - Wizard: each step is a `<fieldset>` with `<legend>`; RadioCards are real radio inputs.
 - Pipeline board: cards movable by keyboard (dnd-kit keyboard sensor) with live-region announcements ("Dossier déplacé vers Déposé").

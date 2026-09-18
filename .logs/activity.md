@@ -117,3 +117,16 @@
 - Specialist: DevOps
 - Summary: `jq` is not installed in this environment, so the background CI watchers produced no events and exited cleanly — a green-looking no-op. Use `gh ... --jq` (gh's built-in filter) instead of piping to `jq`.
 - Status: noted; CI status now confirmed directly before any claim of green
+
+### [2026-09-18 00:20] [COMPLETED] — Sprint 4, story 4.7 (accessibility half)
+- Specialist: UI Designer, Frontend Dev, Tester
+- Summary: tests/unit/contrast.test.ts computes WCAG 2.1 contrast from the tokens actually shipped in app/globals.css, for light and dark, and asserts every ratio the UI foundation documents. e2e/a11y.spec.ts checks landmarks, single h1, heading order, accessible names, target size and focus visibility on all four public pages, plus lang/dir in FR and AR, on desktop and mobile.
+- Found and fixed three real AA failures in the dark theme, none of which a light-mode axe run would have caught:
+  1. --color-warning was never overridden for dark: #946100 on #12110e = 3.6:1. Now #E8B04B (9.7:1).
+  2. --color-error was never overridden for dark: #B03A2E = 3.1:1. Now #F08A7E (7.8:1). This is the wizard error and the inline-question failure message.
+  3. Every primary button used a hardcoded text-white: white on the dark-mode teal #3FA59E = 3.0:1. Buttons now use text-primary-fg, which flips to ink #12110E (6.4:1).
+- Also enlarged navigation and standalone link targets to 44px (brand link, language switcher, back link, source link, restart link); links inside prose stay exempt under WCAG 2.5.8.
+- docs/ui-da3m.md updated with the dark values and a pointer to the tests that enforce them.
+- Status: complete
+- Impact: high
+- Still open on 4.7: a full axe sweep (@axe-core/playwright is blocked by the .npmrc minimum-release-age guard until ~21 Sept) and the native Arabic reader pass (user-owned).

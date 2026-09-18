@@ -33,6 +33,11 @@
     --color-primary: #3fa59e;
     --color-accent: #f0b63a;
     --color-ineligible: #7a756c;
+    /* The lighter teal cannot carry white text (3.0:1), so buttons flip to dark ink. */
+    --color-primary-fg: #12110e;
+    /* Without these the light-mode warning and error read at 3.6:1 and 3.1:1 on paper black. */
+    --color-warning: #e8b04b;
+    --color-error: #f08a7e;
   }
 }
 
@@ -45,6 +50,9 @@
   --color-primary: #3fa59e;
   --color-accent: #f0b63a;
   --color-ineligible: #7a756c;
+  --color-primary-fg: #12110e;
+  --color-warning: #e8b04b;
+  --color-error: #f08a7e;
 }
 
 @layer base {

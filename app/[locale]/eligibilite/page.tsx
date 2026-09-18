@@ -25,7 +25,11 @@ export default async function EligibilitePage({ params }: Props) {
   return (
     <main className="mx-auto flex min-h-dvh max-w-2xl flex-col gap-8 px-4 py-8 sm:px-6">
       <header className="flex flex-col gap-2">
-        <Link href="/" className="text-lg font-semibold text-primary" dir="ltr">
+        <Link
+          href="/"
+          className="inline-flex min-h-11 w-fit items-center text-lg font-semibold text-primary"
+          dir="ltr"
+        >
           Da3m.ma
         </Link>
         <h1 className="text-2xl font-semibold text-text">{t("title")}</h1>

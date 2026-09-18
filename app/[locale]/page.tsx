@@ -29,9 +29,10 @@ export default async function HomePage({ params }: Props) {
                   lang={l}
                   aria-current={l === locale ? "page" : undefined}
                   className={
-                    l === locale
+                    "inline-flex min-h-11 items-center px-1 " +
+                    (l === locale
                       ? "font-semibold text-text underline underline-offset-4"
-                      : "text-text-muted hover:text-text"
+                      : "text-text-muted hover:text-text")
                   }
                 >
                   {tLang(l)}
@@ -48,13 +49,13 @@ export default async function HomePage({ params }: Props) {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <Link
             href="/eligibilite"
-            className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-white hover:opacity-90"
+            className="inline-flex min-h-13 w-fit items-center rounded-md bg-primary px-6 text-base font-medium text-primary-fg hover:opacity-90"
           >
             {t("cta")}
           </Link>
           <Link
             href="/programmes"
-            className="text-base font-medium text-primary underline underline-offset-4"
+            className="inline-flex min-h-11 items-center text-base font-medium text-primary underline underline-offset-4"
           >
             {tCatalogue("title")}
           </Link>
