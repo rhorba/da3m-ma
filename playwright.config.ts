@@ -1,5 +1,13 @@
 import { defineConfig, devices } from "@playwright/test";
 
+// The suite reads CLERK_SECRET_KEY to decide whether the signed-in area can be
+// exercised at all. Next loads .env.local itself; the test runner has to be told.
+try {
+  process.loadEnvFile(".env.local");
+} catch {
+  // CI provides env directly, and the public suite needs none of it.
+}
+
 const PORT = 3100;
 
 export default defineConfig({

@@ -193,3 +193,11 @@
 - Evidence: the build emits HTML only for the genuinely static routes — {fr,ar,en}.html, {fr,ar,en}/eligibilite.html, {fr,ar,en}/programmes.html and _not-found.html. No mon-espace.html exists for any locale, and none for mon-espace/resultats/[id]. force-dynamic held; the ● marker groups the route under the locale because the parent layout supplies params, not because anything was prerendered.
 - Status: resolved, no code change needed
 - Still unverified (needs Clerk secrets): auth.protect() redirecting an anonymous visitor to sign-in, and the end-to-end claim on a real session.
+
+### [2026-09-18 08:55] [FIXED] — /mon-espace answered a signed-out visitor with 404
+- Specialist: Backend Dev, DevOps, Tester
+- Found: with CLERK_SECRET_KEY in place, /fr/mon-espace returned 404 rather than sending anyone to sign in. Cause: `auth.protect()` falls back to notFound() when it cannot resolve a sign-in URL, and none was configured. The effect was that a visitor clicking through to their own space was told it does not exist.
+- Fix: the middleware now reads the session and calls redirectToSignIn() explicitly. /fr, /ar and /en/mon-espace return 307 to the Clerk Account Portal with redirect_url preserved; public routes are untouched.
+- Guard: e2e/private-routes.spec.ts pins the redirect for all three locales and re-asserts the public surface. It skips when CLERK_SECRET_KEY is absent, so CI stays honest rather than asserting something it cannot mean; playwright.config.ts now loads .env.local so the gate is meaningful locally.
+- Note: this is exactly the class of defect that only appears at runtime. It sat behind a green build, a green CI and 94 passing E2E for the whole of the previous session.
+- Status: complete — 102 E2E passing, Semgrep 0 findings on 162 targets

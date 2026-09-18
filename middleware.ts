@@ -22,7 +22,12 @@ const isPrivate = createRouteMatcher([
 ]);
 
 const privateMiddleware = clerkMiddleware(async (auth, request) => {
-  await auth.protect();
+  // `auth.protect()` answers an unauthenticated page request with 404 when it cannot
+  // resolve a sign-in URL, which tells a visitor their own space does not exist.
+  // Redirecting explicitly sends them somewhere they can actually do something.
+  const { userId, redirectToSignIn } = await auth();
+  if (!userId) return redirectToSignIn();
+
   return intlMiddleware(request as NextRequest);
 });
 
