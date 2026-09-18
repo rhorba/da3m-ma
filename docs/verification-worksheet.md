@@ -25,6 +25,25 @@ All 11 official source URLs across the ten programmes returned HTTP 200 on 2026-
 so nothing has moved since they were consulted on 2026-09-17. No dead links to work
 around.
 
+## The 18 decisions are really 5
+
+Most of the open items are the same judgement call recurring. Settling one of these
+settles every programme in its row, so these are worth deciding first — in order of
+how much they unblock.
+
+| Decision | Programmes it settles | What was assumed |
+|---|---|---|
+| **1. Do Innov Invest / Startup VB products have call deadlines?** They are applied for through Tamwilcom partner organisations, which run calls. If calls are the reality, `status` should be `open`/`upcoming` with real dates rather than `rolling`. | 6 — `bourse-incubation`, `innov-dev`, `pret-amorcage`, `pret-honneur-startup`, `tech-boost`, `tech-start` | `rolling`, i.e. always open |
+| **2. Is "TPE" Bank Al-Maghrib's definition** (turnover ≤ 10 MDH, Charte TPE art. 2)? The Tamwilcom pages do not restate a threshold. | 5 — `damane-express`, `damane-intelak`, `damane-intelak-rural`, `innov-dev`, `start-tpe` | Yes, ≤ 10 MDH |
+| **3. Does "de droit marocain" exclude auto-entrepreneurs and people who have not incorporated yet?** | 3 — `bourse-incubation`, `innov-dev`, `pret-honneur-startup` | Yes, excluded |
+| **4. Does the innovation-stage wording map cleanly?** "Past POC, building MVP" → `poc_validated`; "past MVP, seeking product-market fit" → `mvp_ready`. | 4 — `bourse-incubation`, `pret-honneur-startup`, `tech-boost`, `tech-start` | Yes, as written |
+| **5. Three one-offs.** "Petites exploitations agricoles" approximated as `sector = agriculture`; "jeunes porteurs de projets" read as allowing a not-yet-created business (so no legal-form rule); the 2020 2% interest rate deliberately not modelled as a criterion. | 3 — `damane-intelak-rural`, `damane-intelak`, `start-tpe` | As described |
+
+Decision 1 matters most and is not really a wording question: if these products only open
+during calls, a visitor told "Ouvert" today may find nothing to apply to. The honest
+options are to model each call as a version with `opensAt`/`closesAt`, or to keep
+`rolling` and let the programme page's own link carry the timing.
+
 ## The ten at a glance
 
 | Programme | Operator | Decisions needed |
