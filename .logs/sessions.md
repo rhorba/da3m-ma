@@ -60,3 +60,7 @@
 
 ### [2026-09-18 10:30] SESSION_START
 - Focus: resumption check. Nothing has changed since 964f1bb: catalogue still 10 drafts, CLERK_WEBHOOK_SIGNING_SECRET and Resend still absent, nan@2.29.0 (published 2026-09-14 09:58Z) clears the 7-day minimum-release-age on 2026-09-21 ~10:00. No agent-unblocked work remains; waiting on the user to pick a blocker.
+
+### [2026-09-18 10:35] SESSION_END
+- Completed: resumption check only; no code changes. User not available this session.
+- Next: unchanged — (A) verification worksheet, 5 judgement calls, gates public beta; (B) signed-in claim loop test for 4.3; (C) Resend + SPF/DKIM/DMARC for 4.4; (D) axe sweep, agent-owned, unblocked from 2026-09-21 ~10:00.
