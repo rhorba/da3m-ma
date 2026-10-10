@@ -69,3 +69,11 @@
 - Focus: resumption after 3-week gap. State unchanged since a801537: 10/10 catalogue entries still draft, CLERK_WEBHOOK_SIGNING_SECRET and Resend absent. Newly unblocked: axe sweep (nan@2.29.0 cleared minimum-release-age on 2026-09-21). UNDERSTAND done; awaiting user's pick at BRAINSTORM gate.
 - [BRAINSTORM] User picked A (axe sweep) then B (catalogue verification, performed by the agent against official sources). User said "go": PLAN gate treated as approved.
 - [PLAN] A: add @axe-core/playwright, e2e/a11y.spec.ts over public routes x locales x themes, fix violations, run in CI. B: work docs/verification-worksheet.md item by item against the official source URLs; publish only what the sources support, keep the rest draft with notes.
+- [EXECUTE/VERIFY/SHIP] done; CI green at c745bc9 (run 38046460903).
+
+### [2026-10-10] SESSION_END
+- Completed: (A) axe sweep, 52 cases, 0 WCAG 2.2 AA violations; fixed dark --color-ineligible 4.1→5.0:1. (B) all 10 catalogue programmes verified against sources re-read today; 18 decisions settled from primary text; Start-TPE source moved. Security: next 15.5.27 / sharp 0.35.5 / source-map-js 1.2.2, prod audit clean. Local runtime check: real catalogue synced into the dev DB, all 30 programme pages 200, real wizard verdicts sensible, 40/40 axe on real pages; then the dev DB was reset to fixtures to match CI.
+- Not done: production `pnpm catalogue:sync` (needs the production DATABASE_URL and the user's go-ahead, since it publishes). Video recording skipped: no version boundary yet (public beta still needs 4.6 and the Arabic reader pass).
+- Lesson: E2E specs share the per-IP wizard limit (20/h). New specs must not submit the wizard per case.
+- Next: production catalogue sync; claim-loop sign-in test (4.3); Resend + DNS (4.4); 4.6 curation; native Arabic reader (4.7).
+- Environment: Docker Desktop hung on start and needed a full restart (wsl --shutdown). Its restart policies also bring up the madrasti, restoledger and moqawil containers.
