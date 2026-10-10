@@ -19,7 +19,7 @@
 | Info Disclosure | Anonymous reports | Report readable only if the `anon_token` cookie matches; 404 (not 403) otherwise | TODO |
 | Info Disclosure | Catalogue scraping | Rate limit on wizard and search; programme pages are public by design (SEO) — the moat is freshness and the Cabinet, not secrecy | Accepted |
 | DoS | Wizard submit | Upstash rate limit per IP + anon token; Turnstile if abused | TODO |
-| DoS | Alert emails | Double opt-in; per-address daily cap | TODO |
+| DoS | Alert emails | Double opt-in; per-address daily cap (3 opt-ins/day, 1 digest/day); signed-in only; HMAC-signed confirm/unsubscribe links, purpose-bound, confirm expires in 7 days; links act on a button press, never on GET (mail scanners) | Done (Story 4.4) |
 | Elevation of Privilege | Firm roles | `viewer` cannot mutate; `consultant` cannot manage members/billing; checked server-side per action | TODO |
 | Elevation of Privilege | Admin console | `platform_admin` from Clerk private metadata only (not public/unsafe metadata); MFA required | TODO |
 | **SSRF** | **Source watcher** | Fetch only `https` URLs whose host is on `WATCH_ALLOWED_HOSTS`; block private IP ranges after DNS resolution; no redirects off-allowlist | TODO |

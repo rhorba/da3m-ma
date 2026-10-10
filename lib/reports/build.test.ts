@@ -39,6 +39,7 @@ function program(overrides: Partial<PublishedProgram> & { slug: string }): Publi
     sourceUrl: "https://www.tamwilcom.ma/fr/example",
     applicationUrl: null,
     verifiedAt: "2026-09-16",
+    publishedAt: new Date("2026-09-16T10:00:00Z"),
     rules: youngRule,
     ...overrides,
   };

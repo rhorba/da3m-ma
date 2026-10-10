@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { cookies } from "next/headers";
 import { ANON_COOKIE_NAME, getAuthRepository, resolveActor, type Actor } from "@/lib/auth";
 
@@ -20,4 +20,10 @@ export async function getActor(): Promise<Actor | null> {
     findMembership: (clerkOrgId, clerkUserId) =>
       getAuthRepository().findMembership(clerkOrgId, clerkUserId),
   });
+}
+
+/** The signed-in user's primary email, to prefill forms; null when there is none. */
+export async function getPrimaryEmail(): Promise<string | null> {
+  const user = await currentUser();
+  return user?.primaryEmailAddress?.emailAddress ?? null;
 }

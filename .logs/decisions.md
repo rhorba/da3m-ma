@@ -78,3 +78,10 @@
 - Left out: Ilayki Invest and We-Fi (need a gender field), Bourse de vie (3 personal fields, decision pending), Salama PME (committee-selected), PTC (for consultants), Go Siyaha and Power Export (no criteria published), Damane Atassyir (ambiguous on TPE), Tassdir/Green Invest/Cap Access (no matching field), Inmaa ("services liés à l'industrie" not encodable).
 - Caveat: drafted and verified by the same agent on the same day, a single pair of eyes. Every interpretation is labelled in notes.
 - Observation for the user: the 8 PACT' offers crowd the top of results (ranking seems amount-led). Ranking relevance is worth a look.
+
+### [2026-10-10] [DECISION] — Story 4.4 alerts: signed links, button-press actions, Resend over fetch
+- Confirm/unsubscribe links are HMAC-signed (subscription id + purpose + expiry) with ALERTS_SIGNING_SECRET instead of stored tokens: every digest must carry a working unsubscribe link, and a hash-only token cannot be re-embedded. Purpose is signed, so a confirm link can never unsubscribe.
+- The pages act on a button press, never on GET, because mail scanners open links. One-click unsubscribe is RFC 8058 POST.
+- Unsubscribe stops every subscription for the address. One digest per address per day; at most 3 opt-in emails per address per day.
+- Resend is called over fetch (one POST does not justify an SDK). Without RESEND_API_KEY/EMAIL_FROM/ALERTS_SIGNING_SECRET, the form answers "unavailable" and the cron returns 503: it never pretends to send.
+- New env var ALERTS_SIGNING_SECRET: generated locally; must be set in the deployment.

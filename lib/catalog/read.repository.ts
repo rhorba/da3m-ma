@@ -29,6 +29,8 @@ export type PublishedProgram = {
   sourceUrl: string;
   applicationUrl: string | null;
   verifiedAt: string;
+  /** When this version went live; alerts report what changed since a subscriber's last email. */
+  publishedAt: Date;
   rules: Rule;
 };
 
@@ -49,6 +51,7 @@ const COLUMNS = {
   sourceUrl: programVersions.sourceUrl,
   applicationUrl: programVersions.applicationUrl,
   verifiedAt: programVersions.verifiedAt,
+  publishedAt: programVersions.publishedAt,
   rules: programVersions.rules,
 } as const;
 
@@ -67,6 +70,7 @@ type Row = Pick<typeof programs.$inferSelect, "slug" | "operator" | "kind"> &
     | "sourceUrl"
     | "applicationUrl"
     | "verifiedAt"
+    | "publishedAt"
     | "rules"
   > & { programId: string; programVersionId: string };
 
@@ -85,8 +89,11 @@ function toPublished(row: Row): PublishedProgram | null {
     console.error(`Published rules for ${row.slug} do not parse`, parsed.issues);
     return null;
   }
+  // Every row here was selected with publishedAt IS NOT NULL.
+  if (row.publishedAt === null) return null;
   return {
     ...row,
+    publishedAt: row.publishedAt,
     amountMinMad: toNumber(row.amountMinMad),
     amountMaxMad: toNumber(row.amountMaxMad),
     content: (row.content ?? {}) as ProgramContent,

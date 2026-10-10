@@ -177,6 +177,7 @@ Then my profile and report are owned by my account and the anonymous token is ro
 ### Story 4.4: Alerts — double opt-in + daily digest cron
 **Priority**: Must | **Size**: M | **Specialist**: Backend Dev
 **Notes**: Resend; SPF/DKIM/DMARC configured first; unsubscribe link in every email; per-address daily cap.
+**Status (2026-10-10)**: code complete and tested (lib/alerts, /api/cron/alerts at 08:00, /[locale]/alertes/*, one-click unsubscribe, form in /mon-espace). Not yet live: needs RESEND_API_KEY, a verified da3m.ma domain in Resend (SPF/DKIM/DMARC), and ALERTS_SIGNING_SECRET in the deployment. The /mon-espace form is untested end to end until the Clerk org setting is fixed (see .logs/issues.md).
 
 ### Story 4.5: Document checklists on results and programme pages
 **Priority**: Should | **Size**: S | **Specialist**: Frontend Dev

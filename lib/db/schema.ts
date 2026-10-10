@@ -165,8 +165,14 @@ export const alertSubscriptions = pgTable(
       .notNull()
       .references(() => profiles.id, { onDelete: "cascade" }),
     email: text("email").notNull(),
+    /** The language every email to this address is written in (Story 4.4). */
+    locale: text("locale").notNull().default("fr"),
+    /** When the last opt-in email went out: the per-address daily cap counts these. */
+    confirmationSentAt: timestamp("confirmation_sent_at", { withTimezone: true }),
     confirmedAt: timestamp("confirmed_at", { withTimezone: true }),
     unsubscribedAt: timestamp("unsubscribed_at", { withTimezone: true }),
+    /** The digest only reports programme versions published after this (or confirmation). */
+    lastDigestAt: timestamp("last_digest_at", { withTimezone: true }),
     createdAt: createdAt(),
   },
   (t) => [

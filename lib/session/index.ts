@@ -1,1 +1,1 @@
-export { getActor } from "./actor";
+export { getActor, getPrimaryEmail } from "./actor";

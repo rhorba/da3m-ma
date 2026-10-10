@@ -61,6 +61,7 @@ Written to `.env.example`. **Values needed from the user before Sprint 1 EXECUTE
 | `WATCH_USER_AGENT` | `Da3mBot/1.0 (+https://da3m.ma/bot)` | Sprint 2 |
 | `UPSTASH_REDIS_REST_URL` / `_TOKEN` | Rate limits | Sprint 3 |
 | `RESEND_API_KEY` | Alerts + reminders | Sprint 4 |
+| `ALERTS_SIGNING_SECRET` | Signs alert confirm/unsubscribe links (any long random string; rotating it breaks links already sent) | Sprint 4 |
 | `EMAIL_FROM` | `Da3m.ma <alertes@da3m.ma>` | Sprint 4 |
 | `NEXT_PUBLIC_SITE_URL` | Canonicals, sitemap, email links | Sprint 4 |
 | `SENTRY_DSN` / `SENTRY_AUTH_TOKEN` | Errors + source maps | Sprint 6 |

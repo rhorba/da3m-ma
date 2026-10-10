@@ -1,6 +1,8 @@
 import path from "node:path";
 import { createCatalogueSyncRepository, loadCatalogue } from "../lib/catalog";
 import { createDatabase } from "../lib/db/client";
+import { alertSubscriptions, profiles } from "../lib/db/schema";
+import { E2E_ALERTS } from "../e2e/fixtures/alerts";
 
 /**
  * Publishes the end-to-end fixture programmes (`pnpm e2e:seed`).
@@ -44,6 +46,26 @@ try {
   console.log(
     `Seeded: ${summary.published.length} published, ${summary.unchanged.length} unchanged.`,
   );
+
+  // Two alert subscriptions in known states, so the email-link pages can be driven end
+  // to end without sending anything.
+  const [profile] = await handle.db
+    .insert(profiles)
+    .values({ ownerUserId: E2E_ALERTS.userId, data: { legal_form: "sarl" }, schemaVersion: 1 })
+    .returning({ id: profiles.id });
+  for (const [id, confirmedAt] of [
+    [E2E_ALERTS.pendingId, null],
+    [E2E_ALERTS.activeId, new Date()],
+  ] as const) {
+    await handle.db
+      .insert(alertSubscriptions)
+      .values({ id, profileId: profile!.id, email: `${id}@example.com`, confirmedAt })
+      .onConflictDoUpdate({
+        target: alertSubscriptions.id,
+        set: { confirmedAt, unsubscribedAt: null },
+      });
+  }
+  console.log("Seeded: 2 alert subscriptions.");
 } finally {
   await handle.close();
 }

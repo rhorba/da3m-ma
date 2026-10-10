@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AlertsForm } from "@/components/alerts/alerts-form";
+import { getAlertsRepository } from "@/lib/alerts";
 import { claimAnonymousData } from "@/lib/profiles";
 import { formatDate, getReportsRepository } from "@/lib/reports";
-import { getActor } from "@/lib/session";
+import { getActor, getPrimaryEmail } from "@/lib/session";
 import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -37,6 +39,11 @@ export default async function MonEspacePage({ params }: Props) {
 
   const { claimed } = await claimAnonymousData(actor);
   const reports = await getReportsRepository().listReports(actor);
+  // Alerts follow a profile, which only a signed-in user (not a firm member) owns.
+  const alerts =
+    actor.kind === "user" && reports.length > 0
+      ? { status: await getAlertsRepository().status(actor), email: await getPrimaryEmail() }
+      : null;
 
   const t = await getTranslations("space");
   const tCommon = await getTranslations("common");
@@ -106,6 +113,10 @@ export default async function MonEspacePage({ params }: Props) {
           {reports.length === 0 ? tCommon("checkEligibility") : t("startWizard")}
         </Link>
       </section>
+
+      {alerts ? (
+        <AlertsForm locale={locale} defaultEmail={alerts.email ?? ""} status={alerts.status} />
+      ) : null}
 
       <footer className="border-t border-border pt-4">
         <p className="text-xs text-text-muted">{tCommon("nonAffiliation")}</p>

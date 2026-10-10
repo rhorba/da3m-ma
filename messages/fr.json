@@ -302,5 +302,51 @@
     "eligibleCount": "{count, plural, =0 {Aucun programme éligible} one {# programme éligible} other {# programmes éligibles}}",
     "openReport": "Voir",
     "startWizard": "Faire le questionnaire"
+  },
+  "alerts": {
+    "form": {
+      "title": "Alertes par e-mail",
+      "intro": "Recevez un e-mail quand un programme correspondant à votre dernier questionnaire est publié ou mis à jour. Un e-mail par jour au maximum.",
+      "emailLabel": "Votre adresse e-mail",
+      "submit": "Recevoir les alertes",
+      "pending": "Nous avons envoyé un lien de confirmation à {email}. Les alertes démarrent dès que vous l'ouvrez.",
+      "active": "Les alertes sont actives pour {email}.",
+      "errors": {
+        "invalid_email": "Cette adresse e-mail ne semble pas valide.",
+        "rate_limited": "Trop de demandes pour aujourd'hui. Réessayez demain.",
+        "no_profile": "Faites d'abord le questionnaire : les alertes suivent vos réponses.",
+        "unavailable": "Les alertes ne sont pas encore disponibles. Réessayez plus tard."
+      }
+    },
+    "confirm": {
+      "title": "Confirmer vos alertes",
+      "body": "Confirmez pour recevoir un e-mail quand un programme qui vous correspond change.",
+      "button": "Confirmer",
+      "done": "C'est confirmé. Vous recevrez au maximum un e-mail par jour, seulement quand il y a du nouveau.",
+      "invalid": "Ce lien n'est plus valide. Demandez-en un nouveau depuis votre espace."
+    },
+    "unsubscribe": {
+      "title": "Arrêter les alertes",
+      "body": "Vous ne recevrez plus d'e-mails d'alerte à cette adresse.",
+      "button": "Me désinscrire",
+      "done": "C'est fait. Vous ne recevrez plus d'alertes.",
+      "invalid": "Ce lien n'est pas valide."
+    },
+    "email": {
+      "confirm": {
+        "subject": "Confirmez vos alertes Da3m.ma",
+        "body": "Vous avez demandé à recevoir des alertes Da3m.ma. Ouvrez ce lien pour les activer :",
+        "button": "Confirmer mes alertes",
+        "ignore": "Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail : rien ne sera envoyé."
+      },
+      "digest": {
+        "subject": "{count, plural, one {Un programme pour vous a changé} other {# programmes pour vous ont changé}} sur Da3m.ma",
+        "intro": "Ces programmes ont été publiés ou mis à jour depuis notre dernier e-mail, et correspondent à votre questionnaire :",
+        "eligible": "vous êtes éligible",
+        "needsInfo": "à préciser",
+        "why": "Vous recevez cet e-mail parce que vous avez activé les alertes sur Da3m.ma.",
+        "unsubscribe": "Se désinscrire"
+      }
+    }
   }
 }

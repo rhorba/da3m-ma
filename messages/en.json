@@ -302,5 +302,51 @@
     "eligibleCount": "{count, plural, =0 {No eligible programmes} one {# eligible programme} other {# eligible programmes}}",
     "openReport": "Open",
     "startWizard": "Take the questionnaire"
+  },
+  "alerts": {
+    "form": {
+      "title": "Email alerts",
+      "intro": "Get an email when a programme matching your latest questionnaire is published or updated. At most one email a day.",
+      "emailLabel": "Your email address",
+      "submit": "Get alerts",
+      "pending": "We sent a confirmation link to {email}. Alerts start as soon as you open it.",
+      "active": "Alerts are on for {email}.",
+      "errors": {
+        "invalid_email": "That email address doesn't look valid.",
+        "rate_limited": "Too many requests today. Please try again tomorrow.",
+        "no_profile": "Complete the questionnaire first: alerts follow your answers.",
+        "unavailable": "Alerts aren't available yet. Please try again later."
+      }
+    },
+    "confirm": {
+      "title": "Confirm your alerts",
+      "body": "Confirm to get an email when a programme that fits you changes.",
+      "button": "Confirm",
+      "done": "Confirmed. You'll get at most one email a day, and only when there is something new.",
+      "invalid": "This link is no longer valid. Request a new one from your space."
+    },
+    "unsubscribe": {
+      "title": "Stop alerts",
+      "body": "You will no longer receive alert emails at this address.",
+      "button": "Unsubscribe",
+      "done": "Done. You won't receive alerts any more.",
+      "invalid": "This link isn't valid."
+    },
+    "email": {
+      "confirm": {
+        "subject": "Confirm your Da3m.ma alerts",
+        "body": "You asked to receive Da3m.ma alerts. Open this link to turn them on:",
+        "button": "Confirm my alerts",
+        "ignore": "If you didn't ask for this, ignore this email: nothing will be sent."
+      },
+      "digest": {
+        "subject": "{count, plural, one {A programme for you has changed} other {# programmes for you have changed}} on Da3m.ma",
+        "intro": "These programmes were published or updated since our last email, and match your questionnaire:",
+        "eligible": "you're eligible",
+        "needsInfo": "needs more information",
+        "why": "You're receiving this because you turned on alerts on Da3m.ma.",
+        "unsubscribe": "Unsubscribe"
+      }
+    }
   }
 }
