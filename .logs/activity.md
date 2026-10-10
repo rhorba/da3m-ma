@@ -234,3 +234,9 @@
 - User ran `node tmp/launch-setup.cjs` (env writes and prod DB writes were classifier-blocked for the agent): 9 production env vars added (fresh CRON_SECRET and ALERTS_SIGNING_SECRET), migrations applied, 27 programmes published.
 - CLERK_WEBHOOK_SIGNING_SECRET empty locally, so not set; no Clerk webhook endpoint exists for production yet.
 - source-watch cron daily (Hobby). Pushing 3552dfc + d0248e2 = first production deploy.
+
+## 2026-10-10 — LAUNCHED: https://da3m-ma.vercel.app (b5cb8a7)
+- Vercel production build Ready; CI green (run 38060459487).
+- Smoke: /fr /ar /en /fr/eligibilite /fr/programmes 200; /fr/mon-espace 307 to sign-in; crons 401 without secret; CSP and HSTS present; catalogue shows 27 programmes.
+- Live sign-in + claim (Clerk dev instance, ticket sign-in): questionnaire attached (?reclames=1), 12 eligible, alerts form shown. One test user/profile/report now exists in prod.
+- Open: Clerk webhook endpoint for prod (secret empty); Resend limited to owner address until a domain exists; Arabic native review; ranking question.

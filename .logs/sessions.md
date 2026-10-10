@@ -83,3 +83,7 @@
 - Blocked on user, all of them single actions: (1) Clerk dashboard → Organizations → Settings → "Membership optional". The classifier refused the change via API and via the browser, three times. (2) `! vercel login` (the CLI needs an interactive terminal). (3) Resend: add domain da3m.ma, create an API key and paste it into .env.local yourself, add the DNS records. (4) Native Arabic reader.
 - Then the agent can: rerun the claim test (tmp/claim/zz-claim.spec.ts), deploy (Vercel + Neon), set ALERTS_SIGNING_SECRET/CRON_SECRET in Vercel, sync the 27 programmes to production, and send a live test alert.
 - Open product question: PACT' offers crowd the top of results (amount-led ranking).
+
+## 2026-10-10 SESSION_END (third) — launched on Vercel
+- Done: Mon espace claim crash fixed (3552dfc), daily cron for Hobby (d0248e2), Neon + env + migrations + 27 programmes, production live at da3m-ma.vercel.app, CI green.
+- Next: Clerk webhook for prod, domain for Resend, Arabic review, ranking by stated needs (open question).
