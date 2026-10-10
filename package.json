@@ -28,7 +28,7 @@
     "@clerk/backend": "3.18.1",
     "@clerk/nextjs": "^7.9.4",
     "drizzle-orm": "^0.45.2",
-    "next": "15.5.25",
+    "next": "15.5.27",
     "next-intl": "^4.14.5",
     "postgres": "^3.4.9",
     "react": "19.1.0",
@@ -36,6 +36,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/eslintrc": "^3",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
@@ -47,7 +48,7 @@
     "diff": "9.0.0",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
-    "eslint-config-next": "15.5.25",
+    "eslint-config-next": "15.5.27",
     "eslint-config-prettier": "^10.1.8",
     "fast-check": "4.9.0",
     "node-html-parser": "9.0.4",
