@@ -77,3 +77,9 @@
 - Lesson: E2E specs share the per-IP wizard limit (20/h). New specs must not submit the wizard per case.
 - Next: production catalogue sync; claim-loop sign-in test (4.3); Resend + DNS (4.4); 4.6 curation; native Arabic reader (4.7).
 - Environment: Docker Desktop hung on start and needed a full restart (wsl --shutdown). Its restart policies also bring up the madrasti, restoledger and moqawil containers.
+
+### [2026-10-10] SESSION_END (second)
+- Completed: 4.6 (17 programmes, catalogue 27), 4.4 code (alerts, CI green 4870ea9), 4.7 Arabic first pass (plural agreement fixed; docs/arabic-review.md for the native reader).
+- Blocked on user, all of them single actions: (1) Clerk dashboard → Organizations → Settings → "Membership optional". The classifier refused the change via API and via the browser, three times. (2) `! vercel login` (the CLI needs an interactive terminal). (3) Resend: add domain da3m.ma, create an API key and paste it into .env.local yourself, add the DNS records. (4) Native Arabic reader.
+- Then the agent can: rerun the claim test (tmp/claim/zz-claim.spec.ts), deploy (Vercel + Neon), set ALERTS_SIGNING_SECRET/CRON_SECRET in Vercel, sync the 27 programmes to production, and send a live test alert.
+- Open product question: PACT' offers crowd the top of results (amount-led ranking).

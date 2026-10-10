@@ -57,3 +57,8 @@
 - Coverage (combined): statements 96.46%, branches 94.86%, functions 91.82%, lines 97.4% — gate 80% PASS
 - axe (WCAG 2.2 AA): 0 violations across 5 pages × 3 locales × 2 themes × 2 viewports; plus 40/40 on the 10 real programme pages (FR/AR, light/dark) against a local sync
 - pnpm audit --prod: 0 (was 2 high + 2 moderate via next → fixed with next 15.5.27, sharp 0.35.5, source-map-js 1.2.2)
+
+### [2026-10-10] [METRICS] — Story 4.4 alerts + Arabic plurals
+- Tests: 458 unit/integration passed (34 files, up from 407); E2E 168/168 (desktop + mobile)
+- Coverage (combined): statements 96.44%, branches 94.09%, functions 92.46%, lines 97.59% — gate 80% PASS
+- Semgrep (CI image, locally): 0 findings on 201 targets
