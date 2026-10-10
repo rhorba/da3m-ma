@@ -220,3 +220,11 @@
 ### [2026-10-10] [CI] — Story 4.4 alerts + Arabic first pass, push 4870ea9: GREEN
 - Specialist: DevOps
 - Summary: Run 38052742576, all four jobs succeeded. The integration test caught a real bug before push: a raw Date in a drizzle sql template crashes postgres-js, so every confirm would have failed in production.
+
+## 2026-10-10 — Story 4.3 claim loop verified live; Mon espace crash fixed
+- User set Clerk "Membership optional" and logged in the Vercel CLI.
+- Claim-loop check (Clerk ticket sign-in) found a crash: `/mon-espace` rotated the anon cookie during render ("Cookies can only be modified in a Server Action or Route Handler"). Every signed-in visitor who had answered the wizard anonymously hit it.
+- Fix: claim moved to route handler `app/[locale]/mon-espace/reclamer/route.ts`; page redirects there when an anon cookie is present and shows `?reclames=<n>` on return (the param also prevents a loop).
+- Re-run: questionnaire attached, history shows it, alerts form visible. Unit 458/458, E2E 168/168, lint clean, Semgrep (owasp-top-ten + typescript) 0 findings on changed files.
+- Resend: sending-only key "da3m-ma" created at the user's request, written to .env.local without printing; EMAIL_FROM=onboarding@resend.dev (no domain). Live confirmation email: Resend shows Delivered to the account owner's address.
+- Vercel: project da3m-ma created and linked; `vercel link` also connected GitHub (push to main = production deploy). Disconnect was refused by the permission classifier, so this commit is NOT pushed pending the user's decision.

@@ -93,3 +93,8 @@
 - Fix: user-owned dashboard toggle (Organizations → Settings → Membership required: off). The agent's API change was refused by the permission classifier. The production instance needs the same setting.
 - Re-run: copy tmp/claim/zz-claim.spec.ts into e2e/, run it on desktop-chromium only, then delete it. It checks the redirect back, the history links, and that the old results URL no longer resolves.
 - Status: open, waiting on user
+
+## 2026-10-10 — ISSUE (fixed): Mon espace crashed after sign-in when an anonymous questionnaire existed
+- Cause: `rotateAnonToken` (cookie write) called from a Server Component. Unit tests inject `rotateToken` and E2E never signs in, so neither could see it.
+- Fix: claim runs in a route handler. Worth adding: a CI E2E that signs in via a Clerk ticket.
+- Limit: without a verified domain, Resend only delivers to the account owner's address.

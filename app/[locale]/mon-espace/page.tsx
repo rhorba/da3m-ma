@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AlertsForm } from "@/components/alerts/alerts-form";
 import { getAlertsRepository } from "@/lib/alerts";
-import { claimAnonymousData } from "@/lib/profiles";
+import { readAnonActor } from "@/lib/auth";
 import { formatDate, getReportsRepository } from "@/lib/reports";
 import { getActor, getPrimaryEmail } from "@/lib/session";
 import { Link } from "@/i18n/navigation";
@@ -14,13 +14,17 @@ import type { AppLocale } from "@/i18n/routing";
  *
  * Visiting is what claims anonymous work into the account: the wizard never asks anyone
  * to sign up first, so the profile and reports a visitor built anonymously are attached
- * here, on their first visit after signing in (ADR-7). The claim is idempotent, so
- * running it on every visit costs one indexed update that matches nothing.
+ * on their first visit after signing in (ADR-7). Claiming rotates the anonymous cookie,
+ * which a Server Component cannot do, so a visitor who still has one goes through
+ * `reclamer/` first and comes back with `?reclames=<count>`.
  */
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ locale: AppLocale }> };
+type Props = {
+  params: Promise<{ locale: AppLocale }>;
+  searchParams: Promise<{ reclames?: string }>;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -29,15 +33,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t("title"), robots: { index: false, follow: false } };
 }
 
-export default async function MonEspacePage({ params }: Props) {
+export default async function MonEspacePage({ params, searchParams }: Props) {
   const { locale } = await params;
+  const { reclames } = await searchParams;
   setRequestLocale(locale);
 
   // The middleware has already required a session; this resolves which actor it is.
   const actor = await getActor();
   if (!actor) notFound();
 
-  const { claimed } = await claimAnonymousData(actor);
+  // `reclames` marks the way back from the claim, so a cookie that matched nothing
+  // cannot send the visitor round in a loop.
+  if (actor.kind === "user" && reclames === undefined && (await readAnonActor())) {
+    redirect(`/${locale}/mon-espace/reclamer`);
+  }
+  const claimed = Math.max(0, Number.parseInt(reclames ?? "0", 10) || 0);
   const reports = await getReportsRepository().listReports(actor);
   // Alerts follow a profile, which only a signed-in user (not a firm member) owns.
   const alerts =
