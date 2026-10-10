@@ -3,25 +3,25 @@
   "operator": "Tamwilcom",
   "kind": "loan",
   "verification": {
-    "status": "draft",
-    "verifiedAt": null,
-    "verifiedBy": null,
-    "notes": "OFFICIAL (current page): working-capital financing at zero rate, no collateral, for TPE and project holders under Moroccan law holding an investment loan guaranteed under Intelaka. OPEN QUESTIONS from the 2020 Ministry of Finance deck (p.11), not restated today: investment loan capped at 300 KDH; financing = honour loan up to 20% of the guaranteed loan, max 50 KDH; repaid in fine after a 5-year grace period. These are NOT encoded — confirm before adding. INTERPRETATION: TPE turnover ≤ 10 MDH (Bank Al-Maghrib definition)."
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (current page): working-capital financing at zero rate, no collateral, for TPE and project holders under Moroccan law holding an investment loan guaranteed under Intelaka. OPEN QUESTIONS from the 2020 Ministry of Finance deck (p.11), not restated today: investment loan capped at 300 KDH; financing = honour loan up to 20% of the guaranteed loan, max 50 KDH; repaid in fine after a 5-year grace period. These are NOT encoded — confirm before adding. INTERPRETATION: TPE turnover ≤ 10 MDH (Bank Al-Maghrib definition). VERIFIED 2026-10-10 against every listed source. TPE = Bank Al-Maghrib Charte TPE art. 2: 'personne physique ou morale', turnover HT <= 10 MDH (re-read 2026-10-10). SOURCE MOVED: Start-TPE left the TPE page and is now on /nos-solutions/cofinancement with identical wording (checked 2026-10-10)."
   },
   "sources": [
     {
-      "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
-      "consultedAt": "2026-09-17",
-      "note": "Current product page"
+      "url": "https://www.tamwilcom.ma/nos-solutions/cofinancement",
+      "consultedAt": "2026-10-10",
+      "note": "Current product page (moved from the TPE page by 2026-10-10)"
     },
     {
       "url": "https://www.finances.gov.ma/Publication/daag/2020/PresentationMLM%20du%20FAFE%20VF.pdf",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Ministry of Finance, Programme INTELAKA offre produits (2020), p.11"
     },
     {
       "url": "https://www.bkam.ma/content/download/835688/9083030/Charte%20TPE.pdf",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Charte TPE, art. 2"
     }
   ],
@@ -31,7 +31,7 @@
     "closesAt": null,
     "amountMinMad": null,
     "amountMaxMad": null,
-    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/cofinancement",
     "applicationUrl": null,
     "rules": {
       "kind": "all",

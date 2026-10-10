@@ -4,6 +4,20 @@
 
 Every programme below is a draft: `verification.status` is `draft`, so `pnpm catalogue:sync` skips it and nothing reaches the public catalogue (ADR-8). The engine, the wizard, the results page and the programme pages are all finished and tested — this file is the last thing standing between them and a usable beta.
 
+## Resolution — 2026-10-10: all ten verified
+
+All ten were signed off on 2026-10-10 by the agent on the user's instruction (`verifiedBy: "Claude (agent) for rhorba"`), after re-reading every listed source that day. Each file's `notes` records what settled it. The five decisions:
+
+1. **Partner calls do not make these products windowed.** The deadlines on `projets_actuels.php` are intake calls run by individual partners (Technopark, Open Startup, Cluster ENR, SB3S; the last closed 2026-09-26, and none is open today). They govern joining a partner. A startup that already has partner support applies through that partner and gets an answer within 30 days. `rolling` stands, shown as "Au fil de l'eau" (never "Ouvert"), and `has_partner_support` carries the gate.
+2. **TPE = turnover HT ≤ 10 MDH**, confirmed in Bank Al-Maghrib Charte TPE art. 2, which also says "personne physique ou morale" (so auto-entrepreneurs count).
+3. **"De droit marocain" = incorporated.** The startup pages require a contribution validated by a commissaire aux apports and a support agreement with the startup, neither of which fits an auto-entrepreneur or an unincorporated team.
+4. **Stage mapping holds.** The page wording matches `poc_validated` and `mvp_ready` almost verbatim.
+5. **One-offs hold.** The Ministry of Finance rural sheet and the 2020 Intelaka deck confirm every encoded rule. The deck explicitly targets "Informel" and "Jeunes porteurs de projets", so there is no legal-form rule. The 2% rate is a loan term, not eligibility.
+
+**One correction:** Start-TPE has left Tamwilcom's TPE page and now lives on `/nos-solutions/cofinancement` with identical wording. Its source URL is updated.
+
+The checklist below is kept as the audit trail of what was open on 2026-09-18.
+
 ## How to use this
 
 For each programme: open its official source, read the **Claims to confirm** list, and correct anything wrong in the JSON file. Then answer the **Decisions needed** questions — those are places where the official page was ambiguous and a judgement was recorded as an assumption rather than a fact. When a programme is right:

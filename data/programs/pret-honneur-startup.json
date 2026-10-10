@@ -3,20 +3,20 @@
   "operator": "Tamwilcom",
   "kind": "loan",
   "verification": {
-    "status": "draft",
-    "verifiedAt": null,
-    "verifiedBy": null,
-    "notes": "OFFICIAL: startup under Moroccan law with an innovative project past MVP, to finalise and deploy the product towards product-market fit; application validated by a Tamwilcom (SNGFE) partner; interest-free, collateral-free loan up to 90% of the investment programme, capped at 500,000 DH; min 10% contribution; repayment over max 5 years with up to 2 years' deferral; decision within 30 days of a complete file. INTERPRETATION: same as bourse-incubation for 'startup de droit marocain'. All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL: startup under Moroccan law with an innovative project past MVP, to finalise and deploy the product towards product-market fit; application validated by a Tamwilcom (SNGFE) partner; interest-free, collateral-free loan up to 90% of the investment programme, capped at 500,000 DH; min 10% contribution; repayment over max 5 years with up to 2 years' deferral; decision within 30 days of a complete file. INTERPRETATION: same as bourse-incubation for 'startup de droit marocain'. All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php. VERIFIED 2026-10-10 against every listed source. 'de droit marocain' read as an incorporated company: the page requires a contribution validated by a commissaire aux apports and a support agreement with the startup, neither of which fits an auto-entrepreneur or an unincorporated team. Stage wording 'dépassé le stade de MVP… product-market-fit' = mvp_ready. CALLS (2026-10-10): the deadlines on tamwilstartups.ma/projets_actuels.php are intake calls run by individual partner structures (Technopark, Open Startup, Cluster ENR, SB3S; last closed 2026-09-26; none open today). They govern joining a partner, not the product: a partner-supported startup applies through its partner and is answered within 30 days, so 'rolling' stands. The has_partner_support rule carries the gate."
   },
   "sources": [
     {
       "url": "https://www.tamwilstartups.ma/pret_honneur.php",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Tamwilcom Startups: Prêt d'honneur detail"
     },
     {
       "url": "https://www.tamwilcom.ma/nos-solutions/startups",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Tamwilcom: Startups overview (VB offer)"
     }
   ],

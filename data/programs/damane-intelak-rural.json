@@ -3,20 +3,20 @@
   "operator": "Tamwilcom",
   "kind": "guarantee",
   "verification": {
-    "status": "draft",
-    "verifiedAt": null,
-    "verifiedBy": null,
-    "notes": "Thresholds (≤ 5 years, turnover ≤ 10 MDH, credit ≤ 1.2 MDH, 80% guarantee, export exception) come from the Ministry of Finance / CCG 2020 documents. Tamwilcom's current page (2026) confirms the product, 80% cover and no fee, but no longer restates the thresholds, and the older Tamwilcom product URLs now return 404 — confirm the thresholds still apply. The 10 MDH TPE threshold is also Bank Al-Maghrib's official TPE definition (Charte TPE, art. 2, in force 2026-01-01). INTERPRETATION: 'petites exploitations agricoles' (exempt from the 5-year limit) is approximated as sector = agriculture, with size bounded by the 10 MDH turnover rule."
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "Thresholds (≤ 5 years, turnover ≤ 10 MDH, credit ≤ 1.2 MDH, 80% guarantee, export exception) come from the Ministry of Finance / CCG 2020 documents. Tamwilcom's current page (2026) confirms the product, 80% cover and no fee, but no longer restates the thresholds, and the older Tamwilcom product URLs now return 404 — confirm the thresholds still apply. The 10 MDH TPE threshold is also Bank Al-Maghrib's official TPE definition (Charte TPE, art. 2, in force 2026-01-01). INTERPRETATION: 'petites exploitations agricoles' (exempt from the 5-year limit) is approximated as sector = agriculture, with size bounded by the 10 MDH turnover rule. VERIFIED 2026-10-10 against every listed source. TPE = Bank Al-Maghrib Charte TPE art. 2: 'personne physique ou morale', turnover HT <= 10 MDH (re-read 2026-10-10). The Ministry of Finance sheet confirms every rule, including turnover 'à réaliser' for businesses in creation. 'Petites exploitations agricoles' = sector agriculture, with size bounded by the 10 MDH rule."
   },
   "sources": [
     {
       "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Current product page"
     },
     {
       "url": "https://www.finances.gov.ma/SiteAssets/Lists/Actualits/AllItems/intelak-moustatmir-al-qarawi.pdf",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "CCG product sheet published by the Ministry of Finance: full eligibility criteria"
     }
   ],

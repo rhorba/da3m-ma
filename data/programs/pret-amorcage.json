@@ -3,20 +3,20 @@
   "operator": "Tamwilcom",
   "kind": "loan",
   "verification": {
-    "status": "draft",
-    "verifiedAt": null,
-    "verifiedBy": null,
-    "notes": "OFFICIAL: startups invested in by partner support organisations, with at least 2 years of activity and positive revenue growth, aiming for a Series A raise; mezzanine loan without collateral up to 2,000,000 DH, not exceeding 50% of the partner's equity investment; 5% (excl. tax) rate; max 5 years incl. 1 year deferral; early repayment on Series A. NOT ENCODED: the Series A intention and the 50%-of-partner-investment cap (a loan-sizing rule, not eligibility). All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL: startups invested in by partner support organisations, with at least 2 years of activity and positive revenue growth, aiming for a Series A raise; mezzanine loan without collateral up to 2,000,000 DH, not exceeding 50% of the partner's equity investment; 5% (excl. tax) rate; max 5 years incl. 1 year deferral; early repayment on Series A. NOT ENCODED: the Series A intention and the 50%-of-partner-investment cap (a loan-sizing rule, not eligibility). All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php. VERIFIED 2026-10-10 against every listed source. A commented-out block on the page (digital sector, <= 8 years, residency) is not live and is not encoded. CALLS (2026-10-10): the deadlines on tamwilstartups.ma/projets_actuels.php are intake calls run by individual partner structures (Technopark, Open Startup, Cluster ENR, SB3S; last closed 2026-09-26; none open today). They govern joining a partner, not the product: a partner-supported startup applies through its partner and is answered within 30 days, so 'rolling' stands. The has_partner_support rule carries the gate."
   },
   "sources": [
     {
       "url": "https://www.tamwilstartups.ma/pret_amorcage.php",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Tamwilcom Startups: Prêt d'amorçage detail"
     },
     {
       "url": "https://www.tamwilcom.ma/nos-solutions/startups",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Tamwilcom: Startups overview (VB offer)"
     }
   ],

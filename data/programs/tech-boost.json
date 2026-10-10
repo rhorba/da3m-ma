@@ -3,20 +3,20 @@
   "operator": "Tamwilcom",
   "kind": "loan",
   "verification": {
-    "status": "draft",
-    "verifiedAt": null,
-    "verifiedBy": null,
-    "notes": "OFFICIAL: startups past MVP, application validated by a Tamwilcom partner, going to market towards product-market fit; honour loan (no interest, no collateral) up to 80% of eligible spend, capped at 500,000 DH (750,000 DH for deep tech); 20% contribution; repayment over max 5 years with up to 2 years' deferral. amountMaxMad uses the deep-tech cap. INTERPRETATION: 'past MVP, aiming for product-market fit' = innovation_stage mvp_ready (not growth). All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php."
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL: startups past MVP, application validated by a Tamwilcom partner, going to market towards product-market fit; honour loan (no interest, no collateral) up to 80% of eligible spend, capped at 500,000 DH (750,000 DH for deep tech); 20% contribution; repayment over max 5 years with up to 2 years' deferral. amountMaxMad uses the deep-tech cap. INTERPRETATION: 'past MVP, aiming for product-market fit' = innovation_stage mvp_ready (not growth). All Innov Invest / Startup VB products are applied for through Tamwilcom partner support organisations (list: https://www.tamwilstartups.ma/partenaires.php), which run calls with deadlines — check open calls at https://www.tamwilstartups.ma/projets_actuels.php. VERIFIED 2026-10-10 against every listed source. Stage wording matches mvp_ready verbatim. CALLS (2026-10-10): the deadlines on tamwilstartups.ma/projets_actuels.php are intake calls run by individual partner structures (Technopark, Open Startup, Cluster ENR, SB3S; last closed 2026-09-26; none open today). They govern joining a partner, not the product: a partner-supported startup applies through its partner and is answered within 30 days, so 'rolling' stands. The has_partner_support rule carries the gate."
   },
   "sources": [
     {
       "url": "https://www.tamwilstartups.ma/techBoost.php",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Tamwilcom Startups: Tech Boost detail"
     },
     {
       "url": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Tamwilcom: Fonds Innov Invest overview"
     }
   ],

@@ -3,25 +3,25 @@
   "operator": "Tamwilcom",
   "kind": "guarantee",
   "verification": {
-    "status": "draft",
-    "verifiedAt": null,
-    "verifiedBy": null,
-    "notes": "Thresholds (≤ 5 years, turnover ≤ 10 MDH, credit ≤ 1.2 MDH, 80% guarantee, export exception) come from the Ministry of Finance / CCG 2020 documents. Tamwilcom's current page (2026) confirms the product, 80% cover and no fee, but no longer restates the thresholds, and the older Tamwilcom product URLs now return 404 — confirm the thresholds still apply. The 10 MDH TPE threshold is also Bank Al-Maghrib's official TPE definition (Charte TPE, art. 2, in force 2026-01-01). INTERPRETATION: 'jeunes porteurs de projets' means a business not yet created is eligible, so no legal-form criterion. The 2% interest rate is from 2020 and is shown nowhere as a rule."
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "Thresholds (≤ 5 years, turnover ≤ 10 MDH, credit ≤ 1.2 MDH, 80% guarantee, export exception) come from the Ministry of Finance / CCG 2020 documents. Tamwilcom's current page (2026) confirms the product, 80% cover and no fee, but no longer restates the thresholds, and the older Tamwilcom product URLs now return 404 — confirm the thresholds still apply. The 10 MDH TPE threshold is also Bank Al-Maghrib's official TPE definition (Charte TPE, art. 2, in force 2026-01-01). INTERPRETATION: 'jeunes porteurs de projets' means a business not yet created is eligible, so no legal-form criterion. The 2% interest rate is from 2020 and is shown nowhere as a rule. VERIFIED 2026-10-10 against every listed source. TPE = Bank Al-Maghrib Charte TPE art. 2: 'personne physique ou morale', turnover HT <= 10 MDH (re-read 2026-10-10). The 2020 deck targets 'Informel' and 'Jeunes porteurs de projets', confirming no legal-form rule. 5-year limit with the Africa-export exemption confirmed on p.8. The 2% rate stays unmodelled: it is a loan term, not eligibility."
   },
   "sources": [
     {
       "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Current product page: target, 80% cover, no fee"
     },
     {
       "url": "https://www.finances.gov.ma/Publication/daag/2020/PresentationMLM%20du%20FAFE%20VF.pdf",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Ministry of Finance, Programme INTELAKA offre produits (2020), p.8 and p.10"
     },
     {
       "url": "https://www.bkam.ma/content/download/835688/9083030/Charte%20TPE.pdf",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Bank Al-Maghrib Charte TPE (Dec 2025), art. 2: TPE turnover ≤ 10 MDH"
     }
   ],

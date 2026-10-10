@@ -3,20 +3,20 @@
   "operator": "Tamwilcom",
   "kind": "guarantee",
   "verification": {
-    "status": "draft",
-    "verifiedAt": null,
-    "verifiedBy": null,
-    "notes": "OFFICIAL: TPE under Moroccan law, all sectors except real-estate development and high-sea fishing; guarantees operating and investment loans. INTERPRETATION: 'TPE' uses Bank Al-Maghrib's official definition (turnover ≤ 10 MDH, Charte TPE art. 2); the Tamwilcom page doesn't restate a threshold. 'TPE' implies an existing business, so project holders (legal_form = none) are excluded. OPEN: no guarantee rate or amount cap is published on the current page."
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL: TPE under Moroccan law, all sectors except real-estate development and high-sea fishing; guarantees operating and investment loans. INTERPRETATION: 'TPE' uses Bank Al-Maghrib's official definition (turnover ≤ 10 MDH, Charte TPE art. 2); the Tamwilcom page doesn't restate a threshold. 'TPE' implies an existing business, so project holders (legal_form = none) are excluded. OPEN: no guarantee rate or amount cap is published on the current page. VERIFIED 2026-10-10 against every listed source. TPE = Bank Al-Maghrib Charte TPE art. 2: 'personne physique ou morale', turnover HT <= 10 MDH (re-read 2026-10-10). A guarantee on operating and investment credit for 'la continuité de l'activité' presupposes an existing business, so legal_form = none stays excluded. No rate or cap is published."
   },
   "sources": [
     {
       "url": "https://www.tamwilcom.ma/nos-solutions/tres-petites-entreprises",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Current product page: beneficiaries and sector exclusions"
     },
     {
       "url": "https://www.bkam.ma/content/download/835688/9083030/Charte%20TPE.pdf",
-      "consultedAt": "2026-09-17",
+      "consultedAt": "2026-10-10",
       "note": "Bank Al-Maghrib Charte TPE, art. 2: TPE definition"
     }
   ],
