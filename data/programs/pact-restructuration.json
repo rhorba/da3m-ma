@@ -1,0 +1,121 @@
+{
+  "slug": "pact-restructuration",
+  "operator": "Maroc PME",
+  "kind": "support",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (page): Maroc PME contribution 90% of costs, capped at 2,400,000 DH per beneficiary. OFFICIAL (shared PACT' criteria): private Moroccan company (incl. industrial acceleration zones) with annual turnover HT <= 200 MDH in a closed year within the last three; not a >50% subsidiary of a company above 200 MDH; consortia/holdings averaging <= 200 MDH; cooperatives with a processing activity and turnover <= 200 MDH; seed projects under one year whose business plan forecasts <= 200 MDH. ENCODED: legal_form not none/association, revenue_band not gt_200m. NOT ENCODED (no profile field): the subsidiary rule and the cooperative 'activité de transformation' condition. INTERPRETATION: auto-entrepreneurs are private-law businesses and are not excluded; the page does not exclude them. Applications via the 'Envoyer votre candidature' form; no call deadline published, so rolling. Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://marocpme.gov.ma/pactrestructuration/",
+      "consultedAt": "2026-10-10",
+      "note": "Maroc PME: PACT' Restructuration page (criteria and Maroc PME contribution)"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 2400000,
+    "sourceUrl": "https://marocpme.gov.ma/pactrestructuration/",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "private-firm",
+          "field": "legal_form",
+          "op": "not_in",
+          "reason": {
+            "fr": "Réservé aux entreprises de droit privé et aux coopératives : une entreprise doit être créée, et les associations ne sont pas éligibles.",
+            "ar": "مخصص لمقاولات القانون الخاص والتعاونيات: يجب أن تكون المقاولة مُنشأة، والجمعيات غير مؤهلة.",
+            "en": "Only for private companies and cooperatives: the business must exist, and associations are not eligible."
+          },
+          "value": ["none", "association"]
+        },
+        {
+          "kind": "criterion",
+          "id": "revenue-200m",
+          "field": "revenue_band",
+          "op": "not_in",
+          "reason": {
+            "fr": "Réservé aux entreprises dont le chiffre d'affaires annuel hors taxes ne dépasse pas 200 millions de dirhams.",
+            "ar": "مخصص للمقاولات التي لا يتجاوز رقم معاملاتها السنوي دون احتساب الرسوم 200 مليون درهم.",
+            "en": "Only for businesses with annual turnover (excluding tax) of up to MAD 200 million."
+          },
+          "value": ["gt_200m"]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "PACT' Restructuration",
+        "summary": "Maroc PME prend en charge 90 % du coût de l'expertise pour l'élaboration et le déploiement d'un plan de retournement, plafonné à 2 400 000 DH par bénéficiaire. Pour les TPME de droit privé marocain et les coopératives de transformation réalisant jusqu'à 200 millions de dirhams de chiffre d'affaires."
+      },
+      "ar": {
+        "title": "PACT' إعادة الهيكلة",
+        "summary": "تتكفل مغرب المقاولات بـ90% من كلفة الخبرة من أجل إعداد وتنفيذ مخطط للإنعاش، في حدود 2 400 000 درهم لكل مستفيد. لفائدة المقاولات الصغيرة جداً والصغرى والمتوسطة الخاضعة للقانون الخاص المغربي وتعاونيات التحويل التي لا يتجاوز رقم معاملاتها 200 مليون درهم."
+      },
+      "en": {
+        "title": "PACT' Restructuring",
+        "summary": "Maroc PME covers 90% of expert fees for designing and deploying a turnaround plan, capped at MAD 2,400,000 per beneficiary. For private Moroccan small and medium businesses and processing cooperatives with turnover up to MAD 200 million."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://marocpme.gov.ma/pactrestructuration/",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "small SARL",
+      "profile": {
+        "legal_form": "sarl",
+        "revenue_band": "1m_10m"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "processing cooperative",
+      "profile": {
+        "legal_form": "cooperative",
+        "revenue_band": "lt_1m"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "large company",
+      "profile": {
+        "legal_form": "sa",
+        "revenue_band": "gt_200m"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["revenue-200m"]
+    },
+    {
+      "name": "association",
+      "profile": {
+        "legal_form": "association",
+        "revenue_band": "lt_1m"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["private-firm"]
+    },
+    {
+      "name": "turnover unknown",
+      "profile": {
+        "legal_form": "sarl"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["revenue_band"]
+    }
+  ]
+}

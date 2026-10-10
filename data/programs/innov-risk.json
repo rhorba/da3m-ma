@@ -1,0 +1,103 @@
+{
+  "slug": "innov-risk",
+  "operator": "Tamwilcom",
+  "kind": "advance",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (current page): repayable advance for innovative companies with projects at advanced maturity or with strong uncertainty, hard to finance through banks. ENCODED: existing business + innovative. NOT ENCODED: 'maturité avancée ou fortes incertitudes' (no field). No amount published. Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+      "consultedAt": "2026-10-10",
+      "note": "Tamwilcom: Fonds Innov Invest, Innov Risk section"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "created",
+          "field": "legal_form",
+          "op": "neq",
+          "reason": {
+            "fr": "Réservé aux entreprises déjà créées (personne physique ou morale).",
+            "ar": "مخصص للمقاولات المُنشأة فعلياً (شخص ذاتي أو معنوي).",
+            "en": "Only for businesses that already exist (individual or legal entity)."
+          },
+          "value": "none"
+        },
+        {
+          "kind": "criterion",
+          "id": "innovative",
+          "field": "is_innovative",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux projets innovants.",
+            "ar": "مخصص للمشاريع المبتكرة.",
+            "en": "Only for innovative projects."
+          }
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Innov Risk (Fonds Innov Invest)",
+        "summary": "Avance remboursable de Tamwilcom pour les projets innovants à fort risque technologique ou commercial, difficiles à financer par les banques, avec un partage du risque entre les parties prenantes."
+      },
+      "ar": {
+        "title": "إنوف ريسك (صندوق إنوف إنفست)",
+        "summary": "تسبيق قابل للاسترداد من تمويلكم للمشاريع المبتكرة ذات المخاطر التكنولوجية أو التجارية العالية التي يصعب تمويلها بنكياً، مع تقاسم المخاطر بين الأطراف المعنية."
+      },
+      "en": {
+        "title": "Innov Risk (Innov Invest Fund)",
+        "summary": "Tamwilcom repayable advance for innovative projects with high technological or commercial risk that banks find hard to finance, with risk shared between stakeholders."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/fonds-innov-invest",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "innovative startup",
+      "profile": {
+        "legal_form": "sarl",
+        "is_innovative": true
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "not innovative",
+      "profile": {
+        "legal_form": "sarl",
+        "is_innovative": false
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["innovative"]
+    },
+    {
+      "name": "innovation unknown",
+      "profile": {
+        "legal_form": "sarl"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["is_innovative"]
+    }
+  ]
+}

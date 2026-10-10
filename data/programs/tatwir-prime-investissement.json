@@ -1,0 +1,138 @@
+{
+  "slug": "tatwir-prime-investissement",
+  "operator": "Maroc PME",
+  "kind": "grant",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (page, second block): 'Entreprises existantes ou en amorçage dont le CA annuel est entre 10 et 200 MDH, opérant dans l'industrie'; premium 20% of total investment, cap 10 MDH; +10% technology projects; +5% outside the Tanger-Casablanca Atlantic axis. The block has no programme name of its own; titled from its content. INTERPRETATION: 'en amorçage' read as no turnover yet (revenue_band none); 'industrie' = industry or agrifood. Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://marocpme.gov.ma/tatwir_rd_et_innovation/",
+      "consultedAt": "2026-10-10",
+      "note": "Maroc PME: Tatwir page, second block (prime à l'investissement)"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 10000000,
+    "sourceUrl": "https://marocpme.gov.ma/tatwir_rd_et_innovation/",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "any",
+          "rules": [
+            {
+              "kind": "criterion",
+              "id": "revenue-10-200m",
+              "field": "revenue_band",
+              "op": "in",
+              "reason": {
+                "fr": "Réservé aux entreprises réalisant entre 10 et 200 millions de dirhams de chiffre d'affaires…",
+                "ar": "مخصص للمقاولات التي يتراوح رقم معاملاتها بين 10 و200 مليون درهم…",
+                "en": "Only for businesses with turnover between MAD 10 and 200 million…"
+              },
+              "value": ["10m_50m", "50m_200m"]
+            },
+            {
+              "kind": "criterion",
+              "id": "seed",
+              "field": "revenue_band",
+              "op": "eq",
+              "reason": {
+                "fr": "… ou aux entreprises en amorçage, sans chiffre d'affaires encore.",
+                "ar": "… أو للمقاولات في مرحلة الانطلاق التي لم تحقق بعد رقم معاملات.",
+                "en": "… or to seed-stage businesses with no turnover yet."
+              },
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "kind": "criterion",
+          "id": "industry",
+          "field": "sector",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises industrielles (y compris l'agro-industrie).",
+            "ar": "مخصص للمقاولات الصناعية (بما فيها الصناعة الغذائية).",
+            "en": "Only for industrial companies (including agri-food processing)."
+          },
+          "value": ["industry", "agrifood"]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Tatwir — prime à l'investissement",
+        "summary": "Prime de Maroc PME de 20 % de l'investissement matériel et immatériel des entreprises industrielles existantes (10 à 200 millions de dirhams de chiffre d'affaires) ou en amorçage, plafonnée à 10 millions de dirhams, plus 10 % pour les projets technologiques et 5 % hors de l'axe Tanger-Casablanca."
+      },
+      "ar": {
+        "title": "تطوير: منحة الاستثمار",
+        "summary": "منحة من مغرب المقاولات بنسبة 20% من الاستثمار المادي وغير المادي للمقاولات الصناعية القائمة (رقم معاملات بين 10 و200 مليون درهم) أو في مرحلة الانطلاق، في حدود 10 ملايين درهم، مع 10% إضافية للمشاريع التكنولوجية و5% خارج محور طنجة-الدار البيضاء."
+      },
+      "en": {
+        "title": "Tatwir — investment premium",
+        "summary": "Maroc PME premium of 20% of tangible and intangible investment for existing (MAD 10–200 million turnover) or seed-stage industrial companies, capped at MAD 10 million, plus 10% for technology projects and 5% outside the Tanger-Casablanca axis."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://marocpme.gov.ma/tatwir_rd_et_innovation/",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "industrial firm, 30 MDH turnover",
+      "profile": {
+        "revenue_band": "10m_50m",
+        "sector": "industry"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "seed-stage agri-food plant",
+      "profile": {
+        "revenue_band": "none",
+        "sector": "agrifood"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "small industrial firm",
+      "profile": {
+        "revenue_band": "1m_10m",
+        "sector": "industry"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["revenue-10-200m", "seed"]
+    },
+    {
+      "name": "commerce",
+      "profile": {
+        "revenue_band": "10m_50m",
+        "sector": "commerce"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["industry"]
+    },
+    {
+      "name": "sector unknown",
+      "profile": {
+        "revenue_band": "10m_50m"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["sector"]
+    }
+  ]
+}

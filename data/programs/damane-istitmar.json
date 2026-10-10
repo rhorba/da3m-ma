@@ -1,0 +1,88 @@
+{
+  "slug": "damane-istitmar",
+  "operator": "Tamwilcom",
+  "kind": "guarantee",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (current page): guarantee of medium/long-term investment loans; beneficiaries 'entreprises de droit marocain, tous secteurs confondus'. No rate, cover or cap published on the page — amount left empty. Only rule encoded: the business exists. Applied for through a bank. Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/petites-et-moyennes-entreprises",
+      "consultedAt": "2026-10-10",
+      "note": "Tamwilcom: SME solutions, Damane Istitmar"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/petites-et-moyennes-entreprises",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "created",
+          "field": "legal_form",
+          "op": "neq",
+          "reason": {
+            "fr": "Réservé aux entreprises déjà créées (personne physique ou morale).",
+            "ar": "مخصص للمقاولات المُنشأة فعلياً (شخص ذاتي أو معنوي).",
+            "en": "Only for businesses that already exist (individual or legal entity)."
+          },
+          "value": "none"
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Damane Istitmar",
+        "summary": "Garantie Tamwilcom des crédits d'investissement à moyen et long terme, pour soutenir les projets de développement des entreprises de droit marocain, tous secteurs confondus. La demande se fait auprès de votre banque."
+      },
+      "ar": {
+        "title": "ضمان استثمار",
+        "summary": "ضمان من تمويلكم لقروض الاستثمار المتوسطة والطويلة الأمد، لدعم مشاريع تطوير المقاولات الخاضعة للقانون المغربي في جميع القطاعات. يُقدَّم الطلب عبر بنككم."
+      },
+      "en": {
+        "title": "Damane Istitmar",
+        "summary": "Tamwilcom guarantee on medium- and long-term investment loans, supporting development projects of businesses under Moroccan law in every sector. Apply through your bank."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/petites-et-moyennes-entreprises",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "established SARL",
+      "profile": {
+        "legal_form": "sarl"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "not yet created",
+      "profile": {
+        "legal_form": "none"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["created"]
+    },
+    {
+      "name": "legal form unknown",
+      "profile": {},
+      "expected": "needs_info",
+      "expectedMissing": ["legal_form"]
+    }
+  ]
+}

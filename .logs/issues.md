@@ -85,3 +85,11 @@
 - Second bug found while fixing: the first version of the escape map was written with single backslashes, so `"\u003c"` evaluated to `<` and every replacement was a no-op. The "cannot emit a closing script tag" test caught it. Now built with String.raw.
 - Prevention: run the CI Semgrep image locally before any push that adds rendering or I/O code.
 - Status: resolved, verified locally (Semgrep 0 findings on 151 targets)
+
+### [2026-10-10] [ISSUE] — Clerk forces founders to create an organisation after sign-in
+- Severity: high (blocks the whole signed-in founder flow, Story 4.3)
+- Found by: live claim-loop run (Clerk Backend API user + sign-in ticket; the sign-up UI has a Cloudflare human check, which we do not bypass). After sign-in Clerk redirects to /sign-in/tasks/choose-organization ("Setup your organization") instead of returning to /fr/mon-espace.
+- Cause: instance organization_settings.force_organization_selection = true. This contradicts ADR-5 (orgs for firms, personal accounts for B2C).
+- Fix: user-owned dashboard toggle (Organizations → Settings → Membership required: off). The agent's API change was refused by the permission classifier. The production instance needs the same setting.
+- Re-run: copy tmp/claim/zz-claim.spec.ts into e2e/, run it on desktop-chromium only, then delete it. It checks the redirect back, the history links, and that the old results URL no longer resolves.
+- Status: open, waiting on user

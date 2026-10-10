@@ -1,0 +1,144 @@
+{
+  "slug": "tatwir-rd-innovation",
+  "operator": "Maroc PME",
+  "kind": "grant",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (page, first block): SMEs, start-ups or large industrial companies under private Moroccan law (incl. industrial acceleration zones) with turnover HT between 10 and 200 MDH, carrying an R&D, industrial technology development, product/process innovation or patent project; collaborative/cluster/innovation-city variants must be carried by an industrial company. Offers: patents 80% up to 1 MDH; R&D/innovation 60% up to 4 MDH; pilot industrialisation 30% up to 5 MDH. amountMaxMad left empty because the three offers have separate caps. INTERPRETATION: 'entreprise industrielle' = sector industry or agrifood (agro-industry is industry in Morocco's classification); is_innovative stands in for 'has an R&D/innovation project'. Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://marocpme.gov.ma/tatwir_rd_et_innovation/",
+      "consultedAt": "2026-10-10",
+      "note": "Maroc PME: Tatwir R&D et Innovation (first offer block)"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://marocpme.gov.ma/tatwir_rd_et_innovation/",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "company",
+          "field": "legal_form",
+          "op": "not_in",
+          "reason": {
+            "fr": "Réservé aux entreprises de droit privé constituées en société.",
+            "ar": "مخصص لمقاولات القانون الخاص المؤسسة في شكل شركة.",
+            "en": "Only for private companies set up as a company."
+          },
+          "value": ["none", "auto_entrepreneur", "association", "cooperative"]
+        },
+        {
+          "kind": "criterion",
+          "id": "revenue-10-200m",
+          "field": "revenue_band",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises dont le chiffre d'affaires annuel hors taxes est compris entre 10 et 200 millions de dirhams.",
+            "ar": "مخصص للمقاولات التي يتراوح رقم معاملاتها السنوي دون احتساب الرسوم بين 10 و200 مليون درهم.",
+            "en": "Only for businesses with annual turnover (excluding tax) between MAD 10 and 200 million."
+          },
+          "value": ["10m_50m", "50m_200m"]
+        },
+        {
+          "kind": "criterion",
+          "id": "industry",
+          "field": "sector",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises industrielles (y compris l'agro-industrie).",
+            "ar": "مخصص للمقاولات الصناعية (بما فيها الصناعة الغذائية).",
+            "en": "Only for industrial companies (including agri-food processing)."
+          },
+          "value": ["industry", "agrifood"]
+        },
+        {
+          "kind": "criterion",
+          "id": "rd-project",
+          "field": "is_innovative",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux projets de R&D, d'innovation produit ou procédé, ou de valorisation de brevets.",
+            "ar": "مخصص لمشاريع البحث والتطوير أو ابتكار المنتجات أو المساطر أو تثمين البراءات.",
+            "en": "Only for R&D, product or process innovation, or patent projects."
+          }
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Tatwir R&D et Innovation",
+        "summary": "Appui de Maroc PME aux entreprises industrielles réalisant entre 10 et 200 millions de dirhams de chiffre d'affaires : 80 % des frais de brevets (jusqu'à 1 MDH), 60 % des projets de R&D ou d'innovation industrielle (jusqu'à 4 MDH) et 30 % de l'industrialisation en phase pilote (jusqu'à 5 MDH)."
+      },
+      "ar": {
+        "title": "تطوير: البحث والتطوير والابتكار",
+        "summary": "دعم من مغرب المقاولات للمقاولات الصناعية التي يتراوح رقم معاملاتها بين 10 و200 مليون درهم: 80% من مصاريف البراءات (حتى مليون درهم)، و60% من مشاريع البحث والتطوير أو الابتكار الصناعي (حتى 4 ملايين درهم)، و30% من التصنيع في المرحلة التجريبية (حتى 5 ملايين درهم)."
+      },
+      "en": {
+        "title": "Tatwir R&D and Innovation",
+        "summary": "Maroc PME support for industrial companies with turnover between MAD 10 and 200 million: 80% of patent costs (up to MAD 1M), 60% of industrial R&D or innovation projects (up to MAD 4M) and 30% of pilot-phase industrialisation (up to MAD 5M)."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://marocpme.gov.ma/tatwir_rd_et_innovation/",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "industrial SA with R&D project",
+      "profile": {
+        "legal_form": "sa",
+        "revenue_band": "10m_50m",
+        "sector": "industry",
+        "is_innovative": true
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "too small",
+      "profile": {
+        "legal_form": "sarl",
+        "revenue_band": "1m_10m",
+        "sector": "industry",
+        "is_innovative": true
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["revenue-10-200m"]
+    },
+    {
+      "name": "services company",
+      "profile": {
+        "legal_form": "sarl",
+        "revenue_band": "10m_50m",
+        "sector": "services",
+        "is_innovative": true
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["industry"]
+    },
+    {
+      "name": "project type unknown",
+      "profile": {
+        "legal_form": "sa",
+        "revenue_band": "50m_200m",
+        "sector": "agrifood"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["is_innovative"]
+    }
+  ]
+}

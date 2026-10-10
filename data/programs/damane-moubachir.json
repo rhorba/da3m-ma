@@ -1,0 +1,150 @@
+{
+  "slug": "damane-moubachir",
+  "operator": "Tamwilcom",
+  "kind": "guarantee",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (sheet): guarantee of participative financing <= 1 MDH for natural or legal persons under Moroccan law, any legal form, producing goods/services, with turnover <= 10 MDH; all sectors except real-estate development and high-sea fishing; 70% cover (80% if capital majority female); 5 MDH cap per company for this product, 20 MDH all guarantees; 48h decision; via bank or participative window. ENCODED need_amount_band <= 1 MDH as the financing cap. INTERPRETATION: 'exerçant des activités' read as an existing business, so legal_form none is excluded (same reading as Damane Express). NOT ENCODED: Sharia-compliant activity (implicit in a participative product). Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/daamatamwil/pdf/damane_moubachir_FR.pdf",
+      "consultedAt": "2026-10-10",
+      "note": "Daama Tamwil product sheet: Damane Moubachir"
+    },
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/finance-participative",
+      "consultedAt": "2026-10-10",
+      "note": "Tamwilcom: participative finance window overview"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/daamatamwil/pdf/damane_moubachir_FR.pdf",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "created",
+          "field": "legal_form",
+          "op": "neq",
+          "reason": {
+            "fr": "Réservé aux entreprises déjà créées (personne physique ou morale).",
+            "ar": "مخصص للمقاولات المُنشأة فعلياً (شخص ذاتي أو معنوي).",
+            "en": "Only for businesses that already exist (individual or legal entity)."
+          },
+          "value": "none"
+        },
+        {
+          "kind": "criterion",
+          "id": "revenue",
+          "field": "revenue_band",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux entreprises dont le chiffre d'affaires annuel hors taxes ne dépasse pas 10 millions de dirhams.",
+            "ar": "مخصص للمقاولات التي لا يتجاوز رقم معاملاتها السنوي دون احتساب الرسوم 10 ملايين درهم.",
+            "en": "Only for businesses with annual turnover (excluding tax) of up to MAD 10 million."
+          },
+          "value": ["none", "lt_1m", "1m_10m"]
+        },
+        {
+          "kind": "criterion",
+          "id": "financing-1m",
+          "field": "need_amount_band",
+          "op": "in",
+          "reason": {
+            "fr": "Réservé aux financements ne dépassant pas 1 million de dirhams.",
+            "ar": "مخصص للتمويلات التي لا تتجاوز مليون درهم.",
+            "en": "Only for financing of up to MAD 1 million."
+          },
+          "value": ["lt_100k", "100k_500k", "500k_1m"]
+        },
+        {
+          "kind": "criterion",
+          "id": "sector",
+          "field": "sector",
+          "op": "not_in",
+          "reason": {
+            "fr": "La promotion immobilière et la pêche hauturière ne sont pas éligibles.",
+            "ar": "الإنعاش العقاري والصيد في أعالي البحار غير مؤهلين.",
+            "en": "Real-estate development and high-sea fishing are not eligible."
+          },
+          "value": ["real_estate_development", "high_sea_fishing"]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Damane Moubachir (finance participative)",
+        "summary": "Garantie Tamwilcom de 70 % (80 % si le capital est majoritairement féminin) des financements participatifs jusqu'à 1 million de dirhams, pour les entreprises dont le chiffre d'affaires ne dépasse pas 10 millions de dirhams. Demande auprès de votre banque ou fenêtre participative ; réponse sous 48 heures."
+      },
+      "ar": {
+        "title": "ضمان مباشر (التمويل التشاركي)",
+        "summary": "ضمان من تمويلكم بنسبة 70% (80% إذا كان رأس المال في أغلبه نسائياً) للتمويلات التشاركية حتى مليون درهم، لفائدة المقاولات التي لا يتجاوز رقم معاملاتها 10 ملايين درهم. يُقدَّم الطلب عبر بنككم أو النافذة التشاركية، والرد في غضون 48 ساعة."
+      },
+      "en": {
+        "title": "Damane Moubachir (participative finance)",
+        "summary": "Tamwilcom guarantee covering 70% (80% for majority women-owned capital) of participative financing up to MAD 1 million, for businesses with turnover up to MAD 10 million. Apply through your participative bank or window; answer within 48 hours."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/daamatamwil/pdf/damane_moubachir_FR.pdf",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "small SARL borrowing 300k",
+      "profile": {
+        "legal_form": "sarl",
+        "revenue_band": "lt_1m",
+        "need_amount_band": "100k_500k",
+        "sector": "commerce"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "financing above 1 MDH",
+      "profile": {
+        "legal_form": "sarl",
+        "revenue_band": "1m_10m",
+        "need_amount_band": "1m_5m",
+        "sector": "industry"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["financing-1m"]
+    },
+    {
+      "name": "turnover above 10 MDH",
+      "profile": {
+        "legal_form": "sa",
+        "revenue_band": "10m_50m",
+        "need_amount_band": "500k_1m",
+        "sector": "industry"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["revenue"]
+    },
+    {
+      "name": "amount unknown",
+      "profile": {
+        "legal_form": "sarl",
+        "revenue_band": "lt_1m",
+        "sector": "services"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["need_amount_band"]
+    }
+  ]
+}

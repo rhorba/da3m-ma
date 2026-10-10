@@ -72,3 +72,9 @@
 
 ### [2026-10-10] [DECISION] — Dark --color-ineligible raised to #88837a (5.0:1)
 - Rationale: axe showed the 20px semibold group heading is not WCAG "large text", so 4.5:1 applies; the 3:1 assumption in contrast.test.ts was wrong.
+
+### [2026-10-10] [DECISION] — Story 4.6: 17 programmes added, verified from operator sources
+- Added: damane-moubachir, damane-dayn, tamwil-chamal (Daama Tamwil sheets); damane-istitmar, mdm-invest, mdm-tamwil, innov-risk (Tamwilcom pages); 8 PACT' offers, tatwir-rd-innovation, tatwir-prime-investissement (Maroc PME). Catalogue: 27 programmes.
+- Left out: Ilayki Invest and We-Fi (need a gender field), Bourse de vie (3 personal fields, decision pending), Salama PME (committee-selected), PTC (for consultants), Go Siyaha and Power Export (no criteria published), Damane Atassyir (ambiguous on TPE), Tassdir/Green Invest/Cap Access (no matching field), Inmaa ("services liés à l'industrie" not encodable).
+- Caveat: drafted and verified by the same agent on the same day, a single pair of eyes. Every interpretation is labelled in notes.
+- Observation for the user: the 8 PACT' offers crowd the top of results (ranking seems amount-led). Ranking relevance is worth a look.

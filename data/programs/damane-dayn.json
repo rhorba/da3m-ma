@@ -1,0 +1,154 @@
+{
+  "slug": "damane-dayn",
+  "operator": "Tamwilcom",
+  "kind": "guarantee",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (sheet): guarantee of participative financing for companies borrowing > 1 MDH and/or with turnover > 10 MDH; natural or legal persons under Moroccan law, any form, producing goods/services; all sectors except real-estate development and high-sea fishing; 60% cover, 70% for start-ups under 3 years; caps 10 MDH per operation / 20 MDH per company, raised to 20/40 MDH for industrial, exporting or green-economy firms with an unqualified auditor's report; via bank or participative window. amountMaxMad = standard per-operation cap. INTERPRETATION: existing business required (legal_form none excluded). Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/daamatamwil/pdf/damane_dayn_FR.pdf",
+      "consultedAt": "2026-10-10",
+      "note": "Daama Tamwil product sheet: Damane Dayn"
+    },
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/finance-participative",
+      "consultedAt": "2026-10-10",
+      "note": "Tamwilcom: participative finance window overview"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": 10000000,
+    "sourceUrl": "https://www.tamwilcom.ma/daamatamwil/pdf/damane_dayn_FR.pdf",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "created",
+          "field": "legal_form",
+          "op": "neq",
+          "reason": {
+            "fr": "Réservé aux entreprises déjà créées (personne physique ou morale).",
+            "ar": "مخصص للمقاولات المُنشأة فعلياً (شخص ذاتي أو معنوي).",
+            "en": "Only for businesses that already exist (individual or legal entity)."
+          },
+          "value": "none"
+        },
+        {
+          "kind": "criterion",
+          "id": "sector",
+          "field": "sector",
+          "op": "not_in",
+          "reason": {
+            "fr": "La promotion immobilière et la pêche hauturière ne sont pas éligibles.",
+            "ar": "الإنعاش العقاري والصيد في أعالي البحار غير مؤهلين.",
+            "en": "Real-estate development and high-sea fishing are not eligible."
+          },
+          "value": ["real_estate_development", "high_sea_fishing"]
+        },
+        {
+          "kind": "any",
+          "rules": [
+            {
+              "kind": "criterion",
+              "id": "financing-over-1m",
+              "field": "need_amount_band",
+              "op": "in",
+              "reason": {
+                "fr": "Réservé aux financements de plus de 1 million de dirhams…",
+                "ar": "مخصص للتمويلات التي تتجاوز مليون درهم…",
+                "en": "Only for financing above MAD 1 million…"
+              },
+              "value": ["1m_5m", "gt_5m"]
+            },
+            {
+              "kind": "criterion",
+              "id": "revenue-over-10m",
+              "field": "revenue_band",
+              "op": "in",
+              "reason": {
+                "fr": "… ou aux entreprises dont le chiffre d'affaires dépasse 10 millions de dirhams.",
+                "ar": "… أو للمقاولات التي يتجاوز رقم معاملاتها 10 ملايين درهم.",
+                "en": "… or for businesses with turnover above MAD 10 million."
+              },
+              "value": ["10m_50m", "50m_200m", "gt_200m"]
+            }
+          ]
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "Damane Dayn (finance participative)",
+        "summary": "Garantie Tamwilcom de 60 % (70 % pour les entreprises de moins de 3 ans) des financements participatifs de plus de 1 million de dirhams ou des entreprises réalisant plus de 10 millions de chiffre d'affaires. Jusqu'à 10 millions de dirhams par opération (20 millions pour les entreprises industrielles, exportatrices ou vertes avec comptes certifiés)."
+      },
+      "ar": {
+        "title": "ضمان دين (التمويل التشاركي)",
+        "summary": "ضمان من تمويلكم بنسبة 60% (70% للمقاولات التي يقل عمرها عن 3 سنوات) للتمويلات التشاركية التي تفوق مليون درهم أو للمقاولات التي يتجاوز رقم معاملاتها 10 ملايين درهم. حتى 10 ملايين درهم لكل عملية (20 مليوناً للمقاولات الصناعية أو المصدّرة أو الخضراء ذات الحسابات المصادق عليها)."
+      },
+      "en": {
+        "title": "Damane Dayn (participative finance)",
+        "summary": "Tamwilcom guarantee covering 60% (70% for businesses under 3 years old) of participative financing above MAD 1 million, or for businesses with turnover above MAD 10 million. Up to MAD 10 million per operation (20 million for industrial, exporting or green businesses with certified accounts)."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/daamatamwil/pdf/damane_dayn_FR.pdf",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "mid-size firm borrowing 3 MDH",
+      "profile": {
+        "legal_form": "sa",
+        "sector": "industry",
+        "need_amount_band": "1m_5m",
+        "revenue_band": "10m_50m"
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "small firm, small loan",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "commerce",
+        "need_amount_band": "100k_500k",
+        "revenue_band": "lt_1m"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["financing-over-1m", "revenue-over-10m"]
+    },
+    {
+      "name": "real-estate developer",
+      "profile": {
+        "legal_form": "sa",
+        "sector": "real_estate_development",
+        "need_amount_band": "gt_5m",
+        "revenue_band": "10m_50m"
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["sector"]
+    },
+    {
+      "name": "amount and turnover unknown",
+      "profile": {
+        "legal_form": "sarl",
+        "sector": "industry"
+      },
+      "expected": "needs_info",
+      "expectedMissing": ["need_amount_band", "revenue_band"]
+    }
+  ]
+}

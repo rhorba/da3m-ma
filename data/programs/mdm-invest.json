@@ -1,0 +1,87 @@
+{
+  "slug": "mdm-invest",
+  "operator": "Tamwilcom",
+  "kind": "grant",
+  "verification": {
+    "status": "verified",
+    "verifiedAt": "2026-10-10",
+    "verifiedBy": "Claude (agent) for rhorba",
+    "notes": "OFFICIAL (current page): non-repayable contribution for productive investment in Morocco by MRE or returnees; beneficiaries 'MRE ou de retour définitif, porteurs de projets d'investissement'. No rate or cap on the page. LIMITATION: the wizard asks 'Êtes-vous MRE ?'; a returnee may answer no. The reason text names returnees so they can correct it. OPEN: the historical contribution rate/cap is not restated on the current page and is not encoded. Drafted and verified 2026-10-10 from the sources listed (Story 4.6)."
+  },
+  "sources": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/cofinancement",
+      "consultedAt": "2026-10-10",
+      "note": "Tamwilcom: co-financing solutions, MDM Invest"
+    }
+  ],
+  "version": {
+    "status": "rolling",
+    "opensAt": null,
+    "closesAt": null,
+    "amountMinMad": null,
+    "amountMaxMad": null,
+    "sourceUrl": "https://www.tamwilcom.ma/nos-solutions/cofinancement",
+    "applicationUrl": null,
+    "rules": {
+      "kind": "all",
+      "rules": [
+        {
+          "kind": "criterion",
+          "id": "mre",
+          "field": "is_mre",
+          "op": "is_true",
+          "reason": {
+            "fr": "Réservé aux Marocains résidant à l'étranger, y compris ceux de retour définitif au Maroc.",
+            "ar": "مخصص للمغاربة المقيمين بالخارج، بمن فيهم العائدون بشكل نهائي إلى المغرب.",
+            "en": "Only for Moroccans living abroad, including those who have returned to Morocco for good."
+          }
+        }
+      ]
+    },
+    "documents": [],
+    "content": {
+      "fr": {
+        "title": "MDM Invest (MRE)",
+        "summary": "Contribution non remboursable de l'État, gérée par Tamwilcom, aux projets d'investissement productif réalisés au Maroc par les Marocains résidant à l'étranger ou de retour définitif."
+      },
+      "ar": {
+        "title": "MDM Invest (مغاربة العالم)",
+        "summary": "مساهمة غير قابلة للاسترداد من الدولة، يدبرها تمويلكم، في مشاريع الاستثمار المنتج التي ينجزها بالمغرب المغاربة المقيمون بالخارج أو العائدون بشكل نهائي."
+      },
+      "en": {
+        "title": "MDM Invest (Moroccans abroad)",
+        "summary": "Non-repayable State contribution, managed by Tamwilcom, to productive investment projects in Morocco by Moroccans living abroad or who have returned for good."
+      }
+    }
+  },
+  "watches": [
+    {
+      "url": "https://www.tamwilcom.ma/nos-solutions/cofinancement",
+      "cssSelector": null
+    }
+  ],
+  "goldenProfiles": [
+    {
+      "name": "MRE investor",
+      "profile": {
+        "is_mre": true
+      },
+      "expected": "eligible"
+    },
+    {
+      "name": "resident founder",
+      "profile": {
+        "is_mre": false
+      },
+      "expected": "ineligible",
+      "expectedFailing": ["mre"]
+    },
+    {
+      "name": "MRE status unknown",
+      "profile": {},
+      "expected": "needs_info",
+      "expectedMissing": ["is_mre"]
+    }
+  ]
+}
