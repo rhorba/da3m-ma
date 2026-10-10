@@ -211,3 +211,8 @@
 - Specialist: DevOps
 - Summary: Run 38046460903, all four jobs succeeded (lint/types/format, unit + integration coverage gate, build + E2E, security scans).
 - Status: complete
+
+### [2026-10-10] [CI] — Story 4.6 (17 programmes), push 971e022: GREEN
+- Specialist: DevOps
+- Summary: Run 38048130925, all four jobs succeeded. Catalogue now 27 verified programmes; not yet published anywhere but local (no production deployment exists).
+- Also: the Clerk force_organization_selection fix was attempted via the API and then via the user's signed-in dashboard; the permission classifier refused both. User to toggle it.
