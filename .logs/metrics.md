@@ -51,3 +51,9 @@
 - Tests: 407 passed / 407 (28 files), up from 381
 - Coverage (combined): statements 97.03%, branches 95.91%, functions 93.62%, lines 98.07% — gate 80% PASS
 - Semgrep (run locally before push): 0 findings on 155 targets
+
+### [2026-10-10] [METRICS] — axe sweep + catalogue verification
+- Tests: 407 unit/integration passed; E2E 152/152 passed (desktop + mobile), including 52 axe cases
+- Coverage (combined): statements 96.46%, branches 94.86%, functions 91.82%, lines 97.4% — gate 80% PASS
+- axe (WCAG 2.2 AA): 0 violations across 5 pages × 3 locales × 2 themes × 2 viewports; plus 40/40 on the 10 real programme pages (FR/AR, light/dark) against a local sync
+- pnpm audit --prod: 0 (was 2 high + 2 moderate via next → fixed with next 15.5.27, sharp 0.35.5, source-map-js 1.2.2)

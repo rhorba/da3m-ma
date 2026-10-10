@@ -63,3 +63,12 @@
 - Rationale: the agent cannot read either value — the browser tooling redacts secrets, and a local pipe built to route around that was denied by the sandbox classifier. Both controls were right to fire. The user chose not to paste them by hand, which is reasonable: the claim logic has 26 tests behind it (including the shared-machine token-rotation case) and the middleware's public-route isolation is proven by 94 E2E plus CI, so what remains unverified is narrow and will surface on the first real sign-in.
 - Consequence: locally, /[locale]/mon-espace returns 500 until the secrets exist. Public routes are unaffected — verified. Nothing else in the project is blocked by this.
 - Owner: User
+
+### [2026-10-10] [DECISION] — Catalogue: all 10 programmes verified by the agent
+- Specialist: Curator (agent, on user instruction "check the catalogue by u")
+- Decision: sign off all 10 drafts after re-reading every source on 2026-10-10. Partner intake calls do not make the Startup VB / Innov Invest products windowed, so `rolling` stays. TPE = BAM art. 2 (≤ 10 MDH). "De droit marocain" = incorporated. Stage mapping and one-offs hold. Start-TPE source moved to /nos-solutions/cofinancement.
+- Rationale: every one of the 18 open items was settled by primary-source text, not judgement. Detail in docs/verification-worksheet.md, "Resolution".
+- Owner: User (can revert any file to draft; verifiedBy names the agent for the audit trail)
+
+### [2026-10-10] [DECISION] — Dark --color-ineligible raised to #88837a (5.0:1)
+- Rationale: axe showed the 20px semibold group heading is not WCAG "large text", so 4.5:1 applies; the 3:1 assumption in contrast.test.ts was wrong.

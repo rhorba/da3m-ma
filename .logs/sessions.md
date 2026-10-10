@@ -64,3 +64,8 @@
 ### [2026-09-18 10:35] SESSION_END
 - Completed: resumption check only; no code changes. User not available this session.
 - Next: unchanged — (A) verification worksheet, 5 judgement calls, gates public beta; (B) signed-in claim loop test for 4.3; (C) Resend + SPF/DKIM/DMARC for 4.4; (D) axe sweep, agent-owned, unblocked from 2026-09-21 ~10:00.
+
+### [2026-10-10] SESSION_START
+- Focus: resumption after 3-week gap. State unchanged since a801537: 10/10 catalogue entries still draft, CLERK_WEBHOOK_SIGNING_SECRET and Resend absent. Newly unblocked: axe sweep (nan@2.29.0 cleared minimum-release-age on 2026-09-21). UNDERSTAND done; awaiting user's pick at BRAINSTORM gate.
+- [BRAINSTORM] User picked A (axe sweep) then B (catalogue verification, performed by the agent against official sources). User said "go": PLAN gate treated as approved.
+- [PLAN] A: add @axe-core/playwright, e2e/a11y.spec.ts over public routes x locales x themes, fix violations, run in CI. B: work docs/verification-worksheet.md item by item against the official source URLs; publish only what the sources support, keep the rest draft with notes.
