@@ -188,6 +188,7 @@ Then my profile and report are owned by my account and the anonymous token is ro
 ### Story 4.7: Arabic translation pass + a11y audit → public beta
 **Priority**: Must | **Size**: M | **Specialist**: Copywriter + Tester
 **Notes**: Native-reader review of all AR copy; axe zero serious/critical in FR and AR. Public beta ships at the end of this story.
+**Status (2026-10-10)**: a11y half done. `e2e/axe.spec.ts` sweeps every public page in FR/AR/EN, light and dark, on desktop and mobile, against WCAG 2.2 AA with zero violations of any impact. It caught dark `--color-ineligible` at 4.1:1, now 5.0:1. Outstanding: the native Arabic reader pass (user-owned).
 
 ---
 

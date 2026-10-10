@@ -107,17 +107,18 @@ describe.each([
     else expect(round(onBackground("accent"))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("keeps the muted ineligible colour readable at heading size", () => {
-    // Used for the collapsed group heading and its dot: large text and a UI component,
-    // so the threshold is 3:1, not 4.5:1.
-    expect(round(onBackground("ineligible"))).toBeGreaterThanOrEqual(3);
+  it("keeps the muted ineligible colour readable as body text", () => {
+    // The group heading is 20px semibold, which WCAG does not count as large text (that
+    // needs bold 700 at this size), so the 4.5:1 body-text threshold applies. The axe
+    // sweep caught the dark theme at 4.1:1 when this test still assumed 3:1.
+    expect(round(onBackground("ineligible"))).toBeGreaterThanOrEqual(4.5);
   });
 
   it(`matches the ratios the UI foundation documents for ${theme}`, () => {
     const documented =
       theme === "light"
         ? { primary: 7.2, "text-muted": 5.6, ineligible: 4.9, warning: 5, error: 5.7 }
-        : { primary: 6.4, ineligible: 4.1 };
+        : { primary: 6.4, ineligible: 5 };
 
     for (const [name, expected] of Object.entries(documented)) {
       expect([name, round(onBackground(name))]).toEqual([name, expected]);
