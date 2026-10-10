@@ -228,3 +228,9 @@
 - Re-run: questionnaire attached, history shows it, alerts form visible. Unit 458/458, E2E 168/168, lint clean, Semgrep (owasp-top-ten + typescript) 0 findings on changed files.
 - Resend: sending-only key "da3m-ma" created at the user's request, written to .env.local without printing; EMAIL_FROM=onboarding@resend.dev (no domain). Live confirmation email: Resend shows Delivered to the account owner's address.
 - Vercel: project da3m-ma created and linked; `vercel link` also connected GitHub (push to main = production deploy). Disconnect was refused by the permission classifier, so this commit is NOT pushed pending the user's decision.
+
+## 2026-10-10 — Production setup (user chose B: keep Git auto-deploy, Clerk dev badge on vercel.app)
+- Neon `da3m-ma-db` provisioned via Vercel Marketplace (us-east-1, co-located with Vercel's default iad1 functions).
+- User ran `node tmp/launch-setup.cjs` (env writes and prod DB writes were classifier-blocked for the agent): 9 production env vars added (fresh CRON_SECRET and ALERTS_SIGNING_SECRET), migrations applied, 27 programmes published.
+- CLERK_WEBHOOK_SIGNING_SECRET empty locally, so not set; no Clerk webhook endpoint exists for production yet.
+- source-watch cron daily (Hobby). Pushing 3552dfc + d0248e2 = first production deploy.
