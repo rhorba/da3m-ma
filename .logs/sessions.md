@@ -87,3 +87,13 @@
 ## 2026-10-10 SESSION_END (third) — launched on Vercel
 - Done: Mon espace claim crash fixed (3552dfc), daily cron for Hobby (d0248e2), Neon + env + migrations + 27 programmes, production live at da3m-ma.vercel.app, CI green.
 - Next: Clerk webhook for prod, domain for Resend, Arabic review, ranking by stated needs (open question).
+
+## [2026-10-13] SESSION_START
+- Focus: resumption after launch (412d297). Prod up, CI green. UNDERSTAND: awaiting user pick at BRAINSTORM gate.
+- [UNDERSTAND] Ranking diagnosis: all 27 programmes are `rolling`, so eligible results sort purely by amountMaxMad desc (lib/engine/rank.ts byOpennessThenAmount); the 12 null-ceiling Tamwilcom programmes always sort last; need_purposes / need_amount_band are collected by the wizard but unused in ranking, and no programme declares purposes.
+- [BRAINSTORM] Options presented: (1) curated `purposes` tags + overlap-first ranking; (2) recommended: 1 + amount-band fit (null ceiling = unknown, middle not last); (3) weighted score + grouping by kind. Gate open: user has not picked yet.
+
+## [2026-10-13] SESSION_END
+- Completed: resumption check (prod 200, CI green 412d297), ranking diagnosis, approach options. No code changes.
+- Next: user picks 1/2/3 at the BRAINSTORM gate, then PLAN. Purpose tags must come from re-reading each programme's source page, recorded in verification notes; stored reports keep their snapshot order.
+- Still user-owned: Clerk prod webhook secret, Resend domain + DNS for da3m.ma, native Arabic reader.

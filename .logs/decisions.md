@@ -85,3 +85,6 @@
 - Unsubscribe stops every subscription for the address. One digest per address per day; at most 3 opt-in emails per address per day.
 - Resend is called over fetch (one POST does not justify an SDK). Without RESEND_API_KEY/EMAIL_FROM/ALERTS_SIGNING_SECRET, the form answers "unavailable" and the cron returns 503: it never pretends to send.
 - New env var ALERTS_SIGNING_SECRET: generated locally; must be set in the deployment.
+
+### [2026-10-13] [DECISION] — Work on A: results ranking by stated needs
+- User picked A over B (Clerk webhook), C (Resend DNS), D (Epic 5), E (Arabic reader).
